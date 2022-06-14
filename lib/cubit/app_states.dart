@@ -55,3 +55,9 @@ class AppVirementInitialStates extends AppStates {}
 class AppVirementLoadingStates extends AppStates {}
 class AppVirementSuccessStates extends AppStates {}
 class AppVirementErrorStates extends AppStates {}
+
+
+class AppVersementInitialStates extends AppStates {}
+class AppVersementLoadingStates extends AppStates {}
+class AppVersementSuccessStates extends AppStates {}
+class AppVersementErrorStates extends AppStates {}

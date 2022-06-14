@@ -91,9 +91,10 @@ class MyApp extends StatelessWidget {
                     ),
                     TyperAnimatedTextKit(
                       text: const ["Discover The Future \n With US..."],
-                      textStyle: GoogleFonts.fredokaOne(
-                        textStyle:
-                            TextStyle(fontSize: 25, color: Color(0xff4c6611)),
+                      textStyle: GoogleFonts.manrope(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
                       ),
                       textAlign: TextAlign.center,
                       speed: Duration(milliseconds: 100),

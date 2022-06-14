@@ -58,8 +58,8 @@ class HomePage extends StatelessWidget {
 
           /// Search
           SalomonBottomBarItem(
-            icon: ImageIcon(AssetImage("asset/images/sendMoney.png")),
-            title: Text("Search"),
+            icon: Icon(Icons.currency_exchange_sharp),
+            title: Text("transfer"),
             selectedColor: Colors.green,
           ),
 

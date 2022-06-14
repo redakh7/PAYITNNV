@@ -7,11 +7,14 @@ import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/profile_page.dart';
 import 'package:m_wallet_hps/screens/transferPage.dart';
+import 'package:m_wallet_hps/screens/versementScreen.dart';
 import '../screens/AcccueilScreen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialStates());
-
+  String? email;
+  String? username;
+  String? password;
   static AppCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
@@ -127,9 +130,31 @@ class AppCubit extends Cubit<AppStates> {
     }).then((value) {
       loadLoggedInUser(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
       emit(AppVirementSuccessStates());
+      changeBottom(0);
 
     }).catchError((error){
       emit(AppVirementErrorStates());
+
+    });
+  }
+
+
+  void makeVersement(montant,message,emetteur){
+
+
+    String operation_type = "versement";
+    emit(AppVersementInitialStates());
+    DioHelper.postData(url: "transfer/operation", data: {
+      "operation_type" : operation_type,
+      "montant" : montant,
+      "emetteur" : emetteur,
+      "message" : message
+    }).then((value) {
+      loadLoggedInUser(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
+      emit(AppVersementSuccessStates());
+        userModel = null;
+    }).catchError((error){
+      emit(AppVersementErrorStates());
 
     });
   }
