@@ -6,7 +6,12 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
+import 'package:m_wallet_hps/network/local/cache_helper.dart';
+import 'package:m_wallet_hps/shared/buttons.dart';
+import 'package:m_wallet_hps/shared/component.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
+import 'login_page.dart';
 
 
 class ProfilePage extends StatelessWidget {
@@ -37,7 +42,16 @@ class ProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
+                      defaultHomeButton(buttonText: "Logout",
+                          buttonImage: AssetImage("images/logout.png")
+                          , function: (){
+                        AppCubit.get(context).removeFcmToken(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
+    CacheHelper.removeData(key: 'token');
+    CacheHelper.removeData(key: 'email');
 
+    navigateAndFinish(context, LoginPage());
+    AppCubit.get(context).currentIndex=0;
+    }),
                       const SizedBox(
                         height: 22,
                       ),

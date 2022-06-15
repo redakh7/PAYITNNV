@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:bloc/bloc.dart';
-
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +12,26 @@ import 'package:m_wallet_hps/cubit/bloc_observer.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/AcccueilScreen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
+import 'package:m_wallet_hps/screens/TopSignupScreen.dart';
 import 'package:m_wallet_hps/screens/home_page.dart';
 import 'package:m_wallet_hps/screens/login_page.dart';
 import 'package:m_wallet_hps/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:m_wallet_hps/shared/component.dart';
 import 'network/local/cache_helper.dart';
+import 'package:get/get.dart';
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+
   await CacheHelper.init();
   DioHelper.init();
-  Firebase.initializeApp();
+
   String? token;
-  Widget widget;
+
   try {
     token = CacheHelper.getData(key: 'token');
   } catch (e) {
@@ -34,28 +41,51 @@ Future<void> main() async {
   print(token);
 
   if (token == null) {
-    widget = const LoginPage();
+    AppCubit.widget = const LoginPage();
   } else if (jwtVerification(token) == true) {
     print(jwtVerification(token));
-    widget = const HomePage();
+    AppCubit.widget = const HomePage();
   } else {
-    widget = const LoginPage();
+    AppCubit.widget = const LoginPage();
   }
 
   BlocOverrides.runZoned(
     () {
-      runApp(MyApp(
-        startWidget: widget,
-      ));
+      runApp(MyApp());
     },
     blocObserver: MyBlocObserver(),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({required this.startWidget});
-  final Widget startWidget;
+class MyApp extends StatefulWidget {
 
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+
+  _MyAppState();
+
+  @override
+  initState() {
+    super.initState();
+    this.initDynamicLinks();
+  }
+
+  Future<void> initDynamicLinks() async {
+    dynamicLinks.onLink.listen((dynamicLinkData) {
+      showToast(message: "Email Verified");
+      Get.to(() => LoginPage());
+
+    }).onError((error) {
+      print('onLink error');
+      print(error.message);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -67,12 +97,13 @@ class MyApp extends StatelessWidget {
         ],
         child: BlocConsumer<AppCubit, AppStates>(
           listener: (context, state) {},
-          builder: (context, state) => MaterialApp(
+          builder: (context, state) => GetMaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             home: AnimatedSplashScreen(
               splashIconSize: 500,
-              nextScreen: startWidget,
+           nextScreen: SignupPagePage(),
+              //  nextScreen: AppCubit.widget,
               backgroundColor: Colors.white,
               splashTransition: SplashTransition.fadeTransition,
               duration: 3000,
@@ -105,6 +136,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
+
             routes: {
               SignupPage.id: (context) => SignupPage(),
               LoginPage.id: (context) => const LoginPage(),
@@ -115,4 +147,5 @@ class MyApp extends StatelessWidget {
           ),
         ));
   }
+
 }

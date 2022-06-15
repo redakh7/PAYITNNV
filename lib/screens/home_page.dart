@@ -1,13 +1,12 @@
-import 'package:drawerbehavior/drawer_scaffold.dart';
-import 'package:drawerbehavior/drawerbehavior.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/settings_page.dart';
-import 'package:m_wallet_hps/shared/buttons.dart';
+
+
+
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 

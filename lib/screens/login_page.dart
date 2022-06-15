@@ -5,11 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/AcccueilScreen.dart';
-import 'package:m_wallet_hps/screens/accueilScreen.dart';
+
+
 import 'package:m_wallet_hps/screens/home_page.dart';
 import 'package:m_wallet_hps/screens/signup_page.dart';
-import 'package:m_wallet_hps/shared/buttons.dart';
+
 import 'package:m_wallet_hps/shared/component.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   var usernameLoginController = TextEditingController();
   var passwordLogController = TextEditingController();
-
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(listener: (context, state) async {
@@ -122,16 +122,30 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                         ),
-                        obscureText: true,
+                        obscureText: _isObscure,
                         decoration: InputDecoration(
                           hintText: 'Password',
+                          suffixIcon: IconButton(
+
+
+                            icon: Icon(
+
+                              _isObscure ? Icons.visibility : Icons.visibility_off,
+                              color: _isObscure ?  Colors.green :Colors.grey ,
+
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                          ),
                           fillColor:  Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                           focusedBorder:  OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-
                             borderSide: const BorderSide(color: Colors.green, width: 2.0),
                           ),
                         ),

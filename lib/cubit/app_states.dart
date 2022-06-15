@@ -5,6 +5,7 @@ abstract class AppStates {}
 class AppInitialStates extends AppStates {}
 
 class AppChangeBottomNavStates extends AppStates {}
+class AppStepPageStates extends AppStates {}
 
 class AppLoadingInitialStates extends AppStates {}
 
@@ -42,6 +43,7 @@ class LoginSaveTokenSuccessStates extends AppStates {}
 
 
 class LoadLoggedInUserInitial extends AppStates {}
+
 class RemoveTokenInitialStates extends AppStates {}
 class RemoveTokenSuccessStates extends AppStates {}
 class RemoveTokenErrorStates extends AppStates {}
@@ -61,3 +63,9 @@ class AppVersementInitialStates extends AppStates {}
 class AppVersementLoadingStates extends AppStates {}
 class AppVersementSuccessStates extends AppStates {}
 class AppVersementErrorStates extends AppStates {}
+
+class AppChangeStates extends AppStates {}
+
+
+class AppRefreshStates extends AppStates {}
+class AppRefreshStatesStop extends AppStates {}

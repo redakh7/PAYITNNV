@@ -1,6 +1,8 @@
 import 'package:drawerbehavior/drawerbehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:m_wallet_hps/shared/component.dart';
 import 'package:m_wallet_hps/shared/constantes.dart';
 
 Widget defaultHomeButton(
@@ -62,4 +64,39 @@ Widget loginButton(
           fontSize: 12.0,
         ),
       )),
+);
+
+
+
+
+Widget ButtonTest({
+  required function,
+  required String text,
+})=> RaisedButton(
+  onPressed: function,
+  textColor: const Color(0xffFFFFFF),
+  padding: const EdgeInsets.all(0),
+  shape: const StadiumBorder(),
+  child: Container(
+    width:  170,
+    height: 65,
+    alignment: Alignment.center,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      gradient:const LinearGradient(
+        colors: [
+          Colors.green,
+          Color(0xff1546A0),
+        ],
+      ),
+    ),
+    child: Text(
+      text,
+      style: GoogleFonts.manrope(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        fontStyle: FontStyle.normal,
+      ),
+    ),
+  ),
 );

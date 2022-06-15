@@ -105,9 +105,9 @@ class VersementScreen extends StatelessWidget {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.green),
           title: const Text(
-            'VIREMENT',
+            'VERSEMENT',
             style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.green, fontSize: 25),
+                fontWeight: FontWeight.w600, color: Color(0xff1546A0), fontSize: 25),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,

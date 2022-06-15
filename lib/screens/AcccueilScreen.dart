@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
@@ -5,15 +8,25 @@ import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/transferPage.dart';
-import 'package:m_wallet_hps/screens/versementScreen.dart';
-import 'package:sidebarx/sidebarx.dart';
 
+import 'package:m_wallet_hps/screens/versementScreen.dart';
+
+import 'package:swipe_refresh/swipe_refresh.dart';
 import '../shared/component.dart';
 
 class AcccueilScreen extends StatelessWidget {
   static String id = "AcccueilScreen";
+  final _controller = StreamController<SwipeRefreshState>.broadcast();
+
+  Stream<SwipeRefreshState> get _stream => _controller.stream;
   AcccueilScreen({Key? key}) : super(key: key);
+  Future<void> _refresh(context) async {
+    await Future<void>.delayed(const Duration(seconds: 3));
+    // when all needed is done change state
+    AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'),
+        CacheHelper.getData(key: 'swift'));
+    _controller.sink.add(SwipeRefreshState.hidden);
+  }
   @override
   Widget build(BuildContext context) {
     UserModel? userModel = AppCubit.get(context).userModel;
@@ -21,7 +34,8 @@ class AcccueilScreen extends StatelessWidget {
         listener: (context, state) {
       if(state is AppVersementSuccessStates)
         {
-      AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'), CacheHelper.getData(key: 'swift'));
+      AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'),
+          CacheHelper.getData(key: 'swift'));
         }
         },
         builder: (context, state) => Conditional.single(context: context,
@@ -118,8 +132,16 @@ class AcccueilScreen extends StatelessWidget {
   =>SafeArea(
     child: Padding(
       padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: SwipeRefresh.material(
+        indicatorColor: Colors.blue,
+
+        stateStream: _stream,
+        onRefresh: (){
+          _refresh(context);
+        },
+        shrinkWrap: true,
+
+
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -127,8 +149,8 @@ class AcccueilScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Spacer(),
-                Container(
+               const Spacer(),
+                SizedBox(
                   height: 30,
                   width: 30,
                   child: Image.asset("images/Payit.png",
@@ -137,12 +159,12 @@ class AcccueilScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
-            padding: EdgeInsets.all(30),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(30),
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               gradient: LinearGradient(
                 colors: [
@@ -157,18 +179,19 @@ class AcccueilScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "${userModel?.data.solde} MAD ",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 22, fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
-                    Text(
+                    const Text(
                       "Current Balance",
                       style: TextStyle(
                           fontSize: 16, fontWeight: FontWeight.w400),
@@ -181,17 +204,17 @@ class AcccueilScreen extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: (){
-                      navigateTo(context, VersementScreen());
+                      navigateTo(context, const VersementScreen());
                     },
                     child: Ink(
                       child: Container(
                         height: 60,
                         width: 60,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.transparent,
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.add,
                           size: 30,
                         ),
@@ -202,13 +225,13 @@ class AcccueilScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 "Send Money",
                 style: TextStyle(
                     fontSize: 21,
@@ -218,7 +241,7 @@ class AcccueilScreen extends StatelessWidget {
               Container(
                 height: 60,
                 width: 60,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('images/scaner.png'))),
               )
@@ -232,12 +255,12 @@ class AcccueilScreen extends StatelessWidget {
 
                   height: 70,
                   width: 70,
-                  margin: EdgeInsets.only(right: 20),
-                  decoration: BoxDecoration(
+                  margin: const EdgeInsets.only(right: 20),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xff1546A0),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.add,
                     size: 40,
                     color: Colors.white,
@@ -249,12 +272,12 @@ class AcccueilScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 'Services',
                 style: TextStyle(
@@ -262,31 +285,30 @@ class AcccueilScreen extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                     fontFamily: 'avenir'),
               ),
-              Container(
+              SizedBox(
                 height: 60,
                 width: 60,
                 child: Icon(Icons.dialpad),
               )
             ],
           ),
-          Expanded(
-            child: GridView.count(
-              crossAxisCount: 4,
-              childAspectRatio: 0.7,
-              children: [
-                serviceWidget(
-                  "sendMoney",
-                  "Send\nMoney",
-                ),
-                serviceWidget("receiveMoney", "Receive\nMoney"),
-                serviceWidget("phone", "Mobile\nRecharge"),
-                serviceWidget("electricity", "More\n"),
-                serviceWidget("tag", "Cashback\nOffer"),
-                serviceWidget("movie", "Movie\nTicket"),
-                serviceWidget("flight", "Flight\nTicket"),
-                serviceWidget("more", "More\n"),
-              ],
-            ),
+          GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: 4,
+            childAspectRatio: 0.7,
+            children: [
+              serviceWidget(
+                "sendMoney",
+                "Send\nMoney",
+              ),
+              serviceWidget("receiveMoney", "Receive\nMoney"),
+              serviceWidget("phone", "Mobile\nRecharge"),
+              serviceWidget("electricity", "More\n"),
+              serviceWidget("tag", "Cashback\nOffer"),
+              serviceWidget("movie", "Movie\nTicket"),
+              serviceWidget("flight", "Flight\nTicket"),
+              serviceWidget("more", "More\n"),
+            ],
           )
         ],
       ),

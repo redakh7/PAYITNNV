@@ -158,8 +158,8 @@ class _FirstRouteState extends State<FirstRoute> {
           title: const Text(
             'VIREMENT',
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
+                fontWeight: FontWeight.w600,
+                color:Color(0xff1546A0),
                 fontSize: 25),
           ),
           backgroundColor: Colors.transparent,

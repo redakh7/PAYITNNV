@@ -30,7 +30,8 @@ class _SignupPage2State extends State<SignupPage2> {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
           CacheHelper.saveData(key: 'swift', value: state.swift);
-          navigateAndFinish(context, const ConfitmationScreen());
+          AppCubit.get(context).changeStep(AppCubit.get(context).currentStep);
+         // navigateAndFinish(context, const ConfitmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
         }

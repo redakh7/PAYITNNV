@@ -6,9 +6,12 @@ import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/profile_page.dart';
+import 'package:m_wallet_hps/screens/signupPage2.dart';
+import 'package:m_wallet_hps/screens/signup_page.dart';
 import 'package:m_wallet_hps/screens/transferPage.dart';
 import 'package:m_wallet_hps/screens/versementScreen.dart';
 import '../screens/AcccueilScreen.dart';
+import '../screens/ConfirmationScreen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialStates());
@@ -16,19 +19,32 @@ class AppCubit extends Cubit<AppStates> {
   String? username;
   String? password;
   static AppCubit get(context) => BlocProvider.of(context);
-
+  static late Widget widget;
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     AcccueilScreen(),
      FirstRoute(),
      ProfilePage(),
   ];
+  List<Widget> register = [
+   SignupPage(),
+  SignupPage2(),
+   ConfitmationScreen(),
+  ];
+  int currentStep =0;
+
+  void changeStep(index) {
+    currentStep = currentStep +1;
+    emit(AppStepPageStates());
+  }
+
   static List<String> banks = <String>['cih', 'attijari', 'sgma'];
   String element = banks.first;
   void changeBank(newvalue) {
     element = newvalue;
     emit(AppChangeBottomNavStates());
   }
+
 
   void changeBottom(index) {
     currentIndex = index;
@@ -92,17 +108,35 @@ class AppCubit extends Cubit<AppStates> {
     DioHelper.postDataLogins(
             url: "fcm_token?swift=$swift",
             data: {"email": email, "fcmToken": deviceToken})
-        .then((value) => {
+        .then((value){
 
-              emit(LoginSaveTokenSuccessStates()),
+              emit(LoginSaveTokenSuccessStates());
             })
         .catchError((error) {
+          print(error.toString());
       emit(LoginSaveTokenErrorStates());
 
     });
   }
 
+  void removeFcmToken(email,  swift) {
+    emit(RemoveTokenInitialStates());
+
+    DioHelper.postDataLogins(
+        url: "remove_fcm_token?swift=$swift&user_email=$email", data: {},
+        )
+        .then((value) {
+      emit(RemoveTokenSuccessStates());
+    }).catchError((error) {
+      print(error.toString());
+      emit(RemoveTokenErrorStates());
+
+    });
+  }
+
+
   void loadLoggedInUser(email, swift) {
+    userModel = null;
     if (email != null) {
       emit(LoadLoggedInUserInitial());
 
@@ -157,6 +191,10 @@ class AppCubit extends Cubit<AppStates> {
       emit(AppVersementErrorStates());
 
     });
+  }
+
+  void changeState() {
+    emit(AppChangeStates());
   }
 }
 
