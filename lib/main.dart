@@ -16,7 +16,7 @@ import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
 import 'package:m_wallet_hps/screens/TopSignupScreen.dart';
 import 'package:m_wallet_hps/screens/home_page.dart';
 import 'package:m_wallet_hps/screens/login_page.dart';
-import 'package:m_wallet_hps/screens/signup_page.dart';
+import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'network/local/cache_helper.dart';
@@ -102,8 +102,8 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             home: AnimatedSplashScreen(
               splashIconSize: 500,
-           nextScreen: SignupPagePage(),
-              //  nextScreen: AppCubit.widget,
+          // nextScreen: SignupPagePage(),
+              nextScreen: AppCubit.widget,
               backgroundColor: Colors.white,
               splashTransition: SplashTransition.fadeTransition,
               duration: 3000,

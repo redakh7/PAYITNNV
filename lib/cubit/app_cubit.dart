@@ -5,9 +5,10 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
+import 'package:m_wallet_hps/screens/new_profile_page.dart';
 import 'package:m_wallet_hps/screens/profile_page.dart';
-import 'package:m_wallet_hps/screens/signupPage2.dart';
-import 'package:m_wallet_hps/screens/signup_page.dart';
+import 'package:m_wallet_hps/screens/SignUp4.dart';
+import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
 import 'package:m_wallet_hps/screens/transferPage.dart';
 import 'package:m_wallet_hps/screens/versementScreen.dart';
 import '../screens/AcccueilScreen.dart';
@@ -24,11 +25,12 @@ class AppCubit extends Cubit<AppStates> {
   List<Widget> bottomScreens = [
     AcccueilScreen(),
      FirstRoute(),
-     ProfilePage(),
+   NewProfilePage(),
+     //ProfilePage(),
   ];
   List<Widget> register = [
    SignupPage(),
-  SignupPage2(),
+  SignupPage4(),
    ConfitmationScreen(),
   ];
   int currentStep =0;
@@ -95,9 +97,8 @@ class AppCubit extends Cubit<AppStates> {
       },
     ).then((value) {
       emit(AppSigninSuccessStates(swift));
-
     }).catchError((error) {
-
+    print(error.toString());
       emit(AppSigninErrorStates(error.toString()));
     });
   }

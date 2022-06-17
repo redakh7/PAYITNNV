@@ -163,3 +163,105 @@ void showNoMailAppsDialog(BuildContext context) {
     },
   );
 }
+
+
+Future<void> showMyDialogLogout( {
+  required BuildContext context,
+  required String emetteur,
+  required String messageController,
+  required String montantController,
+  required String destinataireController,
+
+}) async {
+
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return Container(
+
+        child: AlertDialog(
+          title: Center(
+
+              child: Text("Are you sure \n you want to logout?"),),
+          content: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children:const [
+                    Icon(Icons.monetization_on_rounded),
+                    Text('MONTANT :',style: TextStyle(fontWeight: FontWeight.bold)),
+
+
+                  ],
+                ),
+                Text(montantController+"MAD"),
+                const  SizedBox(height: 7,),
+                const  Divider(
+                  color: Colors.grey,
+                  height: 1,
+                  thickness: 2,
+                  indent: 2,
+                  endIndent: 2,
+
+                ),
+                const  SizedBox(height: 7,),
+                Row(
+                  children:const [
+                    Icon(Icons.person_remove_sharp),
+                    Text('LIBELLE :',style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text('')
+                  ],
+                ),
+                Text(' VIREMENT MOBILE EMIS A\n ${destinataireController}\n '),
+                const Divider(
+                  color: Colors.grey,
+                  height: 1,
+                  thickness: 2,
+                  indent: 2,
+                  endIndent: 2,
+
+                ),
+                const  SizedBox(height: 7,),
+                Row(
+                  children: [
+                    Icon(Icons.date_range),
+                    Text('DATE :',style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text('')
+                  ],
+                ),
+                Text(DateFormat("yyyy-MM-dd \n").format(DateTime.now())),
+                const Divider(
+                  color: Colors.grey,
+                  height: 1,
+                  thickness: 2,
+                  indent: 2,
+                  endIndent: 2,
+
+                ),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Confirm',style: TextStyle(color: Colors.green),),
+              onPressed: () {
+                print('Confirmed');
+                AppCubit.get(context).Makevirement(montantController,
+                    destinataireController, messageController,emetteur);
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancel',style: TextStyle(color: Colors.red)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
