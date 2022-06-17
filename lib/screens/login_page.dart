@@ -8,7 +8,7 @@ import 'package:m_wallet_hps/network/local/cache_helper.dart';
 
 
 import 'package:m_wallet_hps/screens/home_page.dart';
-import 'package:m_wallet_hps/screens/signup_page.dart';
+import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
 
 import 'package:m_wallet_hps/shared/component.dart';
 

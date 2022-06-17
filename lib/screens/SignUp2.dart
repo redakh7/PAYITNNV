@@ -5,7 +5,8 @@ import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/signup_page.dart';
+import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
+import 'package:m_wallet_hps/screens/SignUp3.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
 class SignupPage2 extends StatefulWidget {
@@ -31,7 +32,7 @@ class _SignupPage2State extends State<SignupPage2> {
           showToast(message: "registrated");
           CacheHelper.saveData(key: 'swift', value: state.swift);
           AppCubit.get(context).changeStep(AppCubit.get(context).currentStep);
-         // navigateAndFinish(context, const ConfitmationScreen());
+         navigateAndFinish(context, const ConfitmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
         }
@@ -50,7 +51,16 @@ class _SignupPage2State extends State<SignupPage2> {
                   Text('', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,)),
                   SizedBox(height: 10,),
                   Text('', style: TextStyle(fontSize: 15,)),
+                  const SizedBox(
+                    height: 70,
+                  ),
+                  const Text('STEP 2',
+                      style: TextStyle(
+                        fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green,
+
+                      )),
                   Container(
+
                     margin: EdgeInsets.only(top: 22),
                     child: TextFormField(
                       controller: firstnameController,
@@ -114,7 +124,7 @@ class _SignupPage2State extends State<SignupPage2> {
                     controller: usernameController,
                     validator: (value)  {
                       if (value!.isEmpty) {
-                        return "the Username name must not be empty";
+                        return "the EMAIL name must not be empty";
                       }
                       return null;
                     },
@@ -124,7 +134,7 @@ class _SignupPage2State extends State<SignupPage2> {
                     ),
                     decoration: InputDecoration(
 
-                      hintText: 'username',
+                      hintText: 'Email',
                       fillColor:  Color(0xff243656),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -153,15 +163,8 @@ class _SignupPage2State extends State<SignupPage2> {
                     child: RaisedButton(
                       onPressed: () {
                         if(formkey.currentState!.validate()){
-                          AppCubit.get(context).userSignUp(
-                              swift: CacheHelper.getData(key: 'swift'),
-                              email: AppCubit.get(context).email!,
-                              username:  usernameController.text,
-                              password:  AppCubit.get(context).password!,
-                              firstName: firstnameController.text ,
-                              lastName: lastnameController.text);
                         }
-
+                        navigateTo(context, SignupPage3());
                       },
                       textColor: Color(0xffFFFFFF),
                       padding: EdgeInsets.all(0),
@@ -180,7 +183,7 @@ class _SignupPage2State extends State<SignupPage2> {
                           ),
                         ),
                         child: Text(
-                          'Create',
+                          'NEXT',
                           style: GoogleFonts.manrope(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

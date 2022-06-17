@@ -5,7 +5,8 @@ import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/signupPage2.dart';
+import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
+import 'package:m_wallet_hps/screens/SignUp2.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
 
@@ -21,12 +22,12 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   final jobRoleCtrl = TextEditingController();
 
-  final _formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   var swiftController = DropdownEditingController<String>();
   bool _isObscure = true;
-  var passwordController = TextEditingController();
+  var phonenumberController = TextEditingController();
 
-  var emailController = TextEditingController();
+  var cinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _SignupPageState extends State<SignupPage> {
       },
       builder: (context, state) => Scaffold(
         body: Form(
-          key: _formkey,
+          key: formkey,
           child: ListView(
             padding: const EdgeInsets.only(left: 55, right: 55, top: 120),
             physics: const BouncingScrollPhysics(),
@@ -60,17 +61,26 @@ class _SignupPageState extends State<SignupPage> {
                     const SizedBox(
                       height: 10,
                     ),
+
                     const Text('create an account to make life easier',
                         style: TextStyle(
                           fontSize: 15,
                         )),
+                    const SizedBox(
+                      height: 70,
+                    ),
+                    const Text('STEP 1',
+                        style: TextStyle(
+                          fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green,
+
+                        )),
                     Container(
-                      margin: const EdgeInsets.only(top: 70),
+                      margin: const EdgeInsets.only(top: 30),
                       child: TextFormField(
-                        controller: emailController,
-                        validator: (value) {
+                        controller: phonenumberController,
+                        validator: (value)  {
                           if (value!.isEmpty) {
-                            return "the Email must not be empty";
+                            return "the phone number must not be empty";
                           }
                           return null;
                         },
@@ -80,20 +90,20 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         decoration: InputDecoration(
                           prefixIcon: const Icon(
-                            Icons.alternate_email,
+                            Icons.phone,
                             color: Colors.green,
                           ),
-                          hintText: 'Email',
+                          hintText: 'phone number',
                           fillColor: const Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide:
-                                const BorderSide(color: Colors.green, width: 2.0),
+                            const BorderSide(color: Colors.green, width: 2.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide:
-                                const BorderSide(color: Colors.green, width: 2.0),
+                            const BorderSide(color: Colors.green, width: 2.0),
                           ),
                         ),
                       ),
@@ -101,37 +111,20 @@ class _SignupPageState extends State<SignupPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 22),
                       child: TextFormField(
-                        validator: (value) {
+                        controller: cinController,
+                        validator: (value)  {
                           if (value!.isEmpty) {
-                            return "the Password must not be empty";
+                            return "the cin must not be empty";
                           }
                           return null;
                         },
-                        controller: passwordController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.manrope(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                         ),
-                        obscureText: _isObscure,
                         decoration: InputDecoration(
-                          hintText: 'Password',
-                          prefixIcon:Icon(Icons.password_outlined,color:Colors.green ,) ,
-                          suffixIcon: IconButton(
-
-
-                            icon: Icon(
-
-                              _isObscure ? Icons.visibility : Icons.visibility_off,
-                              color: _isObscure ?  Colors.green :Colors.grey ,
-
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _isObscure = !_isObscure;
-                              });
-                            },
-                          ),
+                          hintText: 'CIN',
                           fillColor:  const Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -145,23 +138,6 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     const SizedBox(
                       height: 20,
-                    ),
-                    TextDropdownFormField(
-
-                      controller: swiftController,
-
-
-                      options: const ["cih", "attijari", "sgma"],
-                      decoration: InputDecoration(
-
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(color: Colors.green)),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          suffixIcon: const Icon(Icons.arrow_drop_down),
-                          labelText: "BANK"),
-                      dropdownHeight: 120,
                     ),
                     const SizedBox(
                       height: 25,
@@ -179,18 +155,9 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       child: RaisedButton(
                         onPressed: () {
-
-                          if (_formkey.currentState!.validate()) {
-
-                            AppCubit.get(context).email = emailController.text;
-                            AppCubit.get(context).password =
-                                passwordController.text;
-
-                            CacheHelper.saveData(
-                                key: 'swift', value: swiftController.value!);
-                            AppCubit.get(context).changeStep(AppCubit.get(context).currentStep);
-                         //   navigateTo(context, const SignupPage2());
+                          if(formkey.currentState!.validate()){
                           }
+                          navigateTo(context, OTP());
                         },
                         textColor: const Color(0xffFFFFFF),
                         padding: const EdgeInsets.all(0),

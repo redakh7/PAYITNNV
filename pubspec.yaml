@@ -67,6 +67,8 @@ dependencies:
   animated_splash_screen: ^1.2.0
   sidebarx: ^0.4.0
   intl: ^0.17.0
+  pinput: ^2.2.11
+  pin_code_fields: ^7.4.0
 flutter_icons:
   android: true
   ios: true
@@ -111,12 +113,13 @@ flutter:
     - images/wallet.png
     - images/logout.png
     - images/logo.png
-    - asset/images/
     - images/
     - images/body_background.png
     - scaner.png
     - Payit.png
     - profile.png
+    - OTPP.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
