@@ -9,18 +9,18 @@ import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
 import 'package:m_wallet_hps/screens/SignUp3.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
-class SignupPage3 extends StatefulWidget {
-  const SignupPage3({Key? key}) : super(key: key);
+class SignupPage2 extends StatefulWidget {
+  const SignupPage2({Key? key}) : super(key: key);
 
   @override
-  State<SignupPage3> createState() => _SignupPage3State();
+  State<SignupPage2> createState() => _SignupPage2State();
 }
-class _SignupPage3State extends State<SignupPage3> {
+class _SignupPage2State extends State<SignupPage2> {
   final formkey = GlobalKey<FormState>();
   var firstnameController = TextEditingController();
 
-  var passwordController = TextEditingController();
-  var ConfirmpasswordController = TextEditingController();
+  var lastnameController = TextEditingController();
+  var usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -32,7 +32,7 @@ class _SignupPage3State extends State<SignupPage3> {
           showToast(message: "registrated");
           CacheHelper.saveData(key: 'swift', value: state.swift);
           AppCubit.get(context).changeStep(AppCubit.get(context).currentStep);
-          navigateAndFinish(context, const ConfitmationScreen());
+         navigateAndFinish(context, const ConfitmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
         }
@@ -54,19 +54,19 @@ class _SignupPage3State extends State<SignupPage3> {
                   const SizedBox(
                     height: 70,
                   ),
-                  const Text('STEP 3',
+                  const Text('STEP 2',
                       style: TextStyle(
                         fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green,
 
                       )),
-
                   Container(
+
                     margin: EdgeInsets.only(top: 22),
                     child: TextFormField(
-                      controller: passwordController,
+                      controller: firstnameController,
                       validator: (value)  {
                         if (value!.isEmpty) {
-                          return "the Password must not be empty";
+                          return "the First name must not be empty";
                         }
                         return null;
                       },
@@ -75,7 +75,37 @@ class _SignupPage3State extends State<SignupPage3> {
                         fontSize: 14,
                       ),
                       decoration: InputDecoration(
-                        hintText: 'Password ',
+
+                        hintText: 'First name',
+                        fillColor:  Color(0xff243656),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: Colors.green, width: 2.0),
+                        ),
+                        focusedBorder:  OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+
+                          borderSide: const BorderSide(color: Colors.green, width: 2.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 22),
+                    child: TextFormField(
+                      controller: lastnameController,
+                      validator: (value)  {
+                        if (value!.isEmpty) {
+                          return "the Last name must not be empty";
+                        }
+                        return null;
+                      },
+                      style: GoogleFonts.manrope(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: 'Last name',
                         fillColor:  Color(0xff243656),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -91,10 +121,10 @@ class _SignupPage3State extends State<SignupPage3> {
                   ),
                   SizedBox(height: 25,),
                   TextFormField(
-                    controller: ConfirmpasswordController,
+                    controller: usernameController,
                     validator: (value)  {
                       if (value!.isEmpty) {
-                        return "the Password must not be empty";
+                        return "the EMAIL name must not be empty";
                       }
                       return null;
                     },
@@ -104,7 +134,7 @@ class _SignupPage3State extends State<SignupPage3> {
                     ),
                     decoration: InputDecoration(
 
-                      hintText: 'Confirm Password',
+                      hintText: 'Email',
                       fillColor:  Color(0xff243656),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -134,6 +164,7 @@ class _SignupPage3State extends State<SignupPage3> {
                       onPressed: () {
                         if(formkey.currentState!.validate()){
                         }
+                        navigateTo(context, SignupPage3());
                       },
                       textColor: Color(0xffFFFFFF),
                       padding: EdgeInsets.all(0),
