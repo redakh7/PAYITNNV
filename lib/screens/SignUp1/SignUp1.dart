@@ -64,12 +64,11 @@ class _SignupPage1State extends State<SignupPage1> {
             child: Form(
               key: formkey,
               child: Container(
-                height: 700,
+                height: MediaQuery.of(context).size.height/1.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                //height: MediaQuery.of(context).size.height,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -90,7 +89,7 @@ class _SignupPage1State extends State<SignupPage1> {
                             height: 5,
                           ),
                           Text(
-                            'Saisissez votre numéro de Tél et votre CIN ',
+                            'Enter your phone number and your CIN ',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -111,6 +110,10 @@ class _SignupPage1State extends State<SignupPage1> {
                                 fontSize: 14,
                               ),
                               decoration: InputDecoration(
+                                prefixIcon: const Icon(
+                                  Icons.phone,
+                                  color: Colors.green,
+                                ),
                                 hintText: 'Phone number ',
                                 fillColor: const Color(0xff243656),
                                 border: OutlineInputBorder(
@@ -156,7 +159,7 @@ class _SignupPage1State extends State<SignupPage1> {
                           ),
                           Container(
                             child: Text(
-                              'En continuant, vous acceptez les termes et conditions de l\'utilisation ',
+                              'By continuing, you agree to the terms and conditions of use ',
                               style: GoogleFonts.manrope(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
@@ -181,7 +184,10 @@ class _SignupPage1State extends State<SignupPage1> {
                             ),
                             child: RaisedButton(
                               onPressed: () {
-                                if (formkey.currentState!.validate()) {}
+                                if (formkey.currentState!.validate()) {
+                                  print(phonenumberController.text);
+                                  print(cinController.text);
+                                }
                                 Navigator.of(context).push(CustomPageRoute(
                                     child:OTP()),
                                 );

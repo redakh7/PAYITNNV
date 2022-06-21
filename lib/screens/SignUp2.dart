@@ -12,6 +12,8 @@ import 'package:m_wallet_hps/screens/SignUp2.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
 
+import 'SignUp1/custom_page_route.dart';
+
 class SignupPage3 extends StatefulWidget {
   static String id = "SignupScreen";
 
@@ -60,7 +62,7 @@ class _SignupPage3State extends State<SignupPage3> {
               ])),
           backgroundColor: Colors.blueGrey,
           body: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0,top: 22),
             child: Form(
               key: formkey,
               child: Container(
@@ -68,7 +70,7 @@ class _SignupPage3State extends State<SignupPage3> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height/1.2,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -79,7 +81,7 @@ class _SignupPage3State extends State<SignupPage3> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'STEP 3 : Security ',
+                            'STEP 4 : Security ',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -89,7 +91,7 @@ class _SignupPage3State extends State<SignupPage3> {
                             height: 5,
                           ),
                           Text(
-                            'Saisissez votre  nouveau mot de passse 2 fois  ',
+                            'Enter your new password twice',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -112,6 +114,10 @@ class _SignupPage3State extends State<SignupPage3> {
                               ),
                               obscureText: _isObscure,
                               decoration: InputDecoration(
+                                prefixIcon: const Icon(
+                                  Icons.password,
+                                  color: Colors.green,
+                                ),
                                 hintText: 'Password',
                                 suffixIcon: IconButton(
 
@@ -157,6 +163,10 @@ class _SignupPage3State extends State<SignupPage3> {
                               ),
                               obscureText: _isObscure,
                               decoration: InputDecoration(
+                                prefixIcon: const Icon(
+                                  Icons.password,
+                                  color: Colors.green,
+                                ),
                                 hintText: 'Confirm password',
                                 suffixIcon: IconButton(
 
@@ -203,8 +213,6 @@ class _SignupPage3State extends State<SignupPage3> {
                             ),
                             child: RaisedButton(
                               onPressed: () {
-                                if (formkey.currentState!.validate()) {}
-                                navigateTo(context, SignupPage2());
                               },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),
@@ -226,7 +234,7 @@ class _SignupPage3State extends State<SignupPage3> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'NEXT',
+                                      'CREATE',
                                       style: GoogleFonts.manrope(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,

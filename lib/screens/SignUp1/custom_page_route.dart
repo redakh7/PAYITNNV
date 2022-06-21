@@ -6,12 +6,12 @@ class CustomPageRoute extends PageRouteBuilder {
 final Widget child;
 CustomPageRoute({
   required this.child,
-  this.direction=AxisDirection.right,
+  this.direction=AxisDirection.left,
 
 
 }) : super(
-  transitionDuration: Duration(seconds: 1),
-  reverseTransitionDuration: Duration(seconds:1),
+  transitionDuration: Duration(milliseconds: 250),
+  reverseTransitionDuration: Duration(milliseconds:250),
   pageBuilder: (context ,animation,secondaryAnimation)=>child,
 );
 @override

@@ -14,6 +14,8 @@ import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
+import 'custom_page_route.dart';
+
 class OTP extends StatefulWidget {
   static String id = "SignupScreen";
 
@@ -70,15 +72,15 @@ class _OTPState extends State<OTP> {
               ])),
           backgroundColor: Colors.blueGrey,
           body: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0,top: 22),
             child: Form(
               key: formkey,
               child: Container(
+                height: MediaQuery.of(context).size.height/1.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: MediaQuery.of(context).size.height,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -99,7 +101,7 @@ class _OTPState extends State<OTP> {
                             height: 5,
                           ),
                           Text(
-                            'Saisissez le code envoyé au 0687171739 ',
+                            'Enter the code sent to 0687171739 ',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -121,7 +123,7 @@ class _OTPState extends State<OTP> {
                           OTPTextField(
                             length: 5,
                             width: MediaQuery.of(context).size.width,
-                            fieldWidth: 50,
+                            fieldWidth: 40,
                             style: TextStyle(fontSize: 17),
                             textFieldAlignment: MainAxisAlignment.spaceAround,
                             fieldStyle: FieldStyle.underline,
@@ -170,7 +172,9 @@ class _OTPState extends State<OTP> {
                             child: RaisedButton(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {}
-                                navigateTo(context, SignupPage3());
+                                Navigator.of(context).push(CustomPageRoute(
+                                    child:SignupPage2()),
+                                );
                               },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),
