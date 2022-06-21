@@ -7,40 +7,29 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
 import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
-import 'package:m_wallet_hps/screens/SignUp22.dart';
 import 'package:m_wallet_hps/screens/SignUp2.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
 
-class OTP extends StatefulWidget {
+class SignupPage2 extends StatefulWidget {
   static String id = "SignupScreen";
 
-  const OTP({Key? key}) : super(key: key);
+  const SignupPage2({Key? key}) : super(key: key);
 
   @override
-  State<OTP> createState() => _OTPState();
+  State<SignupPage2> createState() => _SignupPage2State();
 }
 
-class _OTPState extends State<OTP> {
-  snackBar(String? message) {
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message!),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
-
+class _SignupPage2State extends State<SignupPage2> {
   final jobRoleCtrl = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
   var swiftController = DropdownEditingController<String>();
   bool _isObscure = true;
-  var phonenumberController = TextEditingController();
+  var LasttnameController = TextEditingController();
 
-  var cinController = TextEditingController();
+  var FirstnameController = TextEditingController();
+  var EmailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +78,7 @@ class _OTPState extends State<OTP> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'STEP 2 : Validation ',
+                            'STEP 4 : Information ',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -99,68 +88,107 @@ class _OTPState extends State<OTP> {
                             height: 5,
                           ),
                           Text(
-                            'Saisissez le code envoyé au 0687171739 ',
+                            'Saisissez votre nom prenom et email',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
-                          SizedBox(
-                            height: 35,
+                          Container(
+                            margin: const EdgeInsets.only(top: 30),
+                            child: TextFormField(
+                              controller: FirstnameController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "the first name must not be empty";
+                                }
+                                return null;
+                              },
+                              style: GoogleFonts.manrope(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: 'First  name ',
+                                fillColor: const Color(0xff243656),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.green, width: 2.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.green, width: 2.0),
+                                ),
+                              ),
+                            ),
                           ),
                           Container(
-                            height: 190,
-                            width: 190,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('images/OTPP.png'))),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          OTPTextField(
-                            length: 5,
-                            width: MediaQuery.of(context).size.width,
-                            fieldWidth: 50,
-                            style: TextStyle(fontSize: 17),
-                            textFieldAlignment: MainAxisAlignment.spaceAround,
-                            fieldStyle: FieldStyle.underline,
-                            onCompleted: (pin) {
-                              print("Completed: " + pin);
-                            },
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Didn't receive the code? ",
-                                style: TextStyle(
-                                    color: Colors.black54, fontSize: 15),
+                            margin: const EdgeInsets.only(top: 22),
+                            child: TextFormField(
+                              controller: LasttnameController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "the Last name must not be empty";
+                                }
+                                return null;
+                              },
+                              style: GoogleFonts.manrope(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
                               ),
-                              TextButton(
-                                onPressed: () => snackBar("OTP resend!!"),
-                                child: const Text(
-                                  "RESEND",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
+                              decoration: InputDecoration(
+                                hintText: 'Last name ',
+                                fillColor: const Color(0xff243656),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                              )
-                            ],
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.green, width: 2.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 22),
+                            child: TextFormField(
+                              controller: EmailController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "the Email must not be empty";
+                                }
+                                return null;
+                              },
+                              style: GoogleFonts.manrope(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: 'Email ',
+                                fillColor: const Color(0xff243656),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.green, width: 2.0),
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(
-                            height: 110,
+                            height: 210,
                           ),
                           Container(
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
                                   color:
-                                      const Color(0xff1546A0).withOpacity(0.5),
+                                  const Color(0xff1546A0).withOpacity(0.5),
                                   offset: const Offset(0, 24),
                                   blurRadius: 50,
                                   spreadRadius: -18,
@@ -170,8 +198,8 @@ class _OTPState extends State<OTP> {
                             child: RaisedButton(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {}
-                                navigateTo(context, SignupPage3());
-                              },
+                                navigateTo(context,ConfirmationScreen());
+                                },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),
                               shape: const StadiumBorder(),

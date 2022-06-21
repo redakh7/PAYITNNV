@@ -5,9 +5,10 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
+import 'package:m_wallet_hps/screens/Confirmation2.dart';
+import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
+import 'package:m_wallet_hps/screens/SignUp22.dart';
 import 'package:m_wallet_hps/screens/profile_page.dart';
-import 'package:m_wallet_hps/screens/signupPage2.dart';
-import 'package:m_wallet_hps/screens/signup_page.dart';
 import 'package:m_wallet_hps/screens/transferPage.dart';
 import 'package:m_wallet_hps/screens/versementScreen.dart';
 import '../screens/AcccueilScreen.dart';
@@ -27,9 +28,9 @@ class AppCubit extends Cubit<AppStates> {
      ProfilePage(),
   ];
   List<Widget> register = [
-   SignupPage(),
+   SignupPage1(),
   SignupPage2(),
-   ConfitmationScreen(),
+   Confirmation2(),
   ];
   int currentStep =0;
 

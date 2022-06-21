@@ -268,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.only(top: 22, bottom: 22),
                       child: TextButton(
                         onPressed: () {
-                          navigateAndFinish(context, SignupPage());
+                          navigateAndFinish(context, SignupPage1());
                         },
                         child: const Text(
                           'Register',

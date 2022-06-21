@@ -138,7 +138,7 @@ class _MyAppState extends State<MyApp> {
             ),
 
             routes: {
-              SignupPage.id: (context) => SignupPage(),
+              SignupPage1.id: (context) => SignupPage1(),
               LoginPage.id: (context) => const LoginPage(),
               // HomePage.id: (context) => const HomePage(),
 

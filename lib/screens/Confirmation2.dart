@@ -14,16 +14,16 @@ import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-class OTP extends StatefulWidget {
+class Confirmation2 extends StatefulWidget {
   static String id = "SignupScreen";
 
-  const OTP({Key? key}) : super(key: key);
+  const Confirmation2({Key? key}) : super(key: key);
 
   @override
-  State<OTP> createState() => _OTPState();
+  State<Confirmation2> createState() => _Confirmation2State();
 }
 
-class _OTPState extends State<OTP> {
+class _Confirmation2State extends State<Confirmation2> {
   snackBar(String? message) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -89,31 +89,11 @@ class _OTPState extends State<OTP> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'STEP 2 : Validation ',
+                            'STEP 4 : Validation Email ',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            'Saisissez le code envoyé au 0687171739 ',
-                            style: GoogleFonts.manrope(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 35,
-                          ),
-                          Container(
-                            height: 190,
-                            width: 190,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('images/OTPP.png'))),
                           ),
                           SizedBox(
                             height: 15,
@@ -160,7 +140,7 @@ class _OTPState extends State<OTP> {
                               boxShadow: [
                                 BoxShadow(
                                   color:
-                                      const Color(0xff1546A0).withOpacity(0.5),
+                                  const Color(0xff1546A0).withOpacity(0.5),
                                   offset: const Offset(0, 24),
                                   blurRadius: 50,
                                   spreadRadius: -18,

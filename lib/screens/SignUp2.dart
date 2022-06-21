@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,204 +6,249 @@ import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
-import 'package:m_wallet_hps/screens/SignUp3.dart';
+import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
+import 'package:m_wallet_hps/screens/SignUp22.dart';
+import 'package:m_wallet_hps/screens/SignUp2.dart';
 import 'package:m_wallet_hps/shared/component.dart';
+import 'package:dropdown_plus/dropdown_plus.dart';
 
-class SignupPage2 extends StatefulWidget {
-  const SignupPage2({Key? key}) : super(key: key);
+class SignupPage3 extends StatefulWidget {
+  static String id = "SignupScreen";
+
+  const SignupPage3({Key? key}) : super(key: key);
 
   @override
-  State<SignupPage2> createState() => _SignupPage2State();
+  State<SignupPage3> createState() => _SignupPage3State();
 }
-class _SignupPage2State extends State<SignupPage2> {
-  final formkey = GlobalKey<FormState>();
-  var firstnameController = TextEditingController();
 
-  var lastnameController = TextEditingController();
-  var usernameController = TextEditingController();
+class _SignupPage3State extends State<SignupPage3> {
+  final jobRoleCtrl = TextEditingController();
+
+  final formkey = GlobalKey<FormState>();
+  var swiftController = DropdownEditingController<String>();
+  bool _isObscure = true;
+  var passwordRegController = TextEditingController();
+  var passwordConfRegController = TextEditingController();
+
+  var cinController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-
-// List of items in our dropdown menu
-
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
           CacheHelper.saveData(key: 'swift', value: state.swift);
-          AppCubit.get(context).changeStep(AppCubit.get(context).currentStep);
-         navigateAndFinish(context, const ConfitmationScreen());
+          navigateAndFinish(context, const ConfirmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
         }
       },
-      builder: (context, state) => Scaffold(
-        body:ListView(
-          padding: EdgeInsets.only(left: 55, right: 55, top: 120),
-          physics: BouncingScrollPhysics(),
-          children: [
-            Form(
+      builder: (context, state) => SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.blueGrey,
+              title: Row(children: <Widget>[
+                Text(
+                  "  Ativation",
+                  style: GoogleFonts.manrope(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24,
+                  ),
+                )
+              ])),
+          backgroundColor: Colors.blueGrey,
+          body: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Form(
               key: formkey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,)),
-                  SizedBox(height: 10,),
-                  Text('', style: TextStyle(fontSize: 15,)),
-                  const SizedBox(
-                    height: 70,
-                  ),
-                  const Text('STEP 2',
-                      style: TextStyle(
-                        fontSize: 18,fontWeight: FontWeight.bold,color: Colors.green,
-
-                      )),
-                  Container(
-
-                    margin: EdgeInsets.only(top: 22),
-                    child: TextFormField(
-                      controller: firstnameController,
-                      validator: (value)  {
-                        if (value!.isEmpty) {
-                          return "the First name must not be empty";
-                        }
-                        return null;
-                      },
-                      style: GoogleFonts.manrope(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14,
-                      ),
-                      decoration: InputDecoration(
-
-                        hintText: 'First name',
-                        fillColor:  Color(0xff243656),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                        ),
-                        focusedBorder:  OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-
-                          borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 22),
-                    child: TextFormField(
-                      controller: lastnameController,
-                      validator: (value)  {
-                        if (value!.isEmpty) {
-                          return "the Last name must not be empty";
-                        }
-                        return null;
-                      },
-                      style: GoogleFonts.manrope(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: 'Last name',
-                        fillColor:  Color(0xff243656),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                        ),
-                        focusedBorder:  OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-
-                          borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 25,),
-                  TextFormField(
-                    controller: usernameController,
-                    validator: (value)  {
-                      if (value!.isEmpty) {
-                        return "the EMAIL name must not be empty";
-                      }
-                      return null;
-                    },
-                    style: GoogleFonts.manrope(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                    ),
-                    decoration: InputDecoration(
-
-                      hintText: 'Email',
-                      fillColor:  Color(0xff243656),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                      ),
-                      focusedBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-
-                        borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-                  Container(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xff1546A0).withOpacity(0.5),
-                          offset: Offset(0, 24),
-                          blurRadius: 50,
-                          spreadRadius: -18,
-                        ),
-                      ],
-                    ),
-
-                    child: RaisedButton(
-                      onPressed: () {
-                        if(formkey.currentState!.validate()){
-                        }
-                        navigateTo(context, SignupPage3());
-                      },
-                      textColor: Color(0xffFFFFFF),
-                      padding: EdgeInsets.all(0),
-                      shape: StadiumBorder(),
-                      child: Container(
-                        width:  275,
-                        height: 65,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.green,
-                              Color(0xff1546A0),
-                            ],
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                height: MediaQuery.of(context).size.height,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 55, right: 55, top: 70, bottom: 30),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'STEP 3 : Security ',
+                            style: GoogleFonts.manrope(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          'NEXT',
-                          style: GoogleFonts.manrope(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
+                          SizedBox(
+                            height: 5,
                           ),
-                        ),
+                          Text(
+                            'Saisissez votre  nouveau mot de passse 2 fois  ',
+                            style: GoogleFonts.manrope(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 22),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "the Password must not be empty";
+                                }
+                                return null;
+                              },
+                              controller: passwordRegController,
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.manrope(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                              ),
+                              obscureText: _isObscure,
+                              decoration: InputDecoration(
+                                hintText: 'Password',
+                                suffixIcon: IconButton(
+
+
+                                  icon: Icon(
+
+                                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                                    color: _isObscure ?  Colors.green :Colors.grey ,
+
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                ),
+                                fillColor:  Color(0xff243656),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                focusedBorder:  OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(color: Colors.green, width: 2.0),
+                                ),
+                              ),
+                            ),
+
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 22),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "the Password must not be empty";
+                                }
+                                return null;
+                              },
+                              controller: passwordConfRegController,
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.manrope(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                              ),
+                              obscureText: _isObscure,
+                              decoration: InputDecoration(
+                                hintText: 'Confirm password',
+                                suffixIcon: IconButton(
+
+
+                                  icon: Icon(
+
+                                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                                    color: _isObscure ?  Colors.green :Colors.grey ,
+
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                ),
+                                fillColor:  Color(0xff243656),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                focusedBorder:  OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(color: Colors.green, width: 2.0),
+                                ),
+                              ),
+                            ),
+
+                          ),
+
+                          const SizedBox(
+                            height: 210,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                  const Color(0xff1546A0).withOpacity(0.5),
+                                  offset: const Offset(0, 24),
+                                  blurRadius: 50,
+                                  spreadRadius: -18,
+                                ),
+                              ],
+                            ),
+                            child: RaisedButton(
+                              onPressed: () {
+                                if (formkey.currentState!.validate()) {}
+                                navigateTo(context, SignupPage2());
+                              },
+                              textColor: const Color(0xffFFFFFF),
+                              padding: const EdgeInsets.all(0),
+                              shape: const StadiumBorder(),
+                              child: Container(
+                                width: 275,
+                                height: 65,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Colors.green,
+                                      Color(0xff1546A0),
+                                    ],
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'NEXT',
+                                      style: GoogleFonts.manrope(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FontStyle.normal,
+                                      ),
+                                    ),
+                                    const Icon(Icons.navigate_next)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-
-
-                ],
+                ),
               ),
             ),
-
-          ],
+          ),
         ),
       ),
     );
   }
 }
-
