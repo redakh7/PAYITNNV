@@ -23,8 +23,7 @@ class AcccueilScreen extends StatelessWidget {
   Future<void> _refresh(context) async {
     await Future<void>.delayed(const Duration(seconds: 3));
     // when all needed is done change state
-    AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'),
-        CacheHelper.getData(key: 'swift'));
+    AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'));
     _controller.sink.add(SwipeRefreshState.hidden);
   }
   @override
@@ -34,8 +33,7 @@ class AcccueilScreen extends StatelessWidget {
         listener: (context, state) {
       if(state is AppVersementSuccessStates)
         {
-      AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'),
-          CacheHelper.getData(key: 'swift'));
+      AppCubit.get(context).loadLoggedInUser(CacheHelper.getData(key: 'email'));
         }
         },
         builder: (context, state) => Conditional.single(context: context,

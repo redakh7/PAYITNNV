@@ -4,56 +4,44 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
+
 import 'package:m_wallet_hps/screens/SignUp22.dart';
-import 'package:m_wallet_hps/screens/SignUp2.dart';
+
 import 'package:m_wallet_hps/shared/component.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
+
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
 import 'custom_page_route.dart';
 
-class OTP extends StatefulWidget {
-  static String id = "SignupScreen";
-
+class OTP extends StatelessWidget {
   const OTP({Key? key}) : super(key: key);
 
   @override
-  State<OTP> createState() => _OTPState();
-}
-
-class _OTPState extends State<OTP> {
-  snackBar(String? message) {
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message!),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
-
-  final jobRoleCtrl = TextEditingController();
-
-  final formkey = GlobalKey<FormState>();
-  var swiftController = DropdownEditingController<String>();
-  bool _isObscure = true;
-  var phonenumberController = TextEditingController();
-
-  var cinController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    snackBar(String? message) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message!),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+
+    final jobRoleCtrl = TextEditingController();
+
+    final formkey = GlobalKey<FormState>();
+
+    bool _isObscure = true;
+
+    var otpController = OtpFieldController();
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
-        if (state is AppSigninSuccessStates) {
-          showToast(message: "registrated");
-          CacheHelper.saveData(key: 'swift', value: state.swift);
-          navigateAndFinish(context, const ConfirmationScreen());
-        } else if (state is AppLoginErrorStates) {
-          showToast(message: state.error);
+        if (state is AppVerifyOtpSuccessState) {
+          showToast(message: state.message);
+        } else if (state is AppVerifyOtpErrorState) {
+          showToast(message: "otp incorrect");
+          otpController.clear();
         }
       },
       builder: (context, state) => SafeArea(
@@ -72,11 +60,11 @@ class _OTPState extends State<OTP> {
               ])),
           backgroundColor: Colors.blueGrey,
           body: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0,top: 22),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 22),
             child: Form(
               key: formkey,
               child: Container(
-                height: MediaQuery.of(context).size.height/1.2,
+                height: MediaQuery.of(context).size.height / 1.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
@@ -121,6 +109,7 @@ class _OTPState extends State<OTP> {
                             height: 15,
                           ),
                           OTPTextField(
+                            controller: otpController,
                             length: 5,
                             width: MediaQuery.of(context).size.width,
                             fieldWidth: 40,
@@ -128,8 +117,9 @@ class _OTPState extends State<OTP> {
                             textFieldAlignment: MainAxisAlignment.spaceAround,
                             fieldStyle: FieldStyle.underline,
                             onCompleted: (pin) {
-                              print("Completed: " + pin);
+                              AppCubit.get(context).verifyOtp(pin);
                             },
+
                           ),
                           SizedBox(
                             height: 25,
@@ -170,12 +160,13 @@ class _OTPState extends State<OTP> {
                               ],
                             ),
                             child: RaisedButton(
-                              onPressed: () {
-                                if (formkey.currentState!.validate()) {}
-                                Navigator.of(context).push(CustomPageRoute(
-                                    child:SignupPage2()),
-                                );
-                              },
+                              onPressed: AppCubit.get(context).verified
+                                  ? () {
+                                   Navigator.of(context).push(
+                                        CustomPageRoute(child: SignupPage2()),
+                                      );
+                                    }
+                                  : null,
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),
                               shape: const StadiumBorder(),

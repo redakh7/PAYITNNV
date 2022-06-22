@@ -4,45 +4,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/Confirmation2.dart';
-import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
+
 import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
 import 'package:m_wallet_hps/shared/component.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
+
 
 import 'custom_page_route.dart';
 
-class SignupPage1 extends StatefulWidget {
-  static String id = "SignupScreen";
+class SignupPage1 extends StatelessWidget {
+  static String id = "SignupScreen1";
 
   const SignupPage1({Key? key}) : super(key: key);
 
   @override
-  State<SignupPage1> createState() => _SignupPage1State();
-}
-
-class _SignupPage1State extends State<SignupPage1> {
-  final jobRoleCtrl = TextEditingController();
-
-  final formkey = GlobalKey<FormState>();
-  var swiftController = DropdownEditingController<String>();
-  bool _isObscure = true;
-  var phonenumberController = TextEditingController();
-
-  var cinController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+
+    final formkey = GlobalKey<FormState>();
+
+
+    var phonenumberController = TextEditingController();
+
+    var cinController = TextEditingController();
+
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
-        if (state is AppSigninSuccessStates) {
-          showToast(message: "registrated");
-          CacheHelper.saveData(key: 'swift', value: state.swift);
-          navigateAndFinish(context, const Confirmation2());
-        } else if (state is AppLoginErrorStates) {
-          showToast(message: state.error);
-        }
+     if(state is AppSendOtpSuccessState){
+       showToast(message: state.message);
+     }
       },
       builder: (context, state) => SafeArea(
         child: Scaffold(
@@ -60,11 +48,11 @@ class _SignupPage1State extends State<SignupPage1> {
               ])),
           backgroundColor: Colors.blueGrey,
           body: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0,top: 22),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 22),
             child: Form(
               key: formkey,
               child: Container(
-                height: MediaQuery.of(context).size.height/1.2,
+                height: MediaQuery.of(context).size.height / 1.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
@@ -98,6 +86,7 @@ class _SignupPage1State extends State<SignupPage1> {
                           Container(
                             margin: const EdgeInsets.only(top: 30),
                             child: TextFormField(
+                              keyboardType: TextInputType.phone,
                               controller: phonenumberController,
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -187,10 +176,15 @@ class _SignupPage1State extends State<SignupPage1> {
                                 if (formkey.currentState!.validate()) {
                                   print(phonenumberController.text);
                                   print(cinController.text);
+                                  AppCubit.get(context)
+                                      .sendOtp(phonenumberController.text);
+                                  Navigator.of(context)
+                                      .push(CustomPageRoute(child: OTP()));
+                                  AppCubit.get(context).phone_number =
+                                      phonenumberController.text;
+                                  AppCubit.get(context).cin =
+                                      cinController.text;
                                 }
-                                Navigator.of(context).push(CustomPageRoute(
-                                    child:OTP()),
-                                );
                               },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),
@@ -238,5 +232,3 @@ class _SignupPage1State extends State<SignupPage1> {
     );
   }
 }
-
-

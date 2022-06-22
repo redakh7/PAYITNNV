@@ -28,9 +28,9 @@ class AppSigninLoadingStates extends AppStates {}
 class AppSigninInitialStates extends AppStates {}
 
 class AppSigninSuccessStates extends AppStates {
- final String swift;
 
-  AppSigninSuccessStates(this.swift);
+
+
 }
 
 class AppSigninErrorStates extends AppStates {
@@ -50,8 +50,8 @@ class RemoveTokenErrorStates extends AppStates {}
 
 
 
-class LoadLoggedInUserSuccess extends AppStates {}
-class LoadLoggedInUserError extends AppStates {}
+class LoadLoggedInUserSuccessStates extends AppStates {}
+class LoadLoggedInUserErrorStates extends AppStates {}
 
 class AppVirementInitialStates extends AppStates {}
 class AppVirementLoadingStates extends AppStates {}
@@ -69,3 +69,21 @@ class AppChangeStates extends AppStates {}
 
 class AppRefreshStates extends AppStates {}
 class AppRefreshStatesStop extends AppStates {}
+
+
+class AppSendOtpInitialState extends AppStates {}
+class AppSendOtpSuccessState extends AppStates {
+  final String message;
+  AppSendOtpSuccessState(this.message);
+}
+class AppSendOtpErrorState extends AppStates {}
+
+class AppVerifyOtpErrorState extends AppStates {
+  final String error;
+  AppVerifyOtpErrorState(this.error);
+}
+class AppVerifyOtpSuccessState extends AppStates {
+  final String message;
+  AppVerifyOtpSuccessState(this.message);
+}
+class AppVerifyOtpInitialState extends AppStates {}

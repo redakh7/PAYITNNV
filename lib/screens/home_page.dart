@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/screens/login_page.dart';
+import 'package:m_wallet_hps/shared/component.dart';
 
 
 
@@ -18,7 +20,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       listener: ((context, state) {
+        if(state is LoadLoggedInUserErrorStates)
+        {
+          navigateAndFinish(context,LoginPage());
+          showToast(message: "error");
 
+        }
       }),
       builder: ((context, state){
         return Conditional.single(context: context,

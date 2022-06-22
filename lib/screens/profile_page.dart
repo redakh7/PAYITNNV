@@ -28,16 +28,16 @@ class ProfilePage extends StatelessWidget {
               Container(
 
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(180)),
-          gradient: LinearGradient(
-          colors: [
-            Color(0xff4889aa),
-            Color(0xff4889aa),
-            Color(0xff4c91bc),
-            Color(0xff4c91bc),
+                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(180)),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xff4889aa),
+                        Color(0xff4889aa),
+                        Color(0xff4c91bc),
+                        Color(0xff4c91bc),
 
-          ],
-                )),
+                      ],
+                    )),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -45,13 +45,13 @@ class ProfilePage extends StatelessWidget {
                       defaultHomeButton(buttonText: "Logout",
                           buttonImage: AssetImage("images/logout.png")
                           , function: (){
-                        AppCubit.get(context).removeFcmToken(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
-    CacheHelper.removeData(key: 'token');
-    CacheHelper.removeData(key: 'email');
+                            AppCubit.get(context).removeFcmToken(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
+                            CacheHelper.removeData(key: 'token');
+                            CacheHelper.removeData(key: 'email');
 
-    navigateAndFinish(context, LoginPage());
-    AppCubit.get(context).currentIndex=0;
-    }),
+                            navigateAndFinish(context, LoginPage());
+                            AppCubit.get(context).currentIndex=0;
+                          }),
                       const SizedBox(
                         height: 22,
                       ),
@@ -100,8 +100,8 @@ class ProfilePage extends StatelessWidget {
                             indent: 100,
                           ),
                           RowBuilder(
-                              att: "Rib :",
-                              text: "${userModel?.data.rib}"),
+                              att: "Phone Number :",
+                              text: "${userModel?.data.phoneNumber}"),
                           const Divider(
                             color: Colors.black,
                             endIndent: 100,
@@ -131,47 +131,47 @@ class ProfilePage extends StatelessWidget {
               ),
               MaterialButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)
+                    borderRadius: BorderRadius.circular(30)
                 ),
                 color: Color(0xff4c91bc),
-                  height: 40,
+                height: 40,
 
-                  onPressed: (){
-                    showModalBottomSheet(
+                onPressed: (){
+                  showModalBottomSheet(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
                       ),
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
 
-                               Text("SCAN ME !",style: TextStyle(color: Colors.green,fontSize: 20),),
-                                SizedBox(height: 10,),
-                              QrImage(data: "${AppCubit.get(context).userModel?.data.rib}",
+                              Text("SCAN ME !",style: TextStyle(color: Colors.green,fontSize: 20),),
+                              SizedBox(height: 10,),
+                              QrImage(data: "${AppCubit.get(context).userModel?.data.phoneNumber}",
 
-                              size: 200,
+                                size: 200,
                               ) ,
-                              ],
-                            ),
-                          );
-                        });
+                            ],
+                          ),
+                        );
+                      });
 
-                  },
-                  child: Container(
-                    width: 120,
+                },
+                child: Container(
+                  width: 120,
 
-                    child: Row(
-    children: const [
-                Text("QR CODE",style: TextStyle(color:Colors.white),),
-             Spacer(),
-             Icon(Icons.qr_code_scanner,color: Colors.white,),
-    ],
-    ),
+                  child: Row(
+                    children: const [
+                      Text("QR CODE",style: TextStyle(color:Colors.white),),
+                      Spacer(),
+                      Icon(Icons.qr_code_scanner,color: Colors.white,),
+                    ],
                   ),
+                ),
               )],
           ),
         ));
@@ -199,10 +199,10 @@ Widget RowBuilder({
           Text(
             text,
             style: const TextStyle(
-              color: Color(0xff4c6611),
-              fontFamily: 'Nunito',
-              fontSize: 15,
-              fontWeight: FontWeight.bold
+                color: Color(0xff4c6611),
+                fontFamily: 'Nunito',
+                fontSize: 15,
+                fontWeight: FontWeight.bold
             ),
           ),
         ],

@@ -8,34 +8,43 @@ import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/Confirmation2.dart';
 import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
 import 'package:m_wallet_hps/screens/SignUp22.dart';
+
 import 'package:m_wallet_hps/screens/profile_page.dart';
+
 import 'package:m_wallet_hps/screens/transferPage.dart';
-import 'package:m_wallet_hps/screens/versementScreen.dart';
+
 import '../screens/AcccueilScreen.dart';
-import '../screens/ConfirmationScreen.dart';
+
 
 class AppCubit extends Cubit<AppStates> {
+  bool verified = false;
   AppCubit() : super(AppInitialStates());
+
   String? email;
+  String? firstName;
+  String? lastName;
   String? username;
   String? password;
+  String? cin;
+  String? phone_number;
   static AppCubit get(context) => BlocProvider.of(context);
   static late Widget widget;
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     AcccueilScreen(),
-     FirstRoute(),
-     ProfilePage(),
+    FirstRoute(),
+    ProfilePage(),
   ];
   List<Widget> register = [
-   SignupPage1(),
-  SignupPage2(),
-   Confirmation2(),
+    SignupPage1(),
+    SignupPage2(),
+    Confirmation2(),
   ];
-  int currentStep =0;
+
+  int currentStep = 0;
 
   void changeStep(index) {
-    currentStep = currentStep +1;
+    currentStep = currentStep + 1;
     emit(AppStepPageStates());
   }
 
@@ -46,160 +55,170 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeBottomNavStates());
   }
 
-
   void changeBottom(index) {
     currentIndex = index;
     emit(AppChangeBottomNavStates());
   }
 
   UserModel? userModel;
-  void userLogin(
-      {required String username,
-      required String password,
-      required String swift}) {
-
+  void userLogin({required String phone_number, required String password}) {
     emit(AppLoginInitialStates());
     DioHelper.postDataLogins(
-      url: "login?swift=$swift",
+      url: "login",
       data: {
-        'username': username,
+        'phone_number': phone_number,
         'password': password,
       },
     ).then((value) {
-
       userModel = UserModel.fromJson(value.data);
       emit(AppLoginSuccessStates(userModel!));
       emit(LoginSaveTokenInitialStates());
     }).catchError((error) {
-
+      print(error.toString());
       emit(AppLoginErrorStates("Login Failed"));
     });
   }
 
-  void userSignUp(
-      {required String swift,
-      required String email,
-      required String username,
-      required String password,
-      required String firstName,
-      required String lastName}) {
+  void userSignUp({
+    required String? email,
+    required String? phoneNumber,
+    required String? password,
+    required String? firstName,
+    required String? lastName,
+    required String? cin,
+  }) {
     emit(AppSigninInitialStates());
 
     DioHelper.postData(
-      url: "registration?swift=$swift",
+      url: "registration",
       data: {
         'email': email,
         'password': password,
         'firstName': firstName,
         'lastName': lastName,
-        'username' : username
+        'phoneNumber': phoneNumber,
+        'cin': cin,
       },
     ).then((value) {
-      emit(AppSigninSuccessStates(swift));
-
+      emit(AppSigninSuccessStates());
     }).catchError((error) {
-
+      print(error.toString());
       emit(AppSigninErrorStates(error.toString()));
     });
   }
 
-  void addTokenToUser(email, deviceToken, swift) {
+  void addTokenToUser(email, deviceToken) {
     emit(LoginSaveTokenInitialStates());
 
     DioHelper.postDataLogins(
-            url: "fcm_token?swift=$swift",
-            data: {"email": email, "fcmToken": deviceToken})
-        .then((value){
-
-              emit(LoginSaveTokenSuccessStates());
-            })
-        .catchError((error) {
-          print(error.toString());
+        url: "fcm_token",
+        data: {"email": email, "fcmToken": deviceToken}).then((value) {
+      emit(LoginSaveTokenSuccessStates());
+    }).catchError((error) {
+      print(error.toString());
       emit(LoginSaveTokenErrorStates());
-
     });
   }
 
-  void removeFcmToken(email,  swift) {
+  void removeFcmToken(email, swift) {
     emit(RemoveTokenInitialStates());
 
     DioHelper.postDataLogins(
-        url: "remove_fcm_token?swift=$swift&user_email=$email", data: {},
-        )
-        .then((value) {
+      url: "remove_fcm_token?swift=$swift&user_email=$email",
+      data: {},
+    ).then((value) {
       emit(RemoveTokenSuccessStates());
     }).catchError((error) {
       print(error.toString());
       emit(RemoveTokenErrorStates());
-
     });
   }
 
-
-  void loadLoggedInUser(email, swift) {
+  void loadLoggedInUser(email) {
     userModel = null;
     if (email != null) {
       emit(LoadLoggedInUserInitial());
 
-      DioHelper.getData(url: "user?swift=$swift&email=$email").then((value) {
+      DioHelper.getData(url: "user?email=$email").then((value) {
+        //  print(value.data);
         userModel = UserModel.fromJson(value.data);
-
-        emit(LoadLoggedInUserSuccess());
+        emit(LoadLoggedInUserSuccessStates());
       }).catchError((error) {
-        emit(LoadLoggedInUserError());
-
+        print(error.toString());
+        emit(LoadLoggedInUserErrorStates());
       });
     }
   }
-  void Makevirement(montant,destinataire,message,emetteur){
 
-
+  void Makevirement(montant, destinataire, message, emetteur) {
     String operation_type = "virement";
     emit(AppVirementInitialStates());
     DioHelper.postData(url: "transfer/operation", data: {
-      "operation_type" : operation_type,
-      "montant" : montant,
-      "emetteur" : emetteur,
-      "destinataire" : destinataire,
-      "message" : message
+      "operation_type": operation_type,
+      "montant": montant,
+      "emetteur": emetteur,
+      "destinataire": destinataire,
+      "message": message
     }).then((value) {
-      loadLoggedInUser(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
+      loadLoggedInUser(CacheHelper.getData(key: 'email'));
       emit(AppVirementSuccessStates());
       changeBottom(0);
-
-    }).catchError((error){
+    }).catchError((error) {
       emit(AppVirementErrorStates());
-
     });
   }
+  void sendOtp(String phone){
+emit(AppSendOtpInitialState());
+DioHelper.postData(url: "otp/send", data: {
+  "phoneNumber" : phone
+}).then((value) {
+  print("OTP SEND SUCCESS");
+  emit(AppSendOtpSuccessState(value.data));
+} ).catchError((error){
+  print(error.toString());
+  emit(AppSendOtpErrorState());
+});
+  }
+  
+  void verifyOtp(String otp){
+    emit(AppVerifyOtpInitialState()); 
+  DioHelper.postData(url: "otp/verify", data: {
+    "phoneNumber" : phone_number,
+    "otp" : otp
+  }).then((value) {
+    verified = true;
+    emit(AppVerifyOtpSuccessState(value.data));
 
+  } ).catchError((error){
+    emit(AppVerifyOtpErrorState(error.toString()));
+    print(error.toString());
+  });
+  }
 
-  void makeVersement(montant,message,emetteur){
-
-
+  void makeVersement(montant, message, emetteur) {
     String operation_type = "versement";
     emit(AppVersementInitialStates());
     DioHelper.postData(url: "transfer/operation", data: {
-      "operation_type" : operation_type,
-      "montant" : montant,
-      "emetteur" : emetteur,
-      "message" : message
+      "operation_type": operation_type,
+      "montant": montant,
+      "emetteur": emetteur,
+      "message": message
     }).then((value) {
-      loadLoggedInUser(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
+      loadLoggedInUser(CacheHelper.getData(key: 'email'));
       emit(AppVersementSuccessStates());
-        userModel = null;
-    }).catchError((error){
+      userModel = null;
+    }).catchError((error) {
       emit(AppVersementErrorStates());
-
     });
   }
 
   void changeState() {
     emit(AppChangeStates());
   }
+  
+  
+  
 }
-
-
 
 bool jwtVerification(String token) {
   DateTime? expiryDate = Jwt.getExpiryDate(token);
@@ -210,8 +229,4 @@ bool jwtVerification(String token) {
   } else {
     return true;
   }
-
-
-
-
 }

@@ -1,7 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +11,6 @@ import 'package:m_wallet_hps/cubit/bloc_observer.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/AcccueilScreen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/TopSignupScreen.dart';
 import 'package:m_wallet_hps/screens/home_page.dart';
 import 'package:m_wallet_hps/screens/login_page.dart';
 import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
@@ -23,7 +20,6 @@ import 'network/local/cache_helper.dart';
 import 'package:get/get.dart';
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
 
@@ -58,14 +54,11 @@ Future<void> main() async {
 }
 
 class MyApp extends StatefulWidget {
-
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   _MyAppState();
@@ -80,36 +73,39 @@ class _MyAppState extends State<MyApp> {
     dynamicLinks.onLink.listen((dynamicLinkData) {
       showToast(message: "Email Verified");
       Get.to(() => LoginPage());
-
     }).onError((error) {
       print('onLink error');
       print(error.message);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
               create: (context) => AppCubit()
-                ..loadLoggedInUser(CacheHelper.getData(key: 'email'),
-                    CacheHelper.getData(key: 'swift'))),
+                ..loadLoggedInUser(CacheHelper.getData(key: 'email'))),
         ],
         child: BlocConsumer<AppCubit, AppStates>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if(state is LoadLoggedInUserErrorStates){
+              Get.off(() => LoginPage());
+
+            }
+          },
           builder: (context, state) => GetMaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             home: AnimatedSplashScreen(
               splashIconSize: 500,
-          // nextScreen: SignupPagePage(),
+              // nextScreen: SignupPagePage(),
               nextScreen: AppCubit.widget,
               backgroundColor: Colors.white,
               splashTransition: SplashTransition.fadeTransition,
               duration: 3000,
               splash: Center(
                 child: Column(
-
                   children: [
                     Container(
                       height: 150,
@@ -130,13 +126,14 @@ class _MyAppState extends State<MyApp> {
                       textAlign: TextAlign.center,
                       speed: Duration(milliseconds: 100),
                     ),
-                    Spacer(),
-                    CircularProgressIndicator(backgroundColor: Colors.green,color: Color(0xff4c6611)),
+                   const Spacer(),
+                    const CircularProgressIndicator(
+                        backgroundColor: Colors.green,
+                        color: Color(0xff4c6611)),
                   ],
                 ),
               ),
             ),
-
             routes: {
               SignupPage1.id: (context) => SignupPage1(),
               LoginPage.id: (context) => const LoginPage(),
@@ -147,5 +144,4 @@ class _MyAppState extends State<MyApp> {
           ),
         ));
   }
-
 }

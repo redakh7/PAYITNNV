@@ -4,15 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
-import 'package:m_wallet_hps/screens/SignUp22.dart';
-import 'package:m_wallet_hps/screens/SignUp2.dart';
-import 'package:m_wallet_hps/shared/component.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
 
-import 'SignUp1/custom_page_route.dart';
+import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
+
+import 'package:m_wallet_hps/shared/component.dart';
+
 
 class SignupPage3 extends StatefulWidget {
   static String id = "SignupScreen";
@@ -27,12 +23,12 @@ class _SignupPage3State extends State<SignupPage3> {
   final jobRoleCtrl = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
-  var swiftController = DropdownEditingController<String>();
+
   bool _isObscure = true;
   var passwordRegController = TextEditingController();
   var passwordConfRegController = TextEditingController();
 
-  var cinController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +36,6 @@ class _SignupPage3State extends State<SignupPage3> {
       listener: (context, state) {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
-          CacheHelper.saveData(key: 'swift', value: state.swift);
           navigateAndFinish(context, const ConfirmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
@@ -213,6 +208,14 @@ class _SignupPage3State extends State<SignupPage3> {
                             ),
                             child: RaisedButton(
                               onPressed: () {
+                                if(formkey.currentState!.validate()){
+                                  AppCubit.get(context).userSignUp(email: AppCubit.get(context).email,
+                                      phoneNumber: AppCubit.get(context).phone_number,
+                                      password: passwordRegController.text,
+                                      firstName: AppCubit.get(context).firstName,
+                                      lastName: AppCubit.get(context).lastName,
+                                      cin: AppCubit.get(context).cin);
+                                }
                               },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),

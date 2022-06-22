@@ -13,33 +13,30 @@ import 'package:dropdown_plus/dropdown_plus.dart';
 
 import 'SignUp1/custom_page_route.dart';
 
-class SignupPage2 extends StatefulWidget {
-  static String id = "SignupScreen";
+class SignupPage2 extends StatelessWidget {
+  static String id = "SignupScreen2";
 
   const SignupPage2({Key? key}) : super(key: key);
 
-  @override
-  State<SignupPage2> createState() => _SignupPage2State();
-}
 
-class _SignupPage2State extends State<SignupPage2> {
-  final jobRoleCtrl = TextEditingController();
 
-  final formkey = GlobalKey<FormState>();
-  var swiftController = DropdownEditingController<String>();
-  bool _isObscure = true;
-  var LasttnameController = TextEditingController();
-
-  var FirstnameController = TextEditingController();
-  var EmailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    final jobRoleCtrl = TextEditingController();
+
+    final formkey = GlobalKey<FormState>();
+
+    var lasttnameController = TextEditingController();
+
+    var firstnameController = TextEditingController();
+    var emailController = TextEditingController();
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
-          CacheHelper.saveData(key: 'swift', value: state.swift);
+
           navigateAndFinish(context, const ConfirmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
@@ -99,7 +96,8 @@ class _SignupPage2State extends State<SignupPage2> {
                           Container(
                             margin: const EdgeInsets.only(top: 30),
                             child: TextFormField(
-                              controller: FirstnameController,
+                              controller: firstnameController,
+                              keyboardType: TextInputType.name,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return "the first name must not be empty";
@@ -133,7 +131,7 @@ class _SignupPage2State extends State<SignupPage2> {
                           Container(
                             margin: const EdgeInsets.only(top: 22),
                             child: TextFormField(
-                              controller: LasttnameController,
+                              controller: lasttnameController,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return "the Last name must not be empty";
@@ -165,7 +163,8 @@ class _SignupPage2State extends State<SignupPage2> {
                           Container(
                             margin: const EdgeInsets.only(top: 22),
                             child: TextFormField(
-                              controller: EmailController,
+                              keyboardType: TextInputType.emailAddress,
+                              controller: emailController,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return "the Email must not be empty";
@@ -211,10 +210,15 @@ class _SignupPage2State extends State<SignupPage2> {
                             ),
                             child: RaisedButton(
                               onPressed: () {
-                                if (formkey.currentState!.validate()) {}
-                                Navigator.of(context).push(CustomPageRoute(
-                                    child:SignupPage3()),
-                                );
+                                if (formkey.currentState!.validate()) {
+                                  AppCubit.get(context).email = emailController.text;
+                                  AppCubit.get(context).firstName = firstnameController.text;
+                                  AppCubit.get(context).lastName = lasttnameController.text;
+                                  Navigator.of(context).push(CustomPageRoute(
+                                      child:SignupPage3()),
+                                  );
+                                }
+
                                 },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),

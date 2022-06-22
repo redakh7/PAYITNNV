@@ -22,7 +22,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  var usernameLoginController = TextEditingController();
+  var phoneNumberController = TextEditingController();
   var passwordLogController = TextEditingController();
   bool _isObscure = true;
   @override
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       if (state is AppLoginSuccessStates) {
         String? token = await FirebaseMessaging.instance.getToken();
         CacheHelper.saveData(key: 'swift', value:AppCubit.get(context).element.toLowerCase() );
-          AppCubit.get(context).addTokenToUser(AppCubit.get(context).userModel?.data.email,token, CacheHelper.getData(key: 'swift'));
+          AppCubit.get(context).addTokenToUser(AppCubit.get(context).userModel?.data.email,token);
         CacheHelper.saveData(key: 'token', value: state.userModel.token);
         CacheHelper.saveData(key: 'email', value: state.userModel.data.email);
 
@@ -82,18 +82,18 @@ class _LoginPageState extends State<LoginPage> {
                        child: TextFormField(
                          validator: (value)  {
                            if (value!.isEmpty) {
-                             return "the Username must not be empty";
+                             return "the phone number must not be empty";
                            }
                            return null;
                          },
-                         controller: usernameLoginController,
+                         controller: phoneNumberController,
                          textAlign: TextAlign.center,
                          style: GoogleFonts.manrope(
                            fontWeight: FontWeight.w400,
                            fontSize: 14,
                          ),
                          decoration: InputDecoration(
-                           hintText: 'Enter your username',
+                           hintText: 'Enter your phone number',
                            fillColor:  Color(0xff243656),
                            border: OutlineInputBorder(
                              borderRadius: BorderRadius.circular(20),
@@ -152,41 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
 
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          //padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text(
-                          "Choose Bank",
-                          style: TextStyle(color: Color(0xff243656)),
-                      ),
-                        ),
 
-                 Container(width: 62,),
-                        DropdownButton(alignment: Alignment.topCenter,
-                            elevation: 2,
-
-                            style:const TextStyle(color:Color(0xff243656),),
-                            borderRadius: const BorderRadius.all(Radius.circular(20)),
-                            dropdownColor: Colors.white,
-
-                            value: AppCubit.get(context).element,
-                            items: AppCubit.banks
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-
-                                value: value,
-                                child: Text(value.toUpperCase(),style: TextStyle(
-                                    color: Color(0xff243656),
-                                ),),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              AppCubit.get(context).changeBank(value);
-                            }),
-                      ],
-                    ),
                     Container(
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -201,13 +167,11 @@ class _LoginPageState extends State<LoginPage> {
                       child: RaisedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            print(usernameLoginController.text);
+                            print(phoneNumberController.text);
                             print(passwordLogController.text);
                             AppCubit.get(context).userLogin(
-                                swift: AppCubit.get(context)
-                                    .element
-                                    .toLowerCase(),
-                                username: usernameLoginController.text,
+
+                                phone_number: phoneNumberController.text,
                                 password:
                                 passwordLogController.text);
                           }
@@ -268,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.only(top: 22, bottom: 22),
                       child: TextButton(
                         onPressed: () {
-                          navigateAndFinish(context, SignupPage1());
+                          navigateTo(context, SignupPage1());
                         },
                         child: const Text(
                           'Register',

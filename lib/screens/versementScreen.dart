@@ -15,10 +15,10 @@ class VersementScreen extends StatelessWidget {
     var messageController  = TextEditingController();
     var montantController  = TextEditingController();
     return BlocConsumer<AppCubit,AppStates>( listener: (context,state){
-  if(state is AppVersementSuccessStates){
-    showToast(message: "Versement complet");
-    navigateAndFinish(context,HomePage());
-  }
+      if(state is AppVersementSuccessStates){
+        showToast(message: "Versement complet");
+        navigateAndFinish(context,HomePage());
+      }
     },builder: (context,state){
       return Scaffold(
         backgroundColor: Colors.white,
@@ -82,8 +82,8 @@ class VersementScreen extends StatelessWidget {
                     onTap: (){
 
 
-                      String emetteur = AppCubit.get(context).userModel!.data.rib;
-              AppCubit.get(context).makeVersement(montantController.text,messageController.text, emetteur);
+                      String emetteur = AppCubit.get(context).userModel!.data.phoneNumber;
+                      AppCubit.get(context).makeVersement(montantController.text,messageController.text, emetteur);
 
                     },
                     child: Ink(

@@ -48,7 +48,7 @@ class _Confirmation2State extends State<Confirmation2> {
       listener: (context, state) {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
-          CacheHelper.saveData(key: 'swift', value: state.swift);
+
           navigateAndFinish(context, const ConfirmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);

@@ -19,7 +19,7 @@ import 'login_page.dart';
 class NewProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-   String swift =CacheHelper.getData(key: 'swift');
+    String swift =CacheHelper.getData(key: 'swift');
     UserModel? userModel = AppCubit.get(context).userModel;
     return BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
@@ -30,7 +30,7 @@ class NewProfilePage extends StatelessWidget {
               IconButton(
                   onPressed: (){
 
-              }, icon: Icon(Icons.logout_outlined))
+                  }, icon: Icon(Icons.logout_outlined))
             ],
             title:  Text('Profile',
               style:  GoogleFonts.pragatiNarrow(
@@ -60,7 +60,7 @@ class NewProfilePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
 
-                          QrImage(foregroundColor: Colors.white,data: "${AppCubit.get(context).userModel?.data.rib}",size: 100,),
+                          QrImage(foregroundColor: Colors.white,data: "${AppCubit.get(context).userModel?.data.phoneNumber}",size: 100,),
 
                           Text("${userModel?.data.solde} DH" , style:  GoogleFonts.pragatiNarrow(
                             letterSpacing: 0.5,
@@ -84,16 +84,15 @@ class NewProfilePage extends StatelessWidget {
                 flex : 4,
                 child: Column(
                   children: [
-                    SizedBox(height: 20),
-                    RowBuilder(att: "Username",text: "${userModel?.data.username}"),
-                    SizedBox(height: 25,),
+
+                    SizedBox(height: 20,),
                     RowBuilder(att: "First Name",text: "${userModel?.data.firstName.toUpperCase()}"),
                     SizedBox(height: 25,),
                     RowBuilder(att: "Last Name",text: "${userModel?.data.lastName.toUpperCase()}"),
                     SizedBox(height: 25,),
                     RowBuilder(att: "E-mail",text: "${userModel?.data.email.toUpperCase()}"),
                     SizedBox(height: 25,),
-                    RowBuilder(att: "Rib",text: "${userModel?.data.rib}"),
+                    RowBuilder(att: "Phone Number",text: "${userModel?.data.phoneNumber}"),
                     SizedBox(height: 25,),
                     RowBuilder(att: "Banque",text: swift.toUpperCase()),
 
@@ -121,13 +120,13 @@ Widget RowBuilder({
 
       height: 35,
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.grey.shade300,
-            width: 0.5,
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey.shade300,
+              width: 0.5,
 
-          ),
-        )
+            ),
+          )
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -148,11 +147,11 @@ Widget RowBuilder({
             text,
             style:  GoogleFonts.pragatiNarrow(
               letterSpacing: 0.5,
-textStyle: TextStyle(
-    color: Colors.black,
-      fontSize: 20,
-    fontWeight: FontWeight.normal
-),
+              textStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal
+              ),
             ),
           ),
         ],

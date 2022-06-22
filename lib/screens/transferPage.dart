@@ -56,7 +56,7 @@ class _FirstRouteState extends State<FirstRoute> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(listener: (context, state) {
-      if (state is LoadLoggedInUserSuccess) {
+      if (state is LoadLoggedInUserSuccessStates) {
         navigateAndFinish(context, HomePage());
         AppCubit.get(context).currentIndex = 0;
       }
@@ -78,14 +78,14 @@ class _FirstRouteState extends State<FirstRoute> {
                     ),
                     decoration: InputDecoration(
                       contentPadding:
-                          const EdgeInsets.symmetric(vertical: 10.0),
+                      const EdgeInsets.symmetric(vertical: 10.0),
 
                       fillColor: Colors.white,
                       filled: true,
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       enabledBorder: OutlineInputBorder(
                         borderSide:
-                            const BorderSide(width: 3, color: Colors.white),
+                        const BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(30),
                       ),
 
@@ -98,7 +98,7 @@ class _FirstRouteState extends State<FirstRoute> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide:
-                            const BorderSide(width: 3, color: Colors.white),
+                        const BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       //create lable
@@ -125,7 +125,7 @@ class _FirstRouteState extends State<FirstRoute> {
                       print(montantController.text);
                       print(messageController.text);
                       String emetteur =
-                          AppCubit.get(context).userModel!.data.rib;
+                          AppCubit.get(context).userModel!.data.phoneNumber;
 
                       showMyDialog(
                           context: context,
@@ -196,7 +196,7 @@ class _FirstRouteState extends State<FirstRoute> {
                     ),
                     TextDropdownFormField(
                       options: [
-                        "MONSIEUR ${AppCubit.get(context).userModel?.data.firstName.toUpperCase()}  ${AppCubit.get(context).userModel?.data.lastName.toUpperCase()}  \n ${AppCubit.get(context).userModel?.data.rib}"
+                        "MONSIEUR ${AppCubit.get(context).userModel?.data.firstName.toUpperCase()}  ${AppCubit.get(context).userModel?.data.lastName.toUpperCase()}  \n ${AppCubit.get(context).userModel?.data.phoneNumber}"
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
