@@ -9,7 +9,7 @@ import 'package:m_wallet_hps/shared/component.dart';
 
 class VersementScreen extends StatelessWidget {
   const VersementScreen({Key? key}) : super(key: key);
-
+  static String id = "Versement";
   @override
   Widget build(BuildContext context) {
     var messageController  = TextEditingController();
@@ -102,16 +102,7 @@ class VersementScreen extends StatelessWidget {
             ],
           ),
         ),
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.green),
-          title: const Text(
-            'VERSEMENT',
-            style: TextStyle(
-                fontWeight: FontWeight.w600, color: Color(0xff1546A0), fontSize: 25),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+
 
         body: SafeArea(
           child: SingleChildScrollView(

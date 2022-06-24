@@ -1,4 +1,7 @@
-import 'dart:ui';
+/*
+*
+*
+* import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +17,12 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'login_page.dart';
 
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -152,7 +160,6 @@ class ProfilePage extends StatelessWidget {
                               Text("SCAN ME !",style: TextStyle(color: Colors.green,fontSize: 20),),
                               SizedBox(height: 10,),
                               QrImage(data: "${AppCubit.get(context).userModel?.data.phoneNumber}",
-
                                 size: 200,
                               ) ,
                             ],
@@ -208,3 +215,5 @@ Widget RowBuilder({
         ],
       ),
     );
+
+* */

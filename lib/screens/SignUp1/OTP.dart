@@ -12,7 +12,7 @@ import 'package:m_wallet_hps/shared/component.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
-import 'custom_page_route.dart';
+import '../Routes/custom_page_route.dart';
 
 class OTP extends StatelessWidget {
   const OTP({Key? key}) : super(key: key);
@@ -163,7 +163,7 @@ class OTP extends StatelessWidget {
                               onPressed: AppCubit.get(context).verified
                                   ? () {
                                    Navigator.of(context).push(
-                                        CustomPageRoute(child: SignupPage2()),
+                                        CustomPageRouteLeft(child: SignupPage2()),
                                       );
                                     }
                                   : null,

@@ -1,15 +1,16 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class CustomPageRoute extends PageRouteBuilder {
+class CustomPageRouteLeft extends PageRouteBuilder {
   final AxisDirection direction;
 final Widget child;
-CustomPageRoute({
+CustomPageRouteLeft({
   required this.child,
   this.direction=AxisDirection.left,
 
+}
 
-}) : super(
+) : super(
   transitionDuration: Duration(milliseconds: 250),
   reverseTransitionDuration: Duration(milliseconds:250),
   pageBuilder: (context ,animation,secondaryAnimation)=>child,

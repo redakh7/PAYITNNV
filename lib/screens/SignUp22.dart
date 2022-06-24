@@ -11,7 +11,7 @@ import 'package:m_wallet_hps/screens/SignUp2.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
 
-import 'SignUp1/custom_page_route.dart';
+import 'Routes/custom_page_route.dart';
 
 class SignupPage2 extends StatelessWidget {
   static String id = "SignupScreen2";
@@ -214,7 +214,7 @@ class SignupPage2 extends StatelessWidget {
                                   AppCubit.get(context).email = emailController.text;
                                   AppCubit.get(context).firstName = firstnameController.text;
                                   AppCubit.get(context).lastName = lasttnameController.text;
-                                  Navigator.of(context).push(CustomPageRoute(
+                                  Navigator.of(context).push(CustomPageRouteLeft(
                                       child:SignupPage3()),
                                   );
                                 }

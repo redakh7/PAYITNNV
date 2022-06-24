@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
+import 'package:m_wallet_hps/screens/Parametres.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
@@ -15,7 +16,7 @@ import 'package:swipe_refresh/swipe_refresh.dart';
 import '../shared/component.dart';
 
 class AcccueilScreen extends StatelessWidget {
-  static String id = "AcccueilScreen";
+  static String id = "Accueil";
   final _controller = StreamController<SwipeRefreshState>.broadcast();
 
   Stream<SwipeRefreshState> get _stream => _controller.stream;
@@ -129,7 +130,7 @@ class AcccueilScreen extends StatelessWidget {
     required BuildContext context})
   =>SafeArea(
     child: Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20,top: 20),
       child: SwipeRefresh.material(
         indicatorColor: Colors.blue,
 
@@ -141,36 +142,20 @@ class AcccueilScreen extends StatelessWidget {
 
 
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-               const Spacer(),
-                SizedBox(
-                  height: 30,
-                  width: 30,
-                  child: Image.asset("images/Payit.png",
-                      fit: BoxFit.fill),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
+
+
           Container(
             padding: const EdgeInsets.all(30),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              gradient: LinearGradient(
+          /*    gradient: LinearGradient(
                 colors: [
                   Colors.green,
                   Color(0xff1546A0),
                 ],
               ),
-
+*/
+      color: Color(0xff4c91bc),
 
             ),
             child: Row(
@@ -202,7 +187,7 @@ class AcccueilScreen extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: (){
-                      navigateTo(context, const VersementScreen());
+                      navigateTo(context, Settings1());
                     },
                     child: Ink(
                       child: Container(
@@ -256,12 +241,12 @@ class AcccueilScreen extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 20),
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xff1546A0),
+                    color:Color(0xff4c91bc),
                   ),
                   child: const Icon(
                     Icons.add,
                     size: 40,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 avatarWidget("avatar1", "user1"),

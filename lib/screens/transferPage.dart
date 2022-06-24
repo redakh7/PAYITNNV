@@ -13,7 +13,7 @@ import '../cubit/app_cubit.dart';
 
 class FirstRoute extends StatefulWidget {
   FirstRoute({key});
-
+  static String id = "Virement";
   @override
   State<FirstRoute> createState() => _FirstRouteState();
 }
@@ -153,18 +153,7 @@ class _FirstRouteState extends State<FirstRoute> {
             ],
           ),
         ),
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.green),
-          title: const Text(
-            'VIREMENT',
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color:Color(0xff1546A0),
-                fontSize: 25),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(

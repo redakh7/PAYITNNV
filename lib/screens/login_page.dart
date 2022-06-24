@@ -80,6 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                      Container(
                        margin: EdgeInsets.only(top: 70),
                        child: TextFormField(
+                         keyboardType: TextInputType.phone,
                          validator: (value)  {
                            if (value!.isEmpty) {
                              return "the phone number must not be empty";

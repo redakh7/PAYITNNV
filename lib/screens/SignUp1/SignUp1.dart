@@ -9,7 +9,7 @@ import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
 
-import 'custom_page_route.dart';
+import '../Routes/custom_page_route.dart';
 
 class SignupPage1 extends StatelessWidget {
   static String id = "SignupScreen1";
@@ -179,7 +179,7 @@ class SignupPage1 extends StatelessWidget {
                                   AppCubit.get(context)
                                       .sendOtp(phonenumberController.text);
                                   Navigator.of(context)
-                                      .push(CustomPageRoute(child: OTP()));
+                                      .push(CustomPageRouteLeft(child: OTP()));
                                   AppCubit.get(context).phone_number =
                                       phonenumberController.text;
                                   AppCubit.get(context).cin =
