@@ -21,7 +21,9 @@ class AccountScreen extends StatelessWidget {
     String swift = CacheHelper.getData(key: 'swift');
     UserModel? userModel = AppCubit.get(context).userModel;
     return BlocConsumer<AppCubit, AppStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          print("hihihih");
+        },
         builder: (context, state) => Scaffold(
               appBar: AppBar(
                 leading: IconButton(
