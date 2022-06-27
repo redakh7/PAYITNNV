@@ -87,8 +87,59 @@ class SignupScreen2 extends StatelessWidget {
                             ),
                           ),
                           Container(
+
+                            margin: const EdgeInsets.only(top: 22),
+                            child: Focus(
+                              canRequestFocus: false,
+                              onFocusChange: (hasfocus){
+                                if(!hasfocus){
+                                  AppCubit.get(context).verifyEmail(emailController.text);
+                                }
+                              },
+                              child: TextFormField(
+                                onEditingComplete: (){
+                                  FocusScope.of(context).nextFocus();
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                controller: emailController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "the Email must not be empty";
+                                  }else if(AppCubit.get(context).verifiedEmail==true)
+                                    {
+                                      return "the Email Already Exist";
+                                    }else
+                                  return null;
+                                },
+                                style: GoogleFonts.manrope(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                ),
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(
+                                    Icons.alternate_email,
+                                    color: Colors.green,
+                                  ),
+                                  hintText: 'Email ',
+                                  fillColor: const Color(0xff243656),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    borderSide: const BorderSide(
+                                        color: Colors.green, width: 2.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
                             margin: const EdgeInsets.only(top: 30),
                             child: TextFormField(
+                              onEditingComplete: (){
+                                FocusScope.of(context).nextFocus();
+                              },
                               controller: firstnameController,
                               keyboardType: TextInputType.name,
                               validator: (value) {
@@ -125,7 +176,11 @@ class SignupScreen2 extends StatelessWidget {
                             margin: const EdgeInsets.only(top: 22),
                             child: TextFormField(
                               controller: lasttnameController,
+                              onEditingComplete: (){
+                                FocusScope.of(context).nextFocus();
+                              },
                               validator: (value) {
+
                                 if (value!.isEmpty) {
                                   return "the Last name must not be empty";
                                 }
@@ -153,39 +208,7 @@ class SignupScreen2 extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 22),
-                            child: TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              controller: emailController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "the Email must not be empty";
-                                }
-                                return null;
-                              },
-                              style: GoogleFonts.manrope(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                              ),
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(
-                                  Icons.alternate_email,
-                                  color: Colors.green,
-                                ),
-                                hintText: 'Email ',
-                                fillColor: const Color(0xff243656),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.green, width: 2.0),
-                                ),
-                              ),
-                            ),
-                          ),
+
                           const SizedBox(
                             height: 190,
                           ),
@@ -204,7 +227,7 @@ class SignupScreen2 extends StatelessWidget {
                             child: RaisedButton(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {
-                                  AppCubit.get(context).email =
+                                 AppCubit.get(context).email =
                                       emailController.text;
                                   AppCubit.get(context).firstName =
                                       firstnameController.text;
@@ -213,6 +236,8 @@ class SignupScreen2 extends StatelessWidget {
                                   Navigator.of(context).push(
                                     CustomPageRouteLeft(child: SignupScreen3()),
                                   );
+
+
                                 }
                               },
                               textColor: const Color(0xffFFFFFF),

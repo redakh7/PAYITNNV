@@ -15,6 +15,7 @@ class AppCubit extends Cubit<AppStates> {
   bool verified = false;
   bool? verifiedcin;
   bool? verifiedphone;
+  bool? verifiedEmail;
 
   AppCubit() : super(AppInitialStates());
 
@@ -118,11 +119,11 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void removeFcmToken(email, swift) {
+  void removeFcmToken(email) {
     emit(RemoveTokenInitialStates());
 
     DioHelper.postDataLogins(
-      url: "remove_fcm_token?swift=$swift&user_email=$email",
+      url: "remove_fcm_token?user_email=$email",
       data: {},
     ).then((value) {
       emit(RemoveTokenSuccessStates());
@@ -234,8 +235,20 @@ void verifyphone(phone) {
     });
 
 }
-  
 
+  void verifyEmail(email) {
+    emit(AppVerifyEmailInitialStates());
+    DioHelper.getData(url: "verifyemail?email=$email").then((value)  {
+      emit(AppVerifyEmailSuccessStates());
+      verifiedEmail = value.data;
+      print("verify email");
+      print(verifiedEmail);
+    }).catchError((error){
+      print(error.toString());
+      emit(AppVerifyEmailErrorStates());
+    });
+
+  }
   
   
   

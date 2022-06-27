@@ -113,3 +113,8 @@ class AppVerifyCinErrorStates extends AppStates {}
 class AppVerifyPhoneInitialStates extends AppStates {}
 class AppVerifyPhoneSuccessStates extends AppStates {}
 class AppVerifyPhoneErrorStates extends AppStates {}
+
+
+class AppVerifyEmailInitialStates extends AppStates {}
+class AppVerifyEmailSuccessStates extends AppStates {}
+class AppVerifyEmailErrorStates extends AppStates {}

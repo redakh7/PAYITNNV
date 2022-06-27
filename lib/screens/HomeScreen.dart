@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
             /// Search
             SalomonBottomBarItem(
               icon: Icon(Icons.currency_exchange_sharp),
-              title: Text("transfer"),
+              title: Text("Virement"),
               selectedColor: Color(0xff4c91bc),
             ),
 

@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/network/local/cache_helper.dart';
+import 'package:m_wallet_hps/screens/LoginScreen.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
@@ -128,7 +130,7 @@ class SettingsScreen extends StatelessWidget {
                             CustomPageRouteLeft(child: ResetPasswordScreen()),
                           );},
                           child: Row(
-                            children: <Widget>[
+                            children: const <Widget>[
                               Icon(Icons.language,color: Colors.white,),
                               Expanded(
                                 child: Text(
@@ -153,9 +155,16 @@ class SettingsScreen extends StatelessWidget {
                             backgroundColor: Color(0xff4c91bc),
 
                           ),
-                          onPressed: (){Navigator.of(context).push(
-                            CustomPageRouteLeft(child: ResetPasswordScreen()),
-                          );},
+                          onPressed: (){
+                            AppCubit.get(context).removeFcmToken(CacheHelper.removeData(key: 'email'));
+                            CacheHelper.removeData(key: 'token');
+                            CacheHelper.removeData(key: 'email');
+
+                            Navigator.pushAndRemoveUntil(
+                           context, CustomPageRouteLeft(child: LoginScreen()),(route)=>false
+                          );
+                            AppCubit.get(context).currentIndex=0;
+                            },
                           child: Row(
                             children: <Widget>[
                               Icon(Icons.logout,color: Colors.white,),
