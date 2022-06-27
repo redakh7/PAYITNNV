@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 class DioHelper {
   static late Dio dio;
+
   static init() {
     dio = Dio(BaseOptions(
       baseUrl: 'http://3.217.215.70:8081/HPS-SWITCH/',
@@ -37,18 +38,15 @@ class DioHelper {
     );
   }
 
-
   static Future<Response> postData({
     required url,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
   }) async {
-
     return dio.post(
       url,
       data: data,
       queryParameters: query,
     );
   }
-
 }

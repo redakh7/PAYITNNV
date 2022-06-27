@@ -1,17 +1,14 @@
+import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
 import 'package:m_wallet_hps/shared/component.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
-import '../shared/buttons.dart';
+import '../../shared/buttons.dart';
 
 class ConfirmationScreen extends StatefulWidget {
   static String id = "SignupScreen";
@@ -83,8 +80,8 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                           width: 90,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('images/emailsend.png'),
-                              )),
+                            image: AssetImage('images/emailsend.png'),
+                          )),
                         ),
                         SizedBox(
                           height: 35,
@@ -130,11 +127,12 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                               fontStyle: FontStyle.normal,
                               color: Colors.blueGrey),
                         ),
-                        SizedBox(height: 40,),
+                        SizedBox(
+                          height: 40,
+                        ),
                         ButtonTest(
                           text: "Open Email App",
                           function: () async {
-
                             var result = await OpenMailApp.openMailApp(
                               nativePickerTitle: 'Select email app to open',
                             );

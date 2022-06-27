@@ -1,24 +1,25 @@
 import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-
-import 'package:m_wallet_hps/screens/home_page.dart';
+import 'package:m_wallet_hps/screens/HomeScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import '../cubit/app_cubit.dart';
 
-class FirstRoute extends StatefulWidget {
-  FirstRoute({key});
+class TransferScreen extends StatefulWidget {
+  TransferScreen({key});
+
   static String id = "Virement";
+
   @override
-  State<FirstRoute> createState() => _FirstRouteState();
+  State<TransferScreen> createState() => _TransferScreenState();
 }
 
-class _FirstRouteState extends State<FirstRoute> {
+class _TransferScreenState extends State<TransferScreen> {
   var montantController = TextEditingController();
 
   var destinataireController = TextEditingController();
@@ -57,7 +58,7 @@ class _FirstRouteState extends State<FirstRoute> {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(listener: (context, state) {
       if (state is LoadLoggedInUserSuccessStates) {
-        navigateAndFinish(context, HomePage());
+        navigateAndFinish(context, HomeScreen());
         AppCubit.get(context).currentIndex = 0;
       }
     }, builder: (context, state) {
@@ -78,14 +79,14 @@ class _FirstRouteState extends State<FirstRoute> {
                     ),
                     decoration: InputDecoration(
                       contentPadding:
-                      const EdgeInsets.symmetric(vertical: 10.0),
+                          const EdgeInsets.symmetric(vertical: 10.0),
 
                       fillColor: Colors.white,
                       filled: true,
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       enabledBorder: OutlineInputBorder(
                         borderSide:
-                        const BorderSide(width: 3, color: Colors.white),
+                            const BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(30),
                       ),
 
@@ -98,7 +99,7 @@ class _FirstRouteState extends State<FirstRoute> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide:
-                        const BorderSide(width: 3, color: Colors.white),
+                            const BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       //create lable
@@ -153,7 +154,6 @@ class _FirstRouteState extends State<FirstRoute> {
             ],
           ),
         ),
-
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -166,8 +166,8 @@ class _FirstRouteState extends State<FirstRoute> {
                     TextFormField(
                       controller: montantController,
                       keyboardType: TextInputType.number,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 35),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
                       textAlign: TextAlign.start,
                       decoration: const InputDecoration(
                         border: InputBorder.none,

@@ -3,24 +3,19 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/AcccueilScreen.dart';
-import 'package:m_wallet_hps/shared/buttons.dart';
-import 'package:m_wallet_hps/shared/component.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'HomeScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
-import 'Routes/custom_page_route.dart';
-import 'home_page.dart';
-import 'login_page.dart';
 
-class NewProfilePage extends StatelessWidget {
+class AccountScreen extends StatelessWidget {
   static String id = "My Account";
+
   @override
   Widget build(BuildContext context) {
     String swift = CacheHelper.getData(key: 'swift');
@@ -29,22 +24,21 @@ class NewProfilePage extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) => Scaffold(
               appBar: AppBar(
-                leading: IconButton (
+                leading: IconButton(
                   icon: Icon(Icons.arrow_back),
-                  onPressed: () {Navigator.of(context).push(CustomPageRouteRight(
-                      child:HomePage()),
-                  );
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      CustomPageRouteRight(child: HomeScreen()),
+                    );
                   },
                 ),
                 backgroundColor: Color(0xff4c91bc),
                 elevation: 2,
-                actions: [
-                  ],
+                actions: [],
                 title: Padding(
-                  padding: const EdgeInsets.only(left:78.0),
+                  padding: const EdgeInsets.only(left: 78.0),
                   child: Text(
                     'ACCOUNT',
-
                   ),
                 ),
               ),

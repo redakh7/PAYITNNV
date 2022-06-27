@@ -5,21 +5,15 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
-import 'package:m_wallet_hps/screens/Confirmation2.dart';
-import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
-import 'package:m_wallet_hps/screens/SignUp22.dart';
-import 'package:m_wallet_hps/screens/Account.dart';
+import 'package:m_wallet_hps/screens/AlimentationScreen.dart';
 
-import 'package:m_wallet_hps/screens/profile_page.dart';
 
-import 'package:m_wallet_hps/screens/transferPage.dart';
-import 'package:m_wallet_hps/screens/versementScreen.dart';
-
-import '../screens/AcccueilScreen.dart';
-
+import '../screens/AccueilScreen.dart';
+import '../screens/TransferScreen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   bool verified = false;
+
   AppCubit() : super(AppInitialStates());
 
   String? email;
@@ -29,18 +23,14 @@ class AppCubit extends Cubit<AppStates> {
   String? password;
   String? cin;
   String? phone_number;
+
   static AppCubit get(context) => BlocProvider.of(context);
   static late Widget widget;
   int currentIndex = 0;
   List<Widget> bottomScreens = [
-    AcccueilScreen(),
-    FirstRoute(),
-    VersementScreen(),
-  ];
-  List<Widget> register = [
-    SignupPage1(),
-    SignupPage2(),
-    Confirmation2(),
+    AccueilScreen(),
+    TransferScreen(),
+    AlimentationScreen(),
   ];
 
   int currentStep = 0;
@@ -52,6 +42,7 @@ class AppCubit extends Cubit<AppStates> {
 
   static List<String> banks = <String>['cih', 'attijari', 'sgma'];
   String element = banks.first;
+
   void changeBank(newvalue) {
     element = newvalue;
     emit(AppChangeBottomNavStates());
@@ -63,6 +54,7 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   UserModel? userModel;
+
   void userLogin({required String phone_number, required String password}) {
     emit(AppLoginInitialStates());
     DioHelper.postDataLogins(
@@ -169,32 +161,30 @@ class AppCubit extends Cubit<AppStates> {
       emit(AppVirementErrorStates());
     });
   }
-  void sendOtp(String phone){
-emit(AppSendOtpInitialState());
-DioHelper.postData(url: "otp/send", data: {
-  "phoneNumber" : phone
-}).then((value) {
-  print("OTP SEND SUCCESS");
-  emit(AppSendOtpSuccessState(value.data));
-} ).catchError((error){
-  print(error.toString());
-  emit(AppSendOtpErrorState());
-});
-  }
-  
-  void verifyOtp(String otp){
-    emit(AppVerifyOtpInitialState()); 
-  DioHelper.postData(url: "otp/verify", data: {
-    "phoneNumber" : phone_number,
-    "otp" : otp
-  }).then((value) {
-    verified = true;
-    emit(AppVerifyOtpSuccessState(value.data));
 
-  } ).catchError((error){
-    emit(AppVerifyOtpErrorState(error.toString()));
-    print(error.toString());
-  });
+  void sendOtp(String phone) {
+    emit(AppSendOtpInitialState());
+    DioHelper.postData(url: "otp/send", data: {"phoneNumber": phone})
+        .then((value) {
+      print("OTP SEND SUCCESS");
+      emit(AppSendOtpSuccessState(value.data));
+    }).catchError((error) {
+      print(error.toString());
+      emit(AppSendOtpErrorState());
+    });
+  }
+
+  void verifyOtp(String otp) {
+    emit(AppVerifyOtpInitialState());
+    DioHelper.postData(
+        url: "otp/verify",
+        data: {"phoneNumber": phone_number, "otp": otp}).then((value) {
+      verified = true;
+      emit(AppVerifyOtpSuccessState(value.data));
+    }).catchError((error) {
+      emit(AppVerifyOtpErrorState(error.toString()));
+      print(error.toString());
+    });
   }
 
   void makeVersement(montant, message, emetteur) {
@@ -217,9 +207,6 @@ DioHelper.postData(url: "otp/send", data: {
   void changeState() {
     emit(AppChangeStates());
   }
-  
-  
-  
 }
 
 bool jwtVerification(String token) {

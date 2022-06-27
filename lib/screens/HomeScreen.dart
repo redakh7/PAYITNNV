@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/screens/NavBar.dart';
-import 'package:m_wallet_hps/screens/login_page.dart';
+import 'package:m_wallet_hps/screens/LoginScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
-
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
-  const HomePage({Key? key}) : super(key: key);
+
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(listener: ((context, state) {
       if (state is LoadLoggedInUserErrorStates) {
-        navigateAndFinish(context, LoginPage());
+        navigateAndFinish(context, LoginScreen());
         showToast(message: "error");
       }
     }), builder: ((context, state) {
@@ -41,29 +38,28 @@ class HomePage extends StatelessWidget {
 
   Widget builderWidget(context, index) {
     return Scaffold(
-      drawer: NavBar(),
+      drawer: Drawer(),
       appBar: AppBar(
           title: index == 0
               ? Padding(
-                padding: const EdgeInsets.only(left:78.0),
-                child: Text(
+                  padding: const EdgeInsets.only(left: 78.0),
+                  child: Text(
                     "Acceuil",
                   ),
-              )
+                )
               : index == 1
                   ? Padding(
-            padding: const EdgeInsets.only(left:78.0),
-                    child: Text(
+                      padding: const EdgeInsets.only(left: 78.0),
+                      child: Text(
                         "Virement",
                       ),
-                  )
+                    )
                   : Padding(
-            padding: const EdgeInsets.only(left:78.0),
-                    child: Text(
+                      padding: const EdgeInsets.only(left: 78.0),
+                      child: Text(
                         "Alimentation",
-
                       ),
-                  ),
+                    ),
           backgroundColor: Color(0xff4c91bc)),
       backgroundColor: Colors.white,
       body: AppCubit.get(context)

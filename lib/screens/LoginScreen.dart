@@ -5,49 +5,46 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
+import 'package:m_wallet_hps/screens/HomeScreen.dart';
+import 'package:m_wallet_hps/screens/signup/SignupScreen1.dart';import 'package:m_wallet_hps/shared/component.dart';
 
-
-import 'package:m_wallet_hps/screens/home_page.dart';
-import 'package:m_wallet_hps/screens/SignUp1/SignUp1.dart';
-
-import 'package:m_wallet_hps/shared/component.dart';
-
-class LoginPage extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   static String id = "LoginScreen";
-  const LoginPage({Key? key}) : super(key: key);
+
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   var phoneNumberController = TextEditingController();
   var passwordLogController = TextEditingController();
   bool _isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(listener: (context, state) async {
       if (state is AppLoginSuccessStates) {
         String? token = await FirebaseMessaging.instance.getToken();
-        CacheHelper.saveData(key: 'swift', value:AppCubit.get(context).element.toLowerCase() );
-          AppCubit.get(context).addTokenToUser(AppCubit.get(context).userModel?.data.email,token);
+        CacheHelper.saveData(
+            key: 'swift', value: AppCubit.get(context).element.toLowerCase());
+        AppCubit.get(context)
+            .addTokenToUser(AppCubit.get(context).userModel?.data.email, token);
         CacheHelper.saveData(key: 'token', value: state.userModel.token);
         CacheHelper.saveData(key: 'email', value: state.userModel.data.email);
 
-
         showToast(message: state.userModel.message);
-        navigateAndFinish(context, HomePage());
+        navigateAndFinish(context, HomeScreen());
       } else if (state is AppLoginErrorStates) {
         showToast(message: state.error);
       }
     }, builder: (context, state) {
       return Container(
-
         child: Form(
           key: _formKey,
           child: Scaffold(
-
             backgroundColor: Colors.white,
             body: ListView(
               padding: EdgeInsets.only(left: 55, right: 55, top: 120),
@@ -67,47 +64,47 @@ class _LoginPageState extends State<LoginPage> {
                             width: 90,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage('images/Payit.png')
-                                )
-                            ),
+                                    image: AssetImage('images/Payit.png'))),
                           ),
-                          Text("ayit",style:TextStyle(fontSize: 60,)),
-
+                          Text("ayit",
+                              style: TextStyle(
+                                fontSize: 60,
+                              )),
                         ],
                       ),
-
                     ),
-                     Container(
-                       margin: EdgeInsets.only(top: 70),
-                       child: TextFormField(
-                         keyboardType: TextInputType.phone,
-                         validator: (value)  {
-                           if (value!.isEmpty) {
-                             return "the phone number must not be empty";
-                           }
-                           return null;
-                         },
-                         controller: phoneNumberController,
-                         textAlign: TextAlign.center,
-                         style: GoogleFonts.manrope(
-                           fontWeight: FontWeight.w400,
-                           fontSize: 14,
-                         ),
-                         decoration: InputDecoration(
-                           hintText: 'Enter your phone number',
-                           fillColor:  Color(0xff243656),
-                           border: OutlineInputBorder(
-                             borderRadius: BorderRadius.circular(20),
-                             borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                           ),
-                           focusedBorder:  OutlineInputBorder(
-                             borderRadius: BorderRadius.circular(20),
-
-                             borderSide: const BorderSide(color: Colors.green, width: 2.0),
-                           ),
-                         ),
-                       ),
-                     ),
+                    Container(
+                      margin: EdgeInsets.only(top: 70),
+                      child: TextFormField(
+                        keyboardType: TextInputType.phone,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "the phone number must not be empty";
+                          }
+                          return null;
+                        },
+                        controller: phoneNumberController,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.manrope(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: 'Enter your phone number',
+                          fillColor: Color(0xff243656),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                                color: Colors.green, width: 2.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                                color: Colors.green, width: 2.0),
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       margin: EdgeInsets.only(top: 15, bottom: 30),
                       child: TextFormField(
@@ -127,13 +124,11 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                           hintText: 'Password',
                           suffixIcon: IconButton(
-
-
                             icon: Icon(
-
-                              _isObscure ? Icons.visibility : Icons.visibility_off,
-                              color: _isObscure ?  Colors.green :Colors.grey ,
-
+                              _isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: _isObscure ? Colors.green : Colors.grey,
                             ),
                             onPressed: () {
                               setState(() {
@@ -141,19 +136,18 @@ class _LoginPageState extends State<LoginPage> {
                               });
                             },
                           ),
-                          fillColor:  Color(0xff243656),
+                          fillColor: Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          focusedBorder:  OutlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: const BorderSide(color: Colors.green, width: 2.0),
+                            borderSide: const BorderSide(
+                                color: Colors.green, width: 2.0),
                           ),
                         ),
                       ),
-
                     ),
-
                     Container(
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -171,17 +165,15 @@ class _LoginPageState extends State<LoginPage> {
                             print(phoneNumberController.text);
                             print(passwordLogController.text);
                             AppCubit.get(context).userLogin(
-
                                 phone_number: phoneNumberController.text,
-                                password:
-                                passwordLogController.text);
+                                password: passwordLogController.text);
                           }
                         },
                         textColor: Color(0xffFFFFFF),
                         padding: EdgeInsets.all(0),
                         shape: StadiumBorder(),
                         child: Container(
-                          width:  275,
+                          width: 275,
                           height: 65,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -230,23 +222,21 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 22, bottom: 22),
-                      child: TextButton(
-                        onPressed: () {
-                          navigateTo(context, SignupPage1());
-                        },
-                        child: const Text(
-                          'Register',
-                          style: TextStyle(
+                        margin: EdgeInsets.only(top: 22, bottom: 22),
+                        child: TextButton(
+                          onPressed: () {
+                            navigateTo(context, SignupScreen1());
+                          },
+                          child: const Text(
+                            'Register',
+                            style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Montserrat',
+                            ),
                           ),
-                        ),
-                      )
-                    ),
+                        )),
                   ],
                 ),
-
               ],
             ),
           ),

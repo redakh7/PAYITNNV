@@ -1,43 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:m_wallet_hps/screens/Parametres.dart';
 import 'package:m_wallet_hps/screens/Routes/CustomPageRouteRight.dart';
-import 'package:m_wallet_hps/screens/home_page.dart';
+import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 
-import 'Routes/custom_page_route.dart';
-
-class ResetPassword extends StatefulWidget {
+class ResetPasswordScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ResetPasswordState();
+    return _ResetPasswordScreenState();
   }
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   static String id = "Reset Password";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          leading: IconButton (
+          leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {Navigator.of(context).push(CustomPageRouteRight(
-                child:Settings1()),
-            );
-
+            onPressed: () {
+              Navigator.of(context).push(
+                CustomPageRouteRight(child: SettingsScreen()),
+              );
             },
           ),
           title: Center(
               child: Padding(
-                padding: const EdgeInsets.only(right:68.0),
-                child: Text(
-            'Reset Password',
-          ),
-              )),
-          backgroundColor:  Color(0xff4c91bc),
+            padding: const EdgeInsets.only(right: 68.0),
+            child: Text(
+              'Reset Password',
+            ),
+          )),
+          backgroundColor: Color(0xff4c91bc),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -46,9 +44,11 @@ class _ResetPasswordState extends State<ResetPassword> {
               height: 550,
               padding: const EdgeInsets.only(left: 5, right: 5),
               decoration: BoxDecoration(
-
                   borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: Colors.grey,width: 0.4,)),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 0.4,
+                  )),
               child: Center(
                 child: Container(
                   padding: EdgeInsets.only(top: 20),
@@ -56,21 +56,28 @@ class _ResetPasswordState extends State<ResetPassword> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Create new Password', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                      SizedBox(height: 30,),
+                      Text(
+                        'Create new Password',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         'Your new Password must be different from previous used passwords.',
                         style: TextStyle(fontSize: 18),
                       ),
-                      SizedBox(height: 30,),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         'old password',
-                          style: TextStyle(fontSize: 18
-                          ,color: Colors.blueGrey),
-
+                        style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                       ),
-
-                      SizedBox(height: 5,),
+                      SizedBox(
+                        height: 5,
+                      ),
                       TextFormField(
                         cursorColor: Colors.green,
                         cursorHeight: 19,
@@ -91,7 +98,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                             Icons.password,
                             color: Colors.green,
                           ),
-
                           fillColor: const Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -105,18 +111,20 @@ class _ResetPasswordState extends State<ResetPassword> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(
+                        height: 5,
+                      ),
                       Divider(
                         thickness: 0.3,
                         color: Colors.grey,
                       ),
                       Text(
                         'New password',
-                        style: TextStyle(fontSize: 18
-                        ,color: Colors.blueGrey),
-
+                        style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(
+                        height: 5,
+                      ),
                       TextFormField(
                         cursorColor: Colors.green,
                         cursorHeight: 19,
@@ -137,7 +145,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                             Icons.password,
                             color: Colors.green,
                           ),
-
                           fillColor: const Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -151,16 +158,20 @@ class _ResetPasswordState extends State<ResetPassword> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(
+                        height: 5,
+                      ),
                       Divider(
                         thickness: 0.3,
                         color: Colors.grey,
                       ),
                       Text(
                         'Confirmation',
-                        style: TextStyle(fontSize: 18
-                            ,color: Colors.blueGrey),),
-                      SizedBox(height: 5,),
+                        style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
                       TextFormField(
                         cursorColor: Colors.green,
                         cursorHeight: 19,
@@ -181,7 +192,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                             Icons.password,
                             color: Colors.green,
                           ),
-
                           fillColor: const Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -195,16 +205,17 @@ class _ResetPasswordState extends State<ResetPassword> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Center(
                         child: RaisedButton(
-                          onPressed: () {
-                            },
+                          onPressed: () {},
                           textColor: Color(0xffFFFFFF),
                           padding: EdgeInsets.all(0),
                           shape: StadiumBorder(),
                           child: Container(
-                            width:  225,
+                            width: 225,
                             height: 55,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
@@ -227,7 +238,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),

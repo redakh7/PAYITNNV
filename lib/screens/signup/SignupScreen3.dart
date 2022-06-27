@@ -1,36 +1,39 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-
-import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
+import 'package:m_wallet_hps/screens/signup/ConfirmationEmailScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
+class SignupScreen3 extends StatefulWidget {
+  static String id = "SignupScreen";
 
-import '../Routes/custom_page_route.dart';
+  const SignupScreen3({Key? key}) : super(key: key);
 
-class SignupPage1 extends StatelessWidget {
-  static String id = "SignupScreen1";
+  @override
+  State<SignupScreen3> createState() => _SignupScreen3State();
+}
 
-  const SignupPage1({Key? key}) : super(key: key);
+class _SignupScreen3State extends State<SignupScreen3> {
+  final jobRoleCtrl = TextEditingController();
+
+  final formkey = GlobalKey<FormState>();
+
+  bool _isObscure = true;
+  var passwordRegController = TextEditingController();
+  var passwordConfRegController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
-    final formkey = GlobalKey<FormState>();
-
-
-    var phonenumberController = TextEditingController();
-
-    var cinController = TextEditingController();
-
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
-     if(state is AppSendOtpSuccessState){
-       showToast(message: state.message);
-     }
+        if (state is AppSigninSuccessStates) {
+          showToast(message: "registrated");
+          navigateAndFinish(context, const ConfirmationScreen());
+        } else if (state is AppLoginErrorStates) {
+          showToast(message: state.error);
+        }
       },
       builder: (context, state) => SafeArea(
         child: Scaffold(
@@ -52,11 +55,11 @@ class SignupPage1 extends StatelessWidget {
             child: Form(
               key: formkey,
               child: Container(
-                height: MediaQuery.of(context).size.height / 1.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
+                height: MediaQuery.of(context).size.height / 1.2,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -67,7 +70,7 @@ class SignupPage1 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'STEP 1 : Identification ',
+                            'STEP 4 : Security ',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -77,38 +80,51 @@ class SignupPage1 extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            'Enter your phone number and your CIN ',
+                            'Enter your new password twice',
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(top: 30),
+                            margin: EdgeInsets.only(top: 22),
                             child: TextFormField(
-                              keyboardType: TextInputType.phone,
-                              controller: phonenumberController,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return "the Phone number must not be empty";
+                                  return "the Password must not be empty";
                                 }
                                 return null;
                               },
+                              controller: passwordRegController,
+                              textAlign: TextAlign.center,
                               style: GoogleFonts.manrope(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                               ),
+                              obscureText: _isObscure,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(
-                                  Icons.phone,
+                                  Icons.password,
                                   color: Colors.green,
                                 ),
-                                hintText: 'Phone number ',
-                                fillColor: const Color(0xff243656),
+                                hintText: 'Password',
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color:
+                                        _isObscure ? Colors.green : Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                ),
+                                fillColor: Color(0xff243656),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.green, width: 2.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -119,22 +135,42 @@ class SignupPage1 extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(top: 22),
+                            margin: EdgeInsets.only(top: 22),
                             child: TextFormField(
-                              controller: cinController,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return "the CIN must not be empty";
+                                  return "the Password must not be empty";
                                 }
                                 return null;
                               },
+                              controller: passwordConfRegController,
+                              textAlign: TextAlign.center,
                               style: GoogleFonts.manrope(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                               ),
+                              obscureText: _isObscure,
                               decoration: InputDecoration(
-                                hintText: 'CIN',
-                                fillColor: const Color(0xff243656),
+                                prefixIcon: const Icon(
+                                  Icons.password,
+                                  color: Colors.green,
+                                ),
+                                hintText: 'Confirm password',
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color:
+                                        _isObscure ? Colors.green : Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                    });
+                                  },
+                                ),
+                                fillColor: Color(0xff243656),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -143,21 +179,11 @@ class SignupPage1 extends StatelessWidget {
                                   borderSide: const BorderSide(
                                       color: Colors.green, width: 2.0),
                                 ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              'By continuing, you agree to the terms and conditions of use ',
-                              style: GoogleFonts.manrope(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
                               ),
                             ),
                           ),
                           const SizedBox(
-                            height: 170,
+                            height: 210,
                           ),
                           Container(
                             decoration: BoxDecoration(
@@ -174,16 +200,15 @@ class SignupPage1 extends StatelessWidget {
                             child: RaisedButton(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {
-                                  print(phonenumberController.text);
-                                  print(cinController.text);
-                                  AppCubit.get(context)
-                                      .sendOtp(phonenumberController.text);
-                                  Navigator.of(context)
-                                      .push(CustomPageRouteLeft(child: OTP()));
-                                  AppCubit.get(context).phone_number =
-                                      phonenumberController.text;
-                                  AppCubit.get(context).cin =
-                                      cinController.text;
+                                  AppCubit.get(context).userSignUp(
+                                      email: AppCubit.get(context).email,
+                                      phoneNumber:
+                                          AppCubit.get(context).phone_number,
+                                      password: passwordRegController.text,
+                                      firstName:
+                                          AppCubit.get(context).firstName,
+                                      lastName: AppCubit.get(context).lastName,
+                                      cin: AppCubit.get(context).cin);
                                 }
                               },
                               textColor: const Color(0xffFFFFFF),
@@ -206,7 +231,7 @@ class SignupPage1 extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'NEXT',
+                                      'CREATE',
                                       style: GoogleFonts.manrope(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,

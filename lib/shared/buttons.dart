@@ -1,16 +1,12 @@
-import 'package:drawerbehavior/drawerbehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:m_wallet_hps/shared/component.dart';
-import 'package:m_wallet_hps/shared/constantes.dart';
 
 Widget defaultHomeButton(
         {required String buttonText,
         required AssetImage buttonImage,
         required VoidCallback function}) =>
     InkWell(
-
       borderRadius: const BorderRadius.all(Radius.circular(25.0)),
       onTap: function,
       child: Ink(
@@ -26,7 +22,6 @@ Widget defaultHomeButton(
             Center(
               child: ImageIcon(buttonImage),
             ),
-
             const SizedBox(
               width: 10.0,
             ),
@@ -42,61 +37,56 @@ Widget defaultHomeButton(
       ),
     );
 
-
-Widget loginButton(
-{
+Widget loginButton({
   required String buttonText,
   required function,
-}
-    )=>MaterialButton(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(20),
-  ),
-
-  onPressed: function,
-  child:  Center(
-      child: Text(
+}) =>
+    MaterialButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      onPressed: function,
+      child: Center(
+          child: Text(
         buttonText,
-        style:const  TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.bold,
           fontSize: 12.0,
         ),
       )),
-);
-
-
-
+    );
 
 Widget ButtonTest({
   required function,
   required String text,
-})=> RaisedButton(
-  onPressed: function,
-  textColor: const Color(0xffFFFFFF),
-  padding: const EdgeInsets.all(0),
-  shape: const StadiumBorder(),
-  child: Container(
-    width:  170,
-    height: 65,
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      gradient:const LinearGradient(
-        colors: [
-          Colors.green,
-          Color(0xff1546A0),
-        ],
+}) =>
+    RaisedButton(
+      onPressed: function,
+      textColor: const Color(0xffFFFFFF),
+      padding: const EdgeInsets.all(0),
+      shape: const StadiumBorder(),
+      child: Container(
+        width: 170,
+        height: 65,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: const LinearGradient(
+            colors: [
+              Colors.green,
+              Color(0xff1546A0),
+            ],
+          ),
+        ),
+        child: Text(
+          text,
+          style: GoogleFonts.manrope(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.normal,
+          ),
+        ),
       ),
-    ),
-    child: Text(
-      text,
-      style: GoogleFonts.manrope(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        fontStyle: FontStyle.normal,
-      ),
-    ),
-  ),
-);
+    );

@@ -2,24 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/screens/home_page.dart';
+import 'package:m_wallet_hps/screens/HomeScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
-
-
-class VersementScreen extends StatelessWidget {
-  const VersementScreen({Key? key}) : super(key: key);
+class AlimentationScreen extends StatelessWidget {
+  const AlimentationScreen({Key? key}) : super(key: key);
   static String id = "Versement";
+
   @override
   Widget build(BuildContext context) {
-    var messageController  = TextEditingController();
-    var montantController  = TextEditingController();
-    return BlocConsumer<AppCubit,AppStates>( listener: (context,state){
-      if(state is AppVersementSuccessStates){
+    var messageController = TextEditingController();
+    var montantController = TextEditingController();
+    return BlocConsumer<AppCubit, AppStates>(listener: (context, state) {
+      if (state is AppVersementSuccessStates) {
         showToast(message: "Versement complet");
-        navigateAndFinish(context,HomePage());
+        navigateAndFinish(context, HomeScreen());
       }
-    },builder: (context,state){
+    }, builder: (context, state) {
       return Scaffold(
         backgroundColor: Colors.white,
         bottomSheet: Container(
@@ -33,37 +32,37 @@ class VersementScreen extends StatelessWidget {
                   child: TextFormField(
                     controller: messageController,
                     style: const TextStyle(
-
                       fontSize: 18,
                     ),
-                    decoration:  InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: InputDecoration(
+                      contentPadding:
+                          const EdgeInsets.symmetric(vertical: 10.0),
 
                       fillColor: Colors.white,
                       filled: true,
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(width: 3, color: Colors.white),
+                        borderSide:
+                            const BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(30),
                       ),
 
                       //add prefix icon
 
                       hintStyle: const TextStyle(
-
                         fontSize: 16,
                         fontFamily: "verdana_regular",
                         fontWeight: FontWeight.w400,
                       ),
-                      focusedBorder:  OutlineInputBorder(
-                        borderSide: const BorderSide(width: 3, color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       //create lable
                       labelText: '  Motif',
                       //lable style
                       labelStyle: TextStyle(
-
                         fontSize: 16,
                         fontFamily: "verdana_regular",
                         fontWeight: FontWeight.w400,
@@ -79,31 +78,33 @@ class VersementScreen extends StatelessWidget {
                   color: Colors.green,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
-                    onTap: (){
-
-
-                      String emetteur = AppCubit.get(context).userModel!.data.phoneNumber;
-                      AppCubit.get(context).makeVersement(montantController.text,messageController.text, emetteur);
-
+                    onTap: () {
+                      String emetteur =
+                          AppCubit.get(context).userModel!.data.phoneNumber;
+                      AppCubit.get(context).makeVersement(
+                          montantController.text,
+                          messageController.text,
+                          emetteur);
                     },
                     child: Ink(
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
                             color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(40)
+                            borderRadius: BorderRadius.circular(40)),
+                        child: const Text(
+                          'Checkout',
+                          style: TextStyle(color: Colors.white),
                         ),
-                        child: const Text('Checkout',style: TextStyle(color: Colors.white),),alignment: Alignment.center,),
+                        alignment: Alignment.center,
+                      ),
                     ),
                   ),
                 ),
               ),
-
             ],
           ),
         ),
-
-
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -118,11 +119,10 @@ class VersementScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: montantController,
                         keyboardType: TextInputType.number,
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 35),
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
-
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
@@ -134,16 +134,12 @@ class VersementScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-
-
-                    const     SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-
-
                   ],
                 ),
               ),

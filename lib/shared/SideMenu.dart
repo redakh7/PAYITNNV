@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:m_wallet_hps/screens/Parametres.dart';
-import 'package:m_wallet_hps/screens/QRCODE.dart';
+import 'package:m_wallet_hps/screens/AccountScreen.dart';
+import 'package:m_wallet_hps/screens/QrCodeScreen.dart';
 import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
-import 'package:m_wallet_hps/screens/Account.dart';
-import 'package:m_wallet_hps/screens/profile_page.dart';
-
+import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 import '../cubit/app_cubit.dart';
 import '../models/userModel.dart';
 
-class NavBar extends StatelessWidget {
+class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserModel? userModel = AppCubit.get(context).userModel;
@@ -22,7 +20,10 @@ class NavBar extends StatelessWidget {
             height: 220,
             child: Container(
               child: UserAccountsDrawerHeader(
-                accountName: Text( "${userModel?.data.phoneNumber}",style: TextStyle(fontSize: 18),),
+                accountName: Text(
+                  "${userModel?.data.phoneNumber}",
+                  style: TextStyle(fontSize: 18),
+                ),
                 accountEmail: Text(""),
                 currentAccountPicture: CircleAvatar(),
                 decoration: BoxDecoration(
@@ -30,7 +31,6 @@ class NavBar extends StatelessWidget {
                     colors: [
                       Colors.grey,
                       Colors.blueGrey,
-
                     ],
                   ),
                 ),
@@ -56,10 +56,7 @@ class NavBar extends StatelessWidget {
                   fontStyle: FontStyle.normal,
                 ),
               ),
-              onTap: () {
-
-
-              },
+              onTap: () {},
             ),
           ),
           SizedBox(
@@ -82,8 +79,8 @@ class NavBar extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(CustomPageRouteLeft(
-                    child:QRCODE()));
+                Navigator.of(context)
+                    .push(CustomPageRouteLeft(child: QrCodeScreen()));
               },
             ),
           ),
@@ -107,8 +104,8 @@ class NavBar extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(CustomPageRouteLeft(
-                    child:NewProfilePage()),
+                Navigator.of(context).push(
+                  CustomPageRouteLeft(child: AccountScreen()),
                 );
               },
             ),
@@ -197,8 +194,8 @@ class NavBar extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.of(context).push(CustomPageRouteLeft(
-                    child:Settings1()),
+                Navigator.of(context).push(
+                  CustomPageRouteLeft(child: SettingsScreen()),
                 );
               },
             ),

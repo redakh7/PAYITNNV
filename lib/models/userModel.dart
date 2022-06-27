@@ -5,12 +5,13 @@ class UserModel {
     required this.status,
     required this.token,
   });
+
   late final Data data;
   late final String message;
   late final int status;
   String? token;
 
-  UserModel.fromJson(Map<String, dynamic> json){
+  UserModel.fromJson(Map<String, dynamic> json) {
     data = Data.fromJson(json['data']);
     message = json['message'];
     status = json['status'];
@@ -44,6 +45,7 @@ class Data {
     required this.credentialsNonExpired,
     required this.solde,
   });
+
   late final String email;
   late final String cin;
   late final String firstName;
@@ -59,7 +61,7 @@ class Data {
   late final bool credentialsNonExpired;
   late final double solde;
 
-  Data.fromJson(Map<String, dynamic> json){
+  Data.fromJson(Map<String, dynamic> json) {
     email = json['email'];
     cin = json['cin'];
     firstName = json['firstName'];
@@ -69,7 +71,9 @@ class Data {
     locked = json['locked'];
     enabled = json['enabled'];
     phoneNumber = json['phoneNumber'];
-    authorities = List.from(json['authorities']).map((e)=>Authorities.fromJson(e)).toList();
+    authorities = List.from(json['authorities'])
+        .map((e) => Authorities.fromJson(e))
+        .toList();
     accountNonExpired = json['accountNonExpired'];
     accountNonLocked = json['accountNonLocked'];
     credentialsNonExpired = json['credentialsNonExpired'];
@@ -87,7 +91,7 @@ class Data {
     _data['locked'] = locked;
     _data['enabled'] = enabled;
     _data['phoneNumber'] = phoneNumber;
-    _data['authorities'] = authorities.map((e)=>e.toJson()).toList();
+    _data['authorities'] = authorities.map((e) => e.toJson()).toList();
     _data['accountNonExpired'] = accountNonExpired;
     _data['accountNonLocked'] = accountNonLocked;
     _data['credentialsNonExpired'] = credentialsNonExpired;
@@ -100,9 +104,10 @@ class Authorities {
   Authorities({
     required this.authority,
   });
+
   late final String authority;
 
-  Authorities.fromJson(Map<String, dynamic> json){
+  Authorities.fromJson(Map<String, dynamic> json) {
     authority = json['authority'];
   }
 

@@ -4,26 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
-import 'package:m_wallet_hps/screens/SignUp1/OTP.dart';
-import 'package:m_wallet_hps/screens/SignUp2.dart';
+import 'package:m_wallet_hps/screens/signup/ConfirmationEmailScreen.dart';
+import 'package:m_wallet_hps/screens/signup/SignupScreen3.dart';
 import 'package:m_wallet_hps/shared/component.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
 
-import 'Routes/custom_page_route.dart';
+import '../Routes/custom_page_route.dart';
 
-class SignupPage2 extends StatelessWidget {
+class SignupScreen2 extends StatelessWidget {
   static String id = "SignupScreen2";
 
-  const SignupPage2({Key? key}) : super(key: key);
-
-
-
+  const SignupScreen2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final jobRoleCtrl = TextEditingController();
 
     final formkey = GlobalKey<FormState>();
@@ -58,7 +51,7 @@ class SignupPage2 extends StatelessWidget {
               ])),
           backgroundColor: Colors.blueGrey,
           body: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0,top: 22),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 22),
             child: Form(
               key: formkey,
               child: Container(
@@ -66,7 +59,7 @@ class SignupPage2 extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: MediaQuery.of(context).size.height/1.2,
+                height: MediaQuery.of(context).size.height / 1.2,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -201,7 +194,7 @@ class SignupPage2 extends StatelessWidget {
                               boxShadow: [
                                 BoxShadow(
                                   color:
-                                  const Color(0xff1546A0).withOpacity(0.5),
+                                      const Color(0xff1546A0).withOpacity(0.5),
                                   offset: const Offset(0, 24),
                                   blurRadius: 50,
                                   spreadRadius: -18,
@@ -211,15 +204,17 @@ class SignupPage2 extends StatelessWidget {
                             child: RaisedButton(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {
-                                  AppCubit.get(context).email = emailController.text;
-                                  AppCubit.get(context).firstName = firstnameController.text;
-                                  AppCubit.get(context).lastName = lasttnameController.text;
-                                  Navigator.of(context).push(CustomPageRouteLeft(
-                                      child:SignupPage3()),
+                                  AppCubit.get(context).email =
+                                      emailController.text;
+                                  AppCubit.get(context).firstName =
+                                      firstnameController.text;
+                                  AppCubit.get(context).lastName =
+                                      lasttnameController.text;
+                                  Navigator.of(context).push(
+                                    CustomPageRouteLeft(child: SignupScreen3()),
                                   );
                                 }
-
-                                },
+                              },
                               textColor: const Color(0xffFFFFFF),
                               padding: const EdgeInsets.all(0),
                               shape: const StadiumBorder(),
