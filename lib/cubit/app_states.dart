@@ -72,6 +72,9 @@ class AppVersementSuccessStates extends AppStates {}
 
 class AppVersementErrorStates extends AppStates {}
 
+
+
+
 class AppChangeStates extends AppStates {}
 
 class AppRefreshStates extends AppStates {}
@@ -101,3 +104,12 @@ class AppVerifyOtpSuccessState extends AppStates {
 }
 
 class AppVerifyOtpInitialState extends AppStates {}
+
+
+class AppVerifyCinInitialStates extends AppStates {}
+class AppVerifyCinSuccessStates extends AppStates {}
+class AppVerifyCinErrorStates extends AppStates {}
+
+class AppVerifyPhoneInitialStates extends AppStates {}
+class AppVerifyPhoneSuccessStates extends AppStates {}
+class AppVerifyPhoneErrorStates extends AppStates {}

@@ -13,6 +13,8 @@ import '../screens/TransferScreen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   bool verified = false;
+  bool? verifiedcin;
+  bool? verifiedphone;
 
   AppCubit() : super(AppInitialStates());
 
@@ -23,6 +25,8 @@ class AppCubit extends Cubit<AppStates> {
   String? password;
   String? cin;
   String? phone_number;
+
+
 
   static AppCubit get(context) => BlocProvider.of(context);
   static late Widget widget;
@@ -204,9 +208,37 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void changeState() {
-    emit(AppChangeStates());
-  }
+void verifycin(cin) {
+    emit(AppVerifyCinInitialStates());
+   DioHelper.getData(url: "verifycinn?cin=$cin").then((value)  {
+
+
+      verifiedcin = value.data;
+      emit(AppVerifyCinSuccessStates());
+    }).catchError((error){
+      print(error.toString());
+      emit(AppVerifyCinErrorStates());
+    });
+
+}
+void verifyphone(phone) {
+    emit(AppVerifyPhoneInitialStates());
+   DioHelper.getData(url: "verifypnn?phone_number=$phone").then((value)  {
+     emit(AppVerifyPhoneSuccessStates());
+     verifiedphone = value.data;
+    print("verify phone");
+    print(verifiedphone);
+    }).catchError((error){
+      print(error.toString());
+      emit(AppVerifyPhoneErrorStates());
+    });
+
+}
+  
+
+  
+  
+  
 }
 
 bool jwtVerification(String token) {

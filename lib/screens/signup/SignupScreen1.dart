@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +22,7 @@ class SignupScreen1 extends StatelessWidget {
     var phonenumberController = TextEditingController();
 
     var cinController = TextEditingController();
-
+ bool? verifyCin;
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
         if (state is AppSendOtpSuccessState) {
@@ -80,63 +82,102 @@ class SignupScreen1 extends StatelessWidget {
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 30),
-                            child: TextFormField(
-                              keyboardType: TextInputType.phone,
-                              controller: phonenumberController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "the Phone number must not be empty";
-                                }
-                                return null;
+                            child: Focus(
+                              canRequestFocus: false,
+                              onFocusChange: (hasfocus){
+                              if(hasfocus){
+                                AppCubit.get(context).verifyphone(phonenumberController.text);
+                                AppCubit.get(context).verifyphone(cinController.text);
+                              }
                               },
-                              style: GoogleFonts.manrope(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                              ),
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(
-                                  Icons.phone,
-                                  color: Colors.green,
+                              child: TextFormField(
+
+                                keyboardType: TextInputType.phone,
+                                controller: phonenumberController,
+
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "the Phone number must not be empty";
+                                  }else  if(AppCubit.get(context).verifiedphone == true){
+                                    return "phone Number Already Exist";
+                                  }else
+                                  return null;
+                                },
+                                onEditingComplete: (){
+                                  FocusScope.of(context).nextFocus();
+                                },
+                                style: GoogleFonts.manrope(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
                                 ),
-                                hintText: 'Phone number ',
-                                fillColor: const Color(0xff243656),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.green, width: 2.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.green, width: 2.0),
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(
+                                    Icons.phone,
+                                    color: Colors.green,
+                                  ),
+                                  hintText: 'Phone number ',
+                                  fillColor: const Color(0xff243656),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    borderSide: const BorderSide(
+                                        color: Colors.green, width: 2.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    borderSide: const BorderSide(
+                                        color: Colors.green, width: 2.0),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 22),
-                            child: TextFormField(
-                              controller: cinController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "the CIN must not be empty";
+                            child: Focus(
+                              canRequestFocus: false,
+                              onFocusChange:(hasfocus){
+                                if(hasfocus){
+                                  AppCubit.get(context).verifyphone(phonenumberController.text);
+                               AppCubit.get(context).verifycin(cinController.text) ;
                                 }
-                                return null;
                               },
-                              style: GoogleFonts.manrope(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                              ),
-                              decoration: InputDecoration(
-                                hintText: 'CIN',
-                                fillColor: const Color(0xff243656),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                              child: TextFormField(
+                                controller: cinController,
+                                onFieldSubmitted: (value){
+                          AppCubit.get(context).verifycin(value);
+                          },
+                                onEditingComplete: (){
+                               FocusScope.of(context).nextFocus();
+                                },
+                                validator: (value)  {
+
+
+
+                                  if (value!.isEmpty) {
+
+                                    return "the CIN must not be empty";
+                                  } else if(AppCubit.get(context).verifiedcin == true)
+                                  {
+                                    return "Cin Already Exist";
+                                  }
+                                  else
+                                  return null;
+                                },
+                                style: GoogleFonts.manrope(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.green, width: 2.0),
+                                decoration: InputDecoration(
+                                  hintText: 'CIN',
+                                  fillColor: const Color(0xff243656),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    borderSide: const BorderSide(
+                                        color: Colors.green, width: 2.0),
+                                  ),
                                 ),
                               ),
                             ),
@@ -167,14 +208,19 @@ class SignupScreen1 extends StatelessWidget {
                               ],
                             ),
                             child: RaisedButton(
-                              onPressed: () {
+                              onPressed: () async{
+
                                 if (formkey.currentState!.validate()) {
+
+
                                   print(phonenumberController.text);
                                   print(cinController.text);
                                   AppCubit.get(context)
                                       .sendOtp(phonenumberController.text);
                                   Navigator.of(context)
                                       .push(CustomPageRouteLeft(child: OTP()));
+
+
                                   AppCubit.get(context).phone_number =
                                       phonenumberController.text;
                                   AppCubit.get(context).cin =
