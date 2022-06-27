@@ -1,95 +1,191 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:m_wallet_hps/cubit/app_cubit.dart';
+import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
-import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
+import 'package:m_wallet_hps/shared/component.dart';
 
-import 'HomeScreen.dart';
-import 'QrCodeScreen.dart';
-import 'Routes/CustomPageRouteRight.dart';
+import 'Routes/custom_page_route.dart';
 
 class SettingsScreen extends StatelessWidget {
+  static String id = "SignupScreen1";
+
+  const SettingsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).push(
-                CustomPageRouteRight(child: HomeScreen()),
-              );
-            },
-          ),
-          title: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 78.0),
-              child: const Text(
-                'SETTINGS',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
+    final formkey = GlobalKey<FormState>();
+
+
+
+    return BlocConsumer<AppCubit, AppStates>(
+      listener: (context, state) {
+        if (state is AppSendOtpSuccessState) {
+          showToast(message: state.message);
+        }
+      },
+      builder: (context, state) => SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Color(0xff4c91bc),
+              title: Row(children: <Widget>[
+                Text(
+                  "  Settings",
+                  style: GoogleFonts.manrope(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24,
+                  ),
+                )
+              ])),
           backgroundColor: Color(0xff4c91bc),
-          elevation: 0,
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 4.4,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    Colors.grey,
-                    Colors.blueGrey,
-                  ],
+          body: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 62),
+            child: Form(
+              key: formkey,
+              child: Container(
+                height: MediaQuery.of(context).size.height / 1.3,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: Center(
+                  child: Container(
+                    width: 320,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            fixedSize: Size.fromHeight(49),
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                            ),
+                            backgroundColor: Color(0xff4c91bc),
+
+                          ),
+                          onPressed: (){Navigator.of(context).push(
+                            CustomPageRouteLeft(child: ResetPasswordScreen()),
+                          );},
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.lock,color: Colors.white,),
+                              Expanded(
+                                child: Text(
+                                  '    Reset Password',
+                                  style: TextStyle(
+                                    color: Colors.white
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            fixedSize: Size.fromHeight(49),
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                            ),
+                            backgroundColor: Color(0xff4c91bc),
+
+                          ),
+                          onPressed: (){Navigator.of(context).push(
+                            CustomPageRouteLeft(child: ResetPasswordScreen()),
+                          );},
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.email,color: Colors.white,),
+                              Expanded(
+                                child: Text(
+                                  '    Change Email',
+                                  style: TextStyle(
+                                      color: Colors.white
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            fixedSize: Size.fromHeight(49),
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                            ),
+                            backgroundColor: Color(0xff4c91bc),
+
+                          ),
+                          onPressed: (){Navigator.of(context).push(
+                            CustomPageRouteLeft(child: ResetPasswordScreen()),
+                          );},
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.language,color: Colors.white,),
+                              Expanded(
+                                child: Text(
+                                  '    Change language',
+                                  style: TextStyle(
+                                      color: Colors.white
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            fixedSize: Size.fromHeight(49),
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                            ),
+                            backgroundColor: Color(0xff4c91bc),
+
+                          ),
+                          onPressed: (){Navigator.of(context).push(
+                            CustomPageRouteLeft(child: ResetPasswordScreen()),
+                          );},
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.logout,color: Colors.white,),
+                              Expanded(
+                                child: Text(
+                                  '    Logout',
+                                  style: TextStyle(
+                                      color: Colors.white
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.fromLTRB(20, 20, 112, 20),
-                primary: Colors.black,
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.of(context)
-                    .push(CustomPageRouteLeft(child: ResetPasswordScreen()));
-              },
-              child: const Text('Change your password ',
-                  textAlign: TextAlign.left),
-            ),
-            Divider(
-              color: Colors.black,
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.fromLTRB(20, 20, 112, 20),
-                primary: Colors.black,
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {},
-              child: const Text('Change language           '),
-            ),
-            Divider(
-              color: Colors.black,
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.fromLTRB(20, 20, 112, 20),
-                primary: Colors.black,
-                textStyle: const TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.of(context)
-                    .push(CustomPageRouteLeft(child: QrCodeScreen()));
-              },
-              child: const Text('Change Email                   ',
-                  textAlign: TextAlign.left),
-            ),
-          ],
+          ),
+
         ),
+
       ),
+
     );
+
+
+
   }
+
 }

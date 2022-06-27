@@ -43,7 +43,8 @@ class SignupScreen1 extends StatelessWidget {
                   ),
                 )
               ])),
-          backgroundColor: Colors.blueGrey,
+
+
           body: Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 22),
             child: Form(

@@ -7,6 +7,8 @@ import 'package:m_wallet_hps/screens/LoginScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import '../shared/SideMenu.dart';
+
 class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
 
@@ -38,7 +40,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget builderWidget(context, index) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: SideMenu(),
       appBar: AppBar(
           title: index == 0
               ? Padding(
