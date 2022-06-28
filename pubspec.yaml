@@ -74,6 +74,9 @@ dependencies:
   otp_text_field: ^1.1.3
   font_awesome_flutter: ^10.1.0
   pretty_qr_code: ^2.0.2
+  line_awesome_flutter: ^2.0.0
+  animated_theme_switcher: ^2.0.6
+  babstrap_settings_screen: ^0.1.3
 flutter_icons:
   android: true
   ios: true

@@ -70,8 +70,11 @@ class AccueilScreen extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.all(25),
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('asset/images/$img.png'))),
+                    image: DecorationImage(
+                      image: AssetImage('images/$img.png'),
+
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -207,7 +210,7 @@ class AccueilScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Send Money",
+                    "Transfer To",
                     style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
