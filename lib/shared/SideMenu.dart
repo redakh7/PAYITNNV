@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/AccountScreen.dart';
+import 'package:m_wallet_hps/screens/LoginScreen.dart';
 import 'package:m_wallet_hps/screens/QrCodeScreen.dart';
 import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
@@ -17,15 +19,46 @@ class SideMenu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           Container(
-            height: 220,
+
             child: Container(
               child: UserAccountsDrawerHeader(
-                accountName: Text(
-                  "${userModel?.data.phoneNumber}",
-                  style: TextStyle(fontSize: 18),
+                arrowColor: Colors.white60,
+                accountName: IntrinsicHeight(
+                  child: Container(
+                    height: 50,
+                    child: Row(
+
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                       Container(
+                         height: 80,
+                         width: 80,
+                         child: FittedBox(fit: BoxFit.cover,
+                          child: Icon(Icons.person_outline,color: Colors.white60),
+                         ),
+                       ),
+                        SizedBox(width: 5,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                         children: [
+                            Text(
+                              "Hello ",
+                              style: TextStyle(fontSize: 18,color: Colors.white60),
+                            ),
+                            Text(
+                              "${userModel?.data.lastName.toUpperCase()}!",
+                              style: TextStyle(fontSize: 25),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                accountEmail: Text(""),
-                currentAccountPicture: CircleAvatar(),
+           accountEmail: Text(""),
+
+
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [
@@ -220,7 +253,16 @@ class SideMenu extends StatelessWidget {
                 color: Colors.redAccent,
                 size: 32,
               ),
-              onTap: () => null,
+              onTap: (){
+                AppCubit.get(context).removeFcmToken(CacheHelper.removeData(key: 'email'));
+                CacheHelper.removeData(key: 'token');
+                CacheHelper.removeData(key: 'email');
+
+                Navigator.pushAndRemoveUntil(
+                    context, CustomPageRouteLeft(child: LoginScreen()),(route)=>false
+                );
+                AppCubit.get(context).currentIndex=0;
+              },
             ),
           ),
         ],

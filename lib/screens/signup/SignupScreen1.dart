@@ -86,9 +86,9 @@ class SignupScreen1 extends StatelessWidget {
                             child: Focus(
                               canRequestFocus: false,
                               onFocusChange: (hasfocus){
-                              if(hasfocus){
+                              if(!hasfocus){
                                 AppCubit.get(context).verifyphone(phonenumberController.text);
-                                AppCubit.get(context).verifyphone(cinController.text);
+
                               }
                               },
                               child: TextFormField(
@@ -137,9 +137,11 @@ class SignupScreen1 extends StatelessWidget {
                             child: Focus(
                               canRequestFocus: false,
                               onFocusChange:(hasfocus){
-                                if(hasfocus){
-                                  AppCubit.get(context).verifyphone(phonenumberController.text);
+                                if(!hasfocus){
+                                  print(hasfocus);
+                                  print("focuuuuuuuuuuuuuus");
                                AppCubit.get(context).verifycin(cinController.text) ;
+
                                 }
                               },
                               child: TextFormField(
