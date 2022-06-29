@@ -9,6 +9,7 @@ import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 import '../cubit/app_cubit.dart';
 import '../models/userModel.dart';
+import '../screens/AccueilScreen.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -89,7 +90,7 @@ class SideMenu extends StatelessWidget {
                   fontStyle: FontStyle.normal,
                 ),
               ),
-              onTap: () {},
+              onTap: () {} ,
             ),
           ),
           SizedBox(
@@ -241,7 +242,7 @@ class SideMenu extends StatelessWidget {
             padding: EdgeInsets.only(left: 30),
             child: ListTile(
               title: Text(
-                'Exit',
+                'Sign Out',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

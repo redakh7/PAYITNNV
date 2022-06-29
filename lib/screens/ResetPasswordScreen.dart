@@ -103,7 +103,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           decoration: InputDecoration(
                             prefixIcon: const Icon(
                               Icons.password,
-                              color: Colors.green,
+                              color: Color(0xff4c91bc),
                             ),
                             fillColor: const Color(0xff243656),
                             border: OutlineInputBorder(
@@ -151,7 +151,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           decoration: InputDecoration(
                             prefixIcon: const Icon(
                               Icons.password,
-                              color: Colors.green,
+                              color: Color(0xff4c91bc),
                             ),
                             fillColor: const Color(0xff243656),
                             border: OutlineInputBorder(
@@ -199,7 +199,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           decoration: InputDecoration(
                             prefixIcon: const Icon(
                               Icons.password,
-                              color: Colors.green,
+                              color:Color(0xff4c91bc),
                             ),
                             fillColor: const Color(0xff243656),
                             border: OutlineInputBorder(

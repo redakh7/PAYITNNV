@@ -12,6 +12,7 @@ import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 import 'package:swipe_refresh/swipe_refresh.dart';
 
 import '../shared/component.dart';
+import 'AlimentationScreen.dart';
 
 class AccueilScreen extends StatelessWidget {
   static String id = "Accueil";
@@ -72,7 +73,6 @@ class AccueilScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('images/$img.png'),
-
                     ),
                   ),
                 ),
@@ -162,17 +162,35 @@ class AccueilScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          children: [
+                            Text(
+                              "${userModel?.data.firstName.toUpperCase()}",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22, fontWeight: FontWeight.w700),
+                            ),
+                            Text(
+                              "${userModel?.data.lastName.toUpperCase()}",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22, fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                         Text(
-                          "${userModel?.data.solde} MAD ",
+                          "${userModel?.data.solde} DH ",
                           style: const TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w700),
+                            color: Colors.white,
+                              fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
-                        const Text(
-                          "Current Balance",
+                        Text(
+                          "${userModel?.data.phoneNumber}",
                           style: TextStyle(
+                              color: Colors.white,
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -182,7 +200,7 @@ class AccueilScreen extends StatelessWidget {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(30),
                         onTap: () {
-                          navigateTo(context, SettingsScreen());
+                          navigateTo(context, AlimentationScreen());
                         },
                         child: Ink(
                           child: Container(
@@ -193,6 +211,7 @@ class AccueilScreen extends StatelessWidget {
                               color: Colors.transparent,
                             ),
                             child: const Icon(
+
                               Icons.add,
                               size: 30,
                             ),
@@ -210,7 +229,7 @@ class AccueilScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Transfer To",
+                    "Transférer à",
                     style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
@@ -240,7 +259,7 @@ class AccueilScreen extends StatelessWidget {
                       child: const Icon(
                         Icons.add,
                         size: 40,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     avatarWidget("avatar1", "user1"),
@@ -275,14 +294,13 @@ class AccueilScreen extends StatelessWidget {
                 childAspectRatio: 0.7,
                 children: [
                   serviceWidget(
-                    "sendMoney",
-                    "Send\nMoney",
+                    "transfert-de-donnees1",
+                    "Transfert\n",
                   ),
-                  serviceWidget("receiveMoney", "Receive\nMoney"),
-                  serviceWidget("phone", "Mobile\nRecharge"),
-                  serviceWidget("electricity", "More\n"),
-                  serviceWidget("tag", "Cashback\nOffer"),
-                  serviceWidget("movie", "Movie\nTicket"),
+                  serviceWidget("top-up", "Alimentation\n"),
+                  serviceWidget("phone", "Recharge\nMobile"),
+                  serviceWidget("invoice", "Paiement\nfactures"),
+                  serviceWidget("store", "Paiement\nMarchands"),
                   serviceWidget("flight", "Flight\nTicket"),
                   serviceWidget("more", "More\n"),
                 ],

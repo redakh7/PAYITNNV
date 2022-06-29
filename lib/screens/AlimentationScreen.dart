@@ -5,6 +5,8 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/screens/HomeScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
+import 'Routes/CustomPageRouteRight.dart';
+
 class AlimentationScreen extends StatelessWidget {
   const AlimentationScreen({Key? key}) : super(key: key);
   static String id = "Versement";
@@ -20,6 +22,25 @@ class AlimentationScreen extends StatelessWidget {
       }
     }, builder: (context, state) {
       return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).push(
+                CustomPageRouteRight(child: HomeScreen()),
+              );
+            },
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 78.0),
+            child: const Text(
+              'Alimentation',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          backgroundColor: Color(0xff4c91bc),
+          elevation: 0,
+        ),
         backgroundColor: Colors.white,
         bottomSheet: Container(
           color: Colors.transparent,

@@ -56,21 +56,13 @@ class AccountScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              QrImage(
-                                foregroundColor: Colors.white,
-                                data:
-                                    "${AppCubit.get(context).userModel?.data.phoneNumber}",
-                                size: 100,
-                              ),
                               Text(
                                 "${userModel?.data.solde} DH",
-                                style: GoogleFonts.pragatiNarrow(
-                                  letterSpacing: 0.5,
-                                  textStyle: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.normal),
-                                ),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w800,
+                                    fontFamily: 'avenir'),
                               ),
                             ],
                           ),
@@ -110,6 +102,42 @@ class AccountScreen extends StatelessWidget {
                           height: 25,
                         ),
                         RowBuilder(att: "Banque", text: swift.toUpperCase()),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Last operations',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                            InkWell(
+                              onTap: (){},
+                              child: Ink(
+                                child: Container(
+                                  height: 50,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('HISTORY', style: TextStyle(
+                                        color: Color(0xff4c91bc),
+                                      ),), // <-- Text
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon( // <-- Icon
+                                        Icons.arrow_forward_sharp,
+                                        size: 24.0,
+                                        color: Color(0xff4c91bc),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -139,13 +167,11 @@ Widget RowBuilder({
         children: [
           Text(
             att,
-            style: GoogleFonts.pragatiNarrow(
-              letterSpacing: 0.5,
-              textStyle: TextStyle(
-                  color: Colors.grey.shade700,
-                  fontSize: 17,
-                  fontWeight: FontWeight.normal),
-            ),
+            style: TextStyle(
+                color: Colors.black54,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'avenir'),
           ),
           Spacer(),
           Text(

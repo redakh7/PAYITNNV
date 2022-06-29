@@ -1,15 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
-
+import 'package:m_wallet_hps/models/userModel.dart';
+import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
+import '../cubit/app_cubit.dart';
+import '../network/local/cache_helper.dart';
 import 'HomeScreen.dart';
+import 'LoginScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
+import 'Routes/custom_page_route.dart';
 
 class SettingsScreen extends StatelessWidget {
+
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    UserModel? userModel = AppCubit.get(context).userModel;
     return Material(
       child: Scaffold(
         backgroundColor: Colors.white.withOpacity(.94),
@@ -25,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 78.0),
             child: const Text(
-              'My QR Code',
+              'Settings',
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -36,27 +43,31 @@ class SettingsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: ListView(
             children: [
-              // user card
+              // user cards
+              SizedBox(height: 120,),
 
               SettingsGroup(
                 items: [
                   SettingsItem(
-                    onTap: () {},
-                    icons: CupertinoIcons.pencil_outline,
-                    iconStyle: IconStyle(),
-                    title: 'Change Password',
-                    subtitle: "Make Ziar'App yours",
+                    onTap: () { Navigator.pushAndRemoveUntil(
+                        context, CustomPageRouteLeft(child: ResetPasswordScreen()),(route)=>false
+                    );},
+                    icons: CupertinoIcons.lock,
+                    iconStyle: IconStyle(
+                      backgroundColor: Color(0xff4c91bc),),
+                    title: 'Reset Password',
+                    subtitle: "**********",
                   ),
                   SettingsItem(
                     onTap: () {},
-                    icons: Icons.fingerprint,
+                    icons: Icons.alternate_email_sharp,
                     iconStyle: IconStyle(
                       iconsColor: Colors.white,
                       withBackground: true,
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Privacy',
-                    subtitle: "Lock Ziar'App to improve your privacy",
+                    title: 'Change Email ',
+                    subtitle: "${userModel?.data.email.toUpperCase()}",
                   ),
                   SettingsItem(
                     onTap: () {},
@@ -64,42 +75,43 @@ class SettingsScreen extends StatelessWidget {
                     iconStyle: IconStyle(
                       iconsColor: Colors.white,
                       withBackground: true,
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Change Email',
-                    subtitle: "Automatic",
+                    title: 'Dark mode ',
+                    subtitle: "English",
                     trailing: Switch.adaptive(
                       value: false,
                       onChanged: (value) {},
                     ),
                   ),
-                ],
-              ),
-              // You can add a settings title
-              SettingsGroup(
-                settingsGroupTitle: "Account",
-                items: [
                   SettingsItem(
                     onTap: () {},
+                    icons: Icons.language,
+                    iconStyle: IconStyle(
+                      iconsColor: Colors.white,
+                      withBackground: true,
+                      backgroundColor: Color(0xff4c91bc),
+                    ),
+                    title: 'Change  Language ',
+                    subtitle: "English",
+
+                  ),
+                ],
+              ),
+              SizedBox(height: 42),
+              // You can add a settings title
+              SettingsItem(
+                    onTap: () { AppCubit.get(context).removeFcmToken(CacheHelper.removeData(key: 'email'));
+                    CacheHelper.removeData(key: 'token');
+                    CacheHelper.removeData(key: 'email');
+
+                    Navigator.pushAndRemoveUntil(
+                        context, CustomPageRouteLeft(child: LoginScreen()),(route)=>false
+                    );
+                    AppCubit.get(context).currentIndex=0;},
                     icons: Icons.exit_to_app_rounded,
                     title: "Sign Out",
                   ),
-                  SettingsItem(
-                    onTap: () {},
-                    icons: CupertinoIcons.repeat,
-                    title: "Change email",
-                  ),
-                  SettingsItem(
-                    onTap: () {},
-                    icons: CupertinoIcons.delete_solid,
-                    title: "Delete account",
-                    titleStyle: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
