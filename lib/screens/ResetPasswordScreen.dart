@@ -35,7 +35,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               child: Padding(
             padding: const EdgeInsets.only(right: 68.0),
             child: Text(
-              'Reset Password',
+              'Réinitialiser mot de passe',
             ),
           )),
           backgroundColor: Color(0xff4c91bc),
@@ -62,7 +62,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Create new Password',
+                          'Créer un nouveau mot de passe',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
@@ -70,14 +70,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           height: 30,
                         ),
                         Text(
-                          'Your new Password must be different from previous used passwords.',
+                          'Votre nouveau mot de passe doit être différent des mots de passe utilisés précédemment.',
                           style: TextStyle(fontSize: 18),
                         ),
                         SizedBox(
                           height: 30,
                         ),
                         Text(
-                          'old password',
+                          'Ancien mot de passe',
                           style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
                         SizedBox(
@@ -91,7 +91,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           keyboardType: TextInputType.phone,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "the password must not be empty";
+                              return "le mot de passe ne doit pas être vide";
                             }
                             return null;
                           },
@@ -126,7 +126,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           color: Colors.grey,
                         ),
                         Text(
-                          'New password',
+                          'Nouveau mot de passe',
                           style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
                         SizedBox(
@@ -139,7 +139,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           keyboardType: TextInputType.phone,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "the password must not be empty";
+                              return "le mot de passe ne doit pas être vide";
                             }
                             return null;
                           },
@@ -187,7 +187,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           keyboardType: TextInputType.phone,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "the password must not be empty";
+                              return "le mot de passe ne doit pas être vide";
                             }
                             return null;
                           },

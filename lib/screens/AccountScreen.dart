@@ -14,7 +14,7 @@ import 'HomeScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
 
 class AccountScreen extends StatelessWidget {
-  static String id = "My Account";
+  static String id = "ACCOUNT";
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +38,13 @@ class AccountScreen extends StatelessWidget {
                 title: Padding(
                   padding: const EdgeInsets.only(left: 78.0),
                   child: Text(
-                    'ACCOUNT',
+                    'Mon Compte',
                   ),
                 ),
               ),
               body: Column(
                 children: [
+                  SizedBox(height: 25,),
                   Container(
                     color: Color(0xff4c91bc),
                     child: Expanded(
@@ -53,9 +54,9 @@ class AccountScreen extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          child: Column(
                             children: [
+                              Icon(Icons.person_outline,color: Colors.white60,size: 120,),
                               Text(
                                 "${userModel?.data.solde} DH",
                                 style: TextStyle(
@@ -78,13 +79,13 @@ class AccountScreen extends StatelessWidget {
                           height: 20,
                         ),
                         RowBuilder(
-                            att: "First Name",
+                            att: "Nom",
                             text: "${userModel?.data.firstName.toUpperCase()}"),
                         SizedBox(
                           height: 25,
                         ),
                         RowBuilder(
-                            att: "Last Name",
+                            att: "Prenom",
                             text: "${userModel?.data.lastName.toUpperCase()}"),
                         SizedBox(
                           height: 25,
@@ -96,7 +97,7 @@ class AccountScreen extends StatelessWidget {
                           height: 25,
                         ),
                         RowBuilder(
-                            att: "Phone Number",
+                            att: "Numéro de téléphone",
                             text: "${userModel?.data.phoneNumber}"),
                         SizedBox(
                           height: 25,
@@ -109,7 +110,7 @@ class AccountScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              'Last operations',
+                              'Dernières opérations ',
                               style: TextStyle(fontSize: 17),
                             ),
                             InkWell(
@@ -120,7 +121,7 @@ class AccountScreen extends StatelessWidget {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text('HISTORY', style: TextStyle(
+                                      Text('HISTORIQUE', style: TextStyle(
                                         color: Color(0xff4c91bc),
                                       ),), // <-- Text
                                       SizedBox(

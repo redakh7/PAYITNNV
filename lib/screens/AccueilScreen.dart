@@ -301,8 +301,8 @@ class AccueilScreen extends StatelessWidget {
                   serviceWidget("phone", "Recharge\nMobile"),
                   serviceWidget("invoice", "Paiement\nfactures"),
                   serviceWidget("store", "Paiement\nMarchands"),
-                  serviceWidget("flight", "Flight\nTicket"),
-                  serviceWidget("more", "More\n"),
+                  serviceWidget("flight", "Ticket\nAvion"),
+                  serviceWidget("more", "Plus\n"),
                 ],
               )
             ],

@@ -83,7 +83,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Home',
+                'Accueil',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -105,7 +105,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'My QR Code',
+                'Mon QR Code',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -130,7 +130,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'My account',
+                'Mon compte',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -194,7 +194,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'My history',
+                'historique',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -220,7 +220,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Settings',
+                'Paramètres',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -242,7 +242,7 @@ class SideMenu extends StatelessWidget {
             padding: EdgeInsets.only(left: 30),
             child: ListTile(
               title: Text(
-                'Sign Out',
+                'déconnexion',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

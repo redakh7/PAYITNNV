@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 78.0),
             child: const Text(
-              'Settings',
+              'Paramètres',
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -55,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
                     icons: CupertinoIcons.lock,
                     iconStyle: IconStyle(
                       backgroundColor: Color(0xff4c91bc),),
-                    title: 'Reset Password',
+                    title: 'réinitialiser mot de passe',
                     subtitle: "**********",
                   ),
                   SettingsItem(
@@ -66,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Change Email ',
+                    title: 'Changer Email ',
                     subtitle: "${userModel?.data.email.toUpperCase()}",
                   ),
                   SettingsItem(
@@ -77,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Dark mode ',
+                    title: 'Mode Nuit ',
                     subtitle: "English",
                     trailing: Switch.adaptive(
                       value: false,
@@ -92,8 +92,8 @@ class SettingsScreen extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Change  Language ',
-                    subtitle: "English",
+                    title: 'Changer La Langue ',
+                    subtitle: "Francais",
 
                   ),
                 ],
@@ -110,7 +110,7 @@ class SettingsScreen extends StatelessWidget {
                     );
                     AppCubit.get(context).currentIndex=0;},
                     icons: Icons.exit_to_app_rounded,
-                    title: "Sign Out",
+                    title: "déconnexion",
                   ),
             ],
           ),

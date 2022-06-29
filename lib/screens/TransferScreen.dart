@@ -142,7 +142,7 @@ class _TransferScreenState extends State<TransferScreen> {
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(40)),
                         child: const Text(
-                          'SEND',
+                          'Envoyer',
                           style: TextStyle(color: Colors.white),
                         ),
                         alignment: Alignment.center,

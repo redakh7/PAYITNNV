@@ -6,7 +6,7 @@ import '../cubit/app_cubit.dart';
 import 'HomeScreen.dart';
 
 class QrCodeScreen extends StatefulWidget {
-  static String id = "My QR COde";
+  static String id = "Mon QR COde";
 
   @override
   State<StatefulWidget> createState() {

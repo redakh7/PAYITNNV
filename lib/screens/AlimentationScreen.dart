@@ -114,7 +114,7 @@ class AlimentationScreen extends StatelessWidget {
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(40)),
                         child: const Text(
-                          'Checkout',
+                          'Valider',
                           style: TextStyle(color: Colors.white),
                         ),
                         alignment: Alignment.center,

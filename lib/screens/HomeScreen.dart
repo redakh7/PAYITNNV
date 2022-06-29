@@ -76,14 +76,14 @@ class HomeScreen extends StatelessWidget {
           items: [
             SalomonBottomBarItem(
               icon: Icon(Icons.home),
-              title: Text("Home"),
+              title: Text("Accueil"),
               selectedColor: Color(0xff4c91bc),
             ),
 
             /// Search
             SalomonBottomBarItem(
               icon: Icon(Icons.currency_exchange_sharp),
-              title: Text("Virement"),
+              title: Text("Transfert"),
               selectedColor: Color(0xff4c91bc),
             ),
 

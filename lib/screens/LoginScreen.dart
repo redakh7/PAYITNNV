@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "the phone number must not be empty";
+                            return "le numéro de téléphone ne doit pas être vide";
                           }
                           return null;
                         },
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 14,
                         ),
                         decoration: InputDecoration(
-                          hintText: 'Enter your phone number',
+                          hintText: 'Entrez votre numéro de téléphone',
                           fillColor: Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "the Password must not be empty";
+                            return "le mot de passe ne doit pas être vide";
                           }
                           return null;
                         },
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         obscureText: _isObscure,
                         decoration: InputDecoration(
-                          hintText: 'Password',
+                          hintText: 'mot de passe',
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isObscure
@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           child: Text(
-                            'Log in',
+                            'Se connecter',
                             style: GoogleFonts.manrope(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       margin: EdgeInsets.only(top: 65),
                       child: Text(
-                        'Not a member ?',
+                        'pas un membre ?',
                         style: GoogleFonts.manrope(
                           color: Color(0xff1546A0).withOpacity(0.5),
                           fontSize: 14,
@@ -228,7 +228,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             navigateTo(context, SignupScreen1());
                           },
                           child: const Text(
-                            'Register',
+                            'Créer un Wallet',
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Montserrat',
