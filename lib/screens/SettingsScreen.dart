@@ -5,10 +5,12 @@ import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../cubit/app_cubit.dart';
 import '../network/local/cache_helper.dart';
+import '../shared/constantes.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
 import 'Routes/custom_page_route.dart';
+import 'FormulaireTransfert.dart';
 
 class SettingsScreen extends StatelessWidget {
 
@@ -59,7 +61,9 @@ class SettingsScreen extends StatelessWidget {
                     subtitle: "**********",
                   ),
                   SettingsItem(
-                    onTap: () {},
+                    onTap: () {Navigator.pushAndRemoveUntil(
+                        context, CustomPageRouteLeft(child: QRcodeScanner()),(route)=>false
+                    );},
                     icons: Icons.alternate_email_sharp,
                     iconStyle: IconStyle(
                       iconsColor: Colors.white,

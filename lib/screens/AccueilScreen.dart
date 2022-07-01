@@ -8,6 +8,7 @@ import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
+import 'package:m_wallet_hps/screens/FormulaireTransfert.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 import 'package:swipe_refresh/swipe_refresh.dart';
 
@@ -54,13 +55,15 @@ class AccueilScreen extends StatelessWidget {
                 widgetBuilder(context: context, userModel: userModel)));
   }
 
-  Column serviceWidget(String img, String name) {
+  Column serviceWidget(String img, String name,context) {
     return Column(
       children: [
         Expanded(
           child: InkWell(
             borderRadius: BorderRadius.circular(20),
-            onTap: () {},
+            onTap: () {
+              navigateTo(context, FormulaireTransfert());
+            },
             child: Container(
               margin: EdgeInsets.all(4),
               decoration: BoxDecoration(
@@ -168,21 +171,24 @@ class AccueilScreen extends StatelessWidget {
                               "${userModel?.data.firstName.toUpperCase()}",
                               style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 22, fontWeight: FontWeight.w700),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700),
                             ),
                             Text(
                               "${userModel?.data.lastName.toUpperCase()}",
                               style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 22, fontWeight: FontWeight.w700),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ],
                         ),
                         Text(
                           "${userModel?.data.solde} DH ",
                           style: const TextStyle(
-                            color: Colors.white,
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(
                           height: 5,
@@ -191,7 +197,8 @@ class AccueilScreen extends StatelessWidget {
                           "${userModel?.data.phoneNumber}",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16, fontWeight: FontWeight.w400),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400),
                         )
                       ],
                     ),
@@ -211,7 +218,6 @@ class AccueilScreen extends StatelessWidget {
                               color: Colors.transparent,
                             ),
                             child: const Icon(
-
                               Icons.add,
                               size: 30,
                             ),
@@ -295,14 +301,14 @@ class AccueilScreen extends StatelessWidget {
                 children: [
                   serviceWidget(
                     "transfert-de-donnees1",
-                    "Transfert\n",
+                    "Transfert\n",context
                   ),
-                  serviceWidget("top-up", "Alimentation\n"),
-                  serviceWidget("phone", "Recharge\nMobile"),
-                  serviceWidget("invoice", "Paiement\nfactures"),
-                  serviceWidget("store", "Paiement\nMarchands"),
-                  serviceWidget("flight", "Ticket\nAvion"),
-                  serviceWidget("more", "Plus\n"),
+                  serviceWidget("top-up", "Alimentation\n",context),
+                  serviceWidget("phone", "Recharge\nMobile",context),
+                  serviceWidget("invoice", "Paiement\nfactures",context),
+                  serviceWidget("store", "Paiement\nMarchands",context),
+                  serviceWidget("flight", "Ticket\nAvion",context),
+                  serviceWidget("more", "Plus\n",context),
                 ],
               )
             ],
