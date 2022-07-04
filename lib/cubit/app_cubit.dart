@@ -2,15 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/main.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/AlimentationScreen.dart';
-
-
+import 'package:multi_language_json/multi_language_json.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import '../generated/l10n.dart';
 import '../screens/AccueilScreen.dart';
 import '../screens/TransferScreen.dart';
-
+import 'package:restart_app/restart_app.dart';
 class AppCubit extends Cubit<AppStates> {
   bool verified = false;
   bool? verifiedcin;
@@ -37,6 +39,24 @@ class AppCubit extends Cubit<AppStates> {
     TransferScreen(),
     AlimentationScreen(),
   ];
+
+  static Locale currentLocale= const Locale("en");
+
+
+
+
+  void changeLocale(String _locale,context){
+    emit(ChangeLanguageInitialStates());
+    print(currentLocale.toString());
+    currentLocale = Locale(_locale);
+    CacheHelper.saveData(key: 'lang', value: _locale);
+    Restart.restartApp();
+    emit(ChangeLanguageSuccessStates());
+    Navigator.pop(context);
+    print("Cache Helper ------------");
+    print(CacheHelper.getData(key: "lang"));
+
+  }
 
   int currentStep = 0;
 

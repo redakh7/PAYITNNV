@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../cubit/app_cubit.dart';
+import '../generated/l10n.dart';
 import '../network/local/cache_helper.dart';
 import '../shared/constantes.dart';
 import 'HomeScreen.dart';
@@ -90,7 +92,87 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                   SettingsItem(
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  S.of(context).choose_language_title,
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 20),
+
+                                ),
+                                ListTile(
+                                  leading: Text(
+                                    'العربية',
+                                    style: GoogleFonts.manrope(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                  ),
+
+
+                                  onTap: () {
+                                    AppCubit.get(context).changeLocale("ar",context);
+
+                                    print("ar");   print(S.of(context).logout);
+
+
+                                  },
+                                ),
+                                SizedBox(height: 5,),
+                                ListTile(
+                                  leading: Text(
+                                    'Français',
+                                    style: GoogleFonts.manrope(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                  ),
+
+                                  onTap: () {
+
+                                      AppCubit.get(context).changeLocale("fr",context);
+
+                                      print("fr");
+                                      print(S.of(context).logout);
+
+
+                                  },
+                                ),
+                                SizedBox(height: 5,),
+                                ListTile(
+                                  leading: Text(
+                                    'english',
+                                    style: GoogleFonts.manrope(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                  ),
+
+                                  onTap: () {
+
+                                      AppCubit.get(context).changeLocale("en",context);
+
+                                      print("en");
+                                      print(S.of(context).logout);
+
+
+
+                                  },
+                                ),
+                              ],
+                            ),
+                          ));
+                    },
                     icons: Icons.language,
                     iconStyle: IconStyle(
                       iconsColor: Colors.white,
@@ -103,9 +185,13 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 42),
+
               // You can add a settings title
               SettingsItem(
+
+
+                    iconStyle: IconStyle(iconsColor: Colors.red,backgroundColor: Colors.transparent),
+                    titleStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),
                     onTap: () { AppCubit.get(context).removeFcmToken(CacheHelper.removeData(key: 'email'));
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'email');
@@ -115,7 +201,8 @@ class SettingsScreen extends StatelessWidget {
                     );
                     AppCubit.get(context).currentIndex=0;},
                     icons: Icons.exit_to_app_rounded,
-                    title: "déconnexion",
+                subtitle: "Are you sure ? ",
+                    title: S.of(context).logout,
                   ),
             ],
           ),

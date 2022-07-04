@@ -65,6 +65,7 @@ dependencies:
   open_mail_app: ^0.4.5
   form_bloc: ^0.30.0
   flutter_form_bloc: ^0.30.1
+  multi_language_json: ^1.2.0
   flutter_vector_icons: ^1.0.0
   animated_splash_screen: ^1.2.0
   sidebarx: ^0.4.0
@@ -80,6 +81,7 @@ dependencies:
   dropdown_selection: ^2.0.1
   dropdown_button2: ^1.4.0
   text_form_field_wrapper: ^1.0.0
+  restart_app: ^1.1.0
 flutter_icons:
   android: true
   ios: true
@@ -95,6 +97,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+  provider: ^6.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -133,6 +138,7 @@ flutter:
     - avatar2.png
     - transfert-de-donnees.png
 
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -158,3 +164,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

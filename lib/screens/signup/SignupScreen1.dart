@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/screens/signup/OtpScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import '../Routes/custom_page_route.dart';
@@ -22,7 +23,7 @@ class SignupScreen1 extends StatelessWidget {
     var phonenumberController = TextEditingController();
 
     var cinController = TextEditingController();
- bool? verifyCin;
+
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {
         if (state is AppSendOtpSuccessState) {
@@ -36,7 +37,7 @@ class SignupScreen1 extends StatelessWidget {
               backgroundColor: Colors.blueGrey,
               title: Row(children: <Widget>[
                 Text(
-                  "  Ativation",
+                  S.of(context).activation,
                   style: GoogleFonts.manrope(
                     fontWeight: FontWeight.w400,
                     fontSize: 24,
@@ -65,7 +66,7 @@ class SignupScreen1 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'STEP 1 : Identification ',
+                            S.of(context).step_1,
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -75,7 +76,7 @@ class SignupScreen1 extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            'Enter your phone number and your CIN ',
+                            S.of(context).enter_your_phone_number_and_your_cin,
                             style: GoogleFonts.manrope(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -98,9 +99,9 @@ class SignupScreen1 extends StatelessWidget {
 
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "the Phone number must not be empty";
+                                    return S.of(context).the_phone_number_must_not_be_empty;
                                   }else  if(AppCubit.get(context).verifiedphone == true){
-                                    return "phone Number Already Exist";
+                                    return S.of(context).phone_number_already_exist;
                                   }else
                                   return null;
                                 },
@@ -116,7 +117,7 @@ class SignupScreen1 extends StatelessWidget {
                                     Icons.phone,
                                     color: Colors.green,
                                   ),
-                                  hintText: 'Phone number ',
+                                  hintText: S.of(context).enter_your_phone_number,
                                   fillColor: const Color(0xff243656),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
@@ -138,9 +139,8 @@ class SignupScreen1 extends StatelessWidget {
                               canRequestFocus: false,
                               onFocusChange:(hasfocus){
                                 if(!hasfocus){
-                                  print(hasfocus);
-                                  print("focuuuuuuuuuuuuuus");
-                               AppCubit.get(context).verifycin(cinController.text) ;
+
+                           AppCubit.get(context).verifycin(cinController.text) ;
 
                                 }
                               },
@@ -154,14 +154,12 @@ class SignupScreen1 extends StatelessWidget {
                                 },
                                 validator: (value)  {
 
-
-
                                   if (value!.isEmpty) {
 
-                                    return "the CIN must not be empty";
+                                    return S.of(context).the_cin_must_not_be_empty;
                                   } else if(AppCubit.get(context).verifiedcin == true)
                                   {
-                                    return "Cin Already Exist";
+                                    return S.of(context).cin_already_exist;
                                   }
                                   else
                                   return null;
@@ -171,7 +169,7 @@ class SignupScreen1 extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                                 decoration: InputDecoration(
-                                  hintText: 'CIN',
+                                  hintText: S.of(context).cin,
                                   fillColor: const Color(0xff243656),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
@@ -187,7 +185,7 @@ class SignupScreen1 extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              'By continuing, you agree to the terms and conditions of use ',
+                              S.of(context).terms_of_use,
                               style: GoogleFonts.manrope(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
@@ -250,7 +248,7 @@ class SignupScreen1 extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'NEXT',
+                                      S.of(context).next,
                                       style: GoogleFonts.manrope(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,

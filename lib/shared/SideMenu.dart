@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/AccountScreen.dart';
 import 'package:m_wallet_hps/screens/LoginScreen.dart';
@@ -9,7 +10,6 @@ import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 import '../cubit/app_cubit.dart';
 import '../models/userModel.dart';
-import '../screens/AccueilScreen.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -44,7 +44,7 @@ class SideMenu extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                          children: [
                             Text(
-                              "Hello ",
+                              S.of(context).hello,
                               style: TextStyle(fontSize: 18,color: Colors.white60),
                             ),
                             Text(
@@ -83,14 +83,14 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Accueil',
+                S.of(context).home,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
                 ),
               ),
-              onTap: () {} ,
+              onTap: () {},
             ),
           ),
           SizedBox(
@@ -105,7 +105,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Mon QR Code',
+                S.of(context).my_qr_code,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -130,7 +130,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Mon compte',
+                S.of(context).my_account,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -156,7 +156,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Notifications',
+                S.of(context).notifications,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -194,7 +194,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'historique',
+                S.of(context).my_history,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -220,7 +220,7 @@ class SideMenu extends StatelessWidget {
                 size: 32,
               ),
               title: Text(
-                'Paramètres',
+                S.of(context).settings,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -242,7 +242,7 @@ class SideMenu extends StatelessWidget {
             padding: EdgeInsets.only(left: 30),
             child: ListTile(
               title: Text(
-                'déconnexion',
+                S.of(context).logout,
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

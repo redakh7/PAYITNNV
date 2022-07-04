@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/HomeScreen.dart';
 import 'package:m_wallet_hps/screens/signup/SignupScreen1.dart';import 'package:m_wallet_hps/shared/component.dart';
@@ -55,23 +56,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                      height: 130,
+                      width: 200,
                       margin: EdgeInsets.only(top: 40),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 90,
-                            width: 90,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('images/Payit.png'))),
-                          ),
-                          Text("ayit",
-                              style: TextStyle(
-                                fontSize: 60,
-                              )),
-                        ],
-                      ),
+                      child: Image(image:  AssetImage("images/blue_payit.png")),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 70),
@@ -79,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "le numéro de téléphone ne doit pas être vide";
+                            return S.of(context).the_phone_number_must_not_be_empty;
                           }
                           return null;
                         },
@@ -90,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 14,
                         ),
                         decoration: InputDecoration(
-                          hintText: 'Entrez votre numéro de téléphone',
+                          hintText:S.of(context).enter_your_phone_number,
                           fillColor: Color(0xff243656),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -110,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "le mot de passe ne doit pas être vide";
+                            return S.of(context).the_Password_must_not_be_empty;
                           }
                           return null;
                         },
@@ -122,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         obscureText: _isObscure,
                         decoration: InputDecoration(
-                          hintText: 'mot de passe',
+                          hintText: S.of(context).password,
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isObscure
@@ -186,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           child: Text(
-                            'Se connecter',
+                            S.of(context).log_in,
                             style: GoogleFonts.manrope(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -199,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       margin: EdgeInsets.only(top: 65),
                       child: Text(
-                        'pas un membre ?',
+                        S.of(context).not_member,
                         style: GoogleFonts.manrope(
                           color: Color(0xff1546A0).withOpacity(0.5),
                           fontSize: 14,
@@ -227,8 +215,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             navigateTo(context, SignupScreen1());
                           },
-                          child: const Text(
-                            'Créer un Wallet',
+                          child:  Text(
+                            S.of(context).register,
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Montserrat',

@@ -13,6 +13,8 @@ class AppLoadingInitialStates extends AppStates {}
 class AppLoginInitialStates extends AppStates {}
 
 class AppLoginLoadingStates extends AppStates {}
+class ChangeLanguageSuccessStates extends AppStates {}
+class ChangeLanguageInitialStates extends AppStates {}
 
 class AppLoginSuccessStates extends AppStates {
   final UserModel userModel;
