@@ -8,6 +8,7 @@ import '../network/local/cache_helper.dart';
 import '../shared/constantes.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
+import 'QrCodeScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
 import 'Routes/custom_page_route.dart';
 import 'FormulaireTransfert.dart';
@@ -62,7 +63,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   SettingsItem(
                     onTap: () {Navigator.pushAndRemoveUntil(
-                        context, CustomPageRouteLeft(child: QRcodeScanner()),(route)=>false
+                        context, CustomPageRouteLeft(child: QrCodeScreen()),(route)=>false
                     );},
                     icons: Icons.alternate_email_sharp,
                     iconStyle: IconStyle(
