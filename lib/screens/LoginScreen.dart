@@ -7,7 +7,8 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/HomeScreen.dart';
-import 'package:m_wallet_hps/screens/signup/SignupScreen1.dart';import 'package:m_wallet_hps/shared/component.dart';
+import 'package:m_wallet_hps/screens/signup/SignupScreen1.dart';
+import 'package:m_wallet_hps/shared/component.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = "LoginScreen";

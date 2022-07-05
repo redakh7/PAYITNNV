@@ -9,11 +9,14 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/FormulaireTransfert.dart';
+import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
+import 'package:m_wallet_hps/screens/TransfertRoute.dart';
 import 'package:swipe_refresh/swipe_refresh.dart';
 
 import '../shared/component.dart';
 import 'AlimentationScreen.dart';
+import 'Routes/CustomPageRouteRight.dart';
 
 class AccueilScreen extends StatelessWidget {
   static String id = "Accueil";
@@ -61,8 +64,9 @@ class AccueilScreen extends StatelessWidget {
         Expanded(
           child: InkWell(
             borderRadius: BorderRadius.circular(20),
-            onTap: () {
-              navigateTo(context, FormulaireTransfert());
+            onTap: ()  {
+              Navigator.of(context)
+                  .push(CustomPageRouteLeft(child: TransfertRoute()));
             },
             child: Container(
               margin: EdgeInsets.all(4),
@@ -175,7 +179,7 @@ class AccueilScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              "${userModel?.data.lastName.toUpperCase()}",
+                              " ${userModel?.data.lastName.toUpperCase()}",
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 22,

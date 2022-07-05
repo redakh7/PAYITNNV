@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/screens/AccueilScreen.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
+import 'package:m_wallet_hps/screens/TransfertRoute.dart';
 import 'package:m_wallet_hps/shared/SideMenu.dart';
 import 'package:text_form_field_wrapper/text_form_field_wrapper.dart';
 
+import '../shared/PopUp.dart';
 import 'HomeScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
 import 'Routes/custom_page_route.dart';
@@ -61,7 +63,7 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context)
-                .push(CustomPageRouteLeft(child: SideMenu()));
+                .push(CustomPageRouteRight(child: TransfertRoute()));
           },
         ),
         title: const Text(
@@ -132,7 +134,13 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                      SizedBox(
                      height: 8,
                      ),
-                     Text('Transaction Amount',style: TextStyle(fontSize: 18, color: Colors.blueGrey,)),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                       children: [
+                         Text('Transaction Amount',style: TextStyle(fontSize: 16, color: Colors.blueGrey,)),
+                         Text('Transaction Currency',style: TextStyle(fontSize:16 ,color: Colors.blueGrey,)),
+                       ],
+                     ),
                      SizedBox(height: 8,),
                      Row(
                      mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -243,10 +251,8 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                        Padding(
                            padding: const EdgeInsets.only(left: 210.0),
                            child: RaisedButton(
-                           onPressed: () {   if (formkey.currentState!.validate())
+                           onPressed: () {   if (formkey.currentState!.validate());
 
-                             Navigator.of(context)
-                                 .push(CustomPageRouteLeft(child: SideMenu()));
                              },
                              textColor: Color(0xffFFFFFF),
                            padding: EdgeInsets.all(0),

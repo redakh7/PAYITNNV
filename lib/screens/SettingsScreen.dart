@@ -7,7 +7,7 @@ import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../cubit/app_cubit.dart';
 import '../generated/l10n.dart';
 import '../network/local/cache_helper.dart';
-import '../shared/constantes.dart';
+import 'QrCodeScanner.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
 import 'QrCodeScreen.dart';
