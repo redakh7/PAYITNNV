@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
+import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../cubit/app_cubit.dart';
@@ -63,10 +64,9 @@ class TransfertRoute extends StatelessWidget {
                     iconStyle: IconStyle(
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Mode utilisateur ',
-                    subtitle:
-                        "${userModel?.data.firstName.toUpperCase()} ${userModel?.data.lastName.toUpperCase()}",
-                  ),
+                    title: S.of(context).receive_money,
+                    subtitle: S.of(context).scan_qr_code
+                         ),
                   SettingsItem(
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
@@ -80,7 +80,7 @@ class TransfertRoute extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'mode commerçant  ',
+                    title: S.of(context).send_money,
                   ),
                 ],
               ),

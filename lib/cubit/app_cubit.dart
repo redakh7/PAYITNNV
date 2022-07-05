@@ -270,7 +270,28 @@ void verifyphone(phone) {
 
   }
   
-  
+  void transferp2p(String pointofinitiationmethode,paidEntityRef,trans_curr,tran_amount,tran_purpose,oper_type){
+    emit(AppTransferinitialStates());
+    DioHelper.postData(url: 'transferp2p', data: {
+      "transaction_type" : "transfer p2p",
+
+      "point_of_initiation_method": pointofinitiationmethode ,
+
+      "paid_entity_reference": paidEntityRef ,
+      "transaction_currency": trans_curr ,
+      "transaction_amount": tran_amount ,
+      "purpose_of_transaction": tran_purpose ,
+      "financial_institution_code" : "999",
+      "operation_type": oper_type
+    }).then((value) {
+    print(value.data);
+    emit(AppTransferSuccessStates());
+    }).catchError((error){
+      print(error.toString());
+      emit(AppTransferErrorStates());
+
+    });
+  }
   
 }
 

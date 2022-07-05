@@ -339,6 +339,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Send money`
+  String get send_money {
+    return Intl.message(
+      'Send money',
+      name: 'send_money',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive money`
+  String get receive_money {
+    return Intl.message(
+      'Receive money',
+      name: 'receive_money',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan Qr Code`
+  String get scan_qr_code {
+    return Intl.message(
+      'Scan Qr Code',
+      name: 'scan_qr_code',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -120,3 +120,8 @@ class AppVerifyPhoneErrorStates extends AppStates {}
 class AppVerifyEmailInitialStates extends AppStates {}
 class AppVerifyEmailSuccessStates extends AppStates {}
 class AppVerifyEmailErrorStates extends AppStates {}
+
+
+class AppTransferinitialStates extends AppStates {}
+class AppTransferSuccessStates extends AppStates {}
+class AppTransferErrorStates extends AppStates {}

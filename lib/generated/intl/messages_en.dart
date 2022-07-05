@@ -50,9 +50,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "phone_number_already_exist":
             MessageLookupByLibrary.simpleMessage("phone Number Already Exist"),
+        "receive_money": MessageLookupByLibrary.simpleMessage("Receive money"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Change Password"),
+        "scan_qr_code": MessageLookupByLibrary.simpleMessage("Scan Qr Code"),
+        "send_money": MessageLookupByLibrary.simpleMessage("Send money"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "step_1":
             MessageLookupByLibrary.simpleMessage("STEP 1 : Identification"),

@@ -30,8 +30,12 @@
   "cin_already_exist" : "Cin Already Exist",
   "cin" : "CIN",
   "terms_of_use" : "By continuing, you agree to the terms and conditions of use ",
-  "next" : "NEXT"
+  "next" : "NEXT",
 
+
+   "send_money" : "Send money",
+  "receive_money" : "Receive money",
+  "scan_qr_code" : "Scan Qr Code"
 
 
 
