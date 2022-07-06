@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
-import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
+import 'package:m_wallet_hps/screens/Payment/FormulairePayment.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
-import '../cubit/app_cubit.dart';
-import '../network/local/cache_helper.dart';
-import 'QrCodeScanner.dart';
-import 'HomeScreen.dart';
-import 'LoginScreen.dart';
-import 'QrCodeScreen.dart';
-import 'Routes/CustomPageRouteRight.dart';
-import 'Routes/custom_page_route.dart';
-import 'FormulaireTransfert.dart';
+import '../../cubit/app_cubit.dart';
+import '../../network/local/cache_helper.dart';
+import '../Transfer/QrCodeScannerTransfer.dart';
+import '../HomeScreen.dart';
+import '../LoginScreen.dart';
+import '../QrCodeScreen.dart';
+import '../Routes/CustomPageRouteRight.dart';
+import '../Routes/custom_page_route.dart';
+import '../FormulaireTransfert.dart';
 
-class TransfertRoute extends StatelessWidget {
-  const TransfertRoute({Key? key}) : super(key: key);
+class PaymentRoute extends StatelessWidget {
+  const PaymentRoute({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class TransfertRoute extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 78.0),
             child: const Text(
-              'Transfer Route',
+              'Payment Route',
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -57,22 +57,23 @@ class TransfertRoute extends StatelessWidget {
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          CustomPageRouteLeft(child: QrCodeScanner()),
-                          (route) => false);
+                          CustomPageRouteLeft(child: QrCodeScannerTransfer()),
+                              (route) => false);
                     },
-                    icons: CupertinoIcons.person, 
+                    icons: CupertinoIcons.person ,
                     iconStyle: IconStyle(
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: S.of(context).receive_money,
-                    subtitle: S.of(context).scan_qr_code
-                         ),
+                    title: 'Payer un commerçant ',
+                    subtitle:
+                    "${userModel?.data.firstName.toUpperCase()} ${userModel?.data.lastName.toUpperCase()}",
+                  ),
                   SettingsItem(
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          CustomPageRouteLeft(child: FormulaireTransfert()),
-                          (route) => false);
+                          CustomPageRouteLeft(child: FormulairePayment()),
+                              (route) => false);
                     },
                     icons: Icons.admin_panel_settings,
                     iconStyle: IconStyle(
@@ -80,7 +81,7 @@ class TransfertRoute extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: S.of(context).send_money,
+                    title: 'mode commerçant ',
                   ),
                 ],
               ),

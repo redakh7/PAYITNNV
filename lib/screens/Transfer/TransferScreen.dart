@@ -8,7 +8,7 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/screens/HomeScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
-import '../cubit/app_cubit.dart';
+import '../../cubit/app_cubit.dart';
 
 class TransferScreen extends StatefulWidget {
   TransferScreen({key});

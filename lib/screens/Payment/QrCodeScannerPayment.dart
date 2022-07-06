@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:m_wallet_hps/screens/TransfertRoute.dart';
+import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
-import 'FormulaireTransfert.dart';
-import 'Routes/CustomPageRouteRight.dart';
-import 'Routes/custom_page_route.dart';
+import '../FormulaireTransfert.dart';
+import '../Routes/CustomPageRouteRight.dart';
+import '../Routes/CustomPageRouteRight.dart';
+import '../Routes/custom_page_route.dart';
 
 
-class QrCodeScanner extends StatefulWidget {
+class QrCodeScannerPayment extends StatefulWidget {
   @override
-  _QrCodeScannerState createState() => _QrCodeScannerState();
+  _QrCodeScannerPaymentState createState() => _QrCodeScannerPaymentState();
 }
 
-class _QrCodeScannerState extends State<QrCodeScanner> with WidgetsBindingObserver {
+class _QrCodeScannerPaymentState extends State<QrCodeScannerPayment> with WidgetsBindingObserver {
   Future<void> scanQR() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
@@ -44,12 +45,12 @@ class _QrCodeScannerState extends State<QrCodeScanner> with WidgetsBindingObserv
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).push(
-              CustomPageRouteRight(child: TransfertRoute()),
+              CustomPageRouteRight(child: TransferRoute()),
             );
           },
         ),
         title: const Text(
-          'Transfert d\'argent par QR Code',
+          'Paiment d\'argent par QR Code',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xff4c91bc),
@@ -79,12 +80,12 @@ class _QrCodeScannerState extends State<QrCodeScanner> with WidgetsBindingObserv
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('scannez le code QR pour recevoir de l\'argent',style: TextStyle(
-                color: Colors.white,
-            fontSize: 15,
+          Text('scannez le code QR pour payer le commerçant',style: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
               fontWeight: FontWeight.bold
 
-              ),),
+          ),),
 
         ],
       ),
@@ -100,7 +101,7 @@ class _QrCodeScannerState extends State<QrCodeScanner> with WidgetsBindingObserv
       children: [
         // Use same background color like the second container
         Container(height: buttonHeight, color: Colors.white),
-        // Translate the button 
+        // Translate the button
         Transform.translate(
           offset: Offset(0.0, -buttonHeight / 2.0),
           child: Center(

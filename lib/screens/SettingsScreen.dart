@@ -7,7 +7,8 @@ import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../cubit/app_cubit.dart';
 import '../generated/l10n.dart';
 import '../network/local/cache_helper.dart';
-import 'QrCodeScanner.dart';
+import 'Payment/PaymentRoute.dart';
+import 'Transfer/QrCodeScannerTransfer.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
 import 'QrCodeScreen.dart';
@@ -77,7 +78,9 @@ class SettingsScreen extends StatelessWidget {
                     subtitle: "${userModel?.data.email.toUpperCase()}",
                   ),
                   SettingsItem(
-                    onTap: () {},
+                    onTap: () {Navigator.pushAndRemoveUntil(
+                        context, CustomPageRouteLeft(child: PaymentRoute()),(route)=>false
+                    );},
                     icons: Icons.dark_mode_rounded,
                     iconStyle: IconStyle(
                       iconsColor: Colors.white,

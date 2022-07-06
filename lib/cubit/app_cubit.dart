@@ -11,7 +11,7 @@ import 'package:multi_language_json/multi_language_json.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../generated/l10n.dart';
 import '../screens/AccueilScreen.dart';
-import '../screens/TransferScreen.dart';
+import '../screens/Transfer/TransferScreen.dart';
 import 'package:restart_app/restart_app.dart';
 class AppCubit extends Cubit<AppStates> {
   bool verified = false;
