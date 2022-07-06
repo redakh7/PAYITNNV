@@ -5,7 +5,7 @@ import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../../cubit/app_cubit.dart';
-import '../FormulaireTransfert.dart';
+import 'FormulaireTransfert.dart';
 import '../HomeScreen.dart';
 import '../Routes/CustomPageRouteRight.dart';
 import '../Routes/custom_page_route.dart';

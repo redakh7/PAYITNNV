@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/screens/Payment/FormulairePayment.dart';
+import 'package:m_wallet_hps/screens/Payment/QrCodeScannerPayment.dart';
 import 'package:m_wallet_hps/screens/ResetPasswordScreen.dart';
 import '../../cubit/app_cubit.dart';
 import '../../network/local/cache_helper.dart';
@@ -12,7 +13,7 @@ import '../LoginScreen.dart';
 import '../QrCodeScreen.dart';
 import '../Routes/CustomPageRouteRight.dart';
 import '../Routes/custom_page_route.dart';
-import '../FormulaireTransfert.dart';
+import '../Transfer/FormulaireTransfert.dart';
 
 class PaymentRoute extends StatelessWidget {
   const PaymentRoute({Key? key}) : super(key: key);
@@ -57,7 +58,7 @@ class PaymentRoute extends StatelessWidget {
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          CustomPageRouteLeft(child: QrCodeScannerTransfer()),
+                          CustomPageRouteLeft(child: QrCodeScannerPayment()),
                               (route) => false);
                     },
                     icons: CupertinoIcons.person ,
