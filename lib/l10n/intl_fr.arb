@@ -27,5 +27,24 @@
   "cin_already_exist" : "Cin existe déjà",
   "cin" : "CIN",
   "terms_of_use" : "En continuant, vous acceptez les termes et conditions d'utilisation\n ",
-  "next" : "Suivant"
+  "next" : "Suivant",
+
+
+  "send_money" : "Envoi d'argant",
+  "receive_money" : "Recevoir de l'argent\n",
+  "scan_qr_code" : "Scanner Qr Code",
+
+  "acceuil" : "Acceuil",
+  "dh" : "MAD",
+  "transfer_to"  : "Transférer à\n",
+  "services" : "Services\n",
+  "transfer" : "Transferer\n",
+  "top_up" : "Alimentation",
+  "mobile_refill": "Recharge\nMobile",
+  "bill_payment" : "Paiement\nFacture",
+  "merchant_payment" : "Paiement\nMerchand",
+  "airplane_ticket" : "billet \nD'avion",
+  "more" : "Plus\n",
+  "payment" : "Paiement",
+  "top_up_acceuil" : "Alimentation\n"
 }

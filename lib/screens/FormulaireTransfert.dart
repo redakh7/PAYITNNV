@@ -293,7 +293,7 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                                   purposeOfTransaction.text,
                                   selectedValueOperationType);
 
-                              //AppCubit.get(context).
+
                             }
                           },
                           textColor: Color(0xffFFFFFF),

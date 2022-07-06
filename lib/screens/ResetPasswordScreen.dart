@@ -24,14 +24,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon:const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.of(context).push(
                 CustomPageRouteRight(child: SettingsScreen()),
               );
             },
           ),
-          title: Center(
+          title:const Center(
               child: Padding(
             padding: const EdgeInsets.only(right: 68.0),
             child: Text(
@@ -54,33 +54,33 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   )),
               child: Center(
                 child: Container(
-                  padding: EdgeInsets.only(top: 20),
+                  padding:const EdgeInsets.only(top: 20),
                   width: 280,
                   child: Form(
                     key: formkey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const   Text(
                           'Créer un nouveau mot de passe',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        SizedBox(
+                        const  SizedBox(
                           height: 30,
                         ),
-                        Text(
+                        const   Text(
                           'Votre nouveau mot de passe doit être différent des mots de passe utilisés précédemment.',
                           style: TextStyle(fontSize: 18),
                         ),
-                        SizedBox(
+                        const  SizedBox(
                           height: 30,
                         ),
-                        Text(
+                        const Text(
                           'Ancien mot de passe',
                           style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         TextFormField(
@@ -118,18 +118,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                    const    SizedBox(
                           height: 5,
                         ),
-                        Divider(
+                        const     Divider(
                           thickness: 0.3,
                           color: Colors.grey,
                         ),
-                        Text(
+                        const    Text(
                           'Nouveau mot de passe',
                           style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
-                        SizedBox(
+                        const   SizedBox(
                           height: 5,
                         ),
                         TextFormField(
@@ -166,18 +166,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const    SizedBox(
                           height: 5,
                         ),
-                        Divider(
+                        const     Divider(
                           thickness: 0.3,
                           color: Colors.grey,
                         ),
-                        Text(
+                        const  Text(
                           'Confirmation',
                           style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
-                        SizedBox(
+                        const  SizedBox(
                           height: 5,
                         ),
                         TextFormField(
@@ -214,22 +214,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const    SizedBox(
                           height: 20,
                         ),
                         Center(
                           child: RaisedButton(
                             onPressed: () {},
-                            textColor: Color(0xffFFFFFF),
-                            padding: EdgeInsets.all(0),
-                            shape: StadiumBorder(),
+                            textColor: const Color(0xffFFFFFF),
+                            padding: const EdgeInsets.all(0),
+                            shape:const  StadiumBorder(),
                             child: Container(
                               width: 225,
                               height: 55,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                gradient: LinearGradient(
+                                gradient:const LinearGradient(
                                   colors: [
                                     Colors.green,
                                     Color(0xff1546A0),
