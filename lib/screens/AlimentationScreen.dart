@@ -22,25 +22,7 @@ class AlimentationScreen extends StatelessWidget {
       }
     }, builder: (context, state) {
       return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).push(
-                CustomPageRouteRight(child: HomeScreen()),
-              );
-            },
-          ),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 78.0),
-            child: const Text(
-              'Alimentation',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          backgroundColor: Color(0xff4c91bc),
-          elevation: 0,
-        ),
+
         backgroundColor: Colors.white,
         bottomSheet: Container(
           color: Colors.transparent,
@@ -96,7 +78,7 @@ class AlimentationScreen extends StatelessWidget {
                 flex: 1,
                 child: Material(
                   borderRadius: BorderRadius.circular(30),
-                  color: Colors.green,
+                  color: Color(0xff4c91bc),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {

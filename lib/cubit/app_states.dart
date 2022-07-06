@@ -125,3 +125,18 @@ class AppVerifyEmailErrorStates extends AppStates {}
 class AppTransferinitialStates extends AppStates {}
 class AppTransferSuccessStates extends AppStates {}
 class AppTransferErrorStates extends AppStates {}
+
+
+
+
+class AppGeneratedQrCodeInitialStates extends AppStates {}
+
+class AppGeneratedQrCodeSuccessStates extends AppStates {
+  final String url;
+
+  AppGeneratedQrCodeSuccessStates(this.url);
+}
+class AppGeneratedQrCodeErrorStates extends AppStates {}
+
+
+

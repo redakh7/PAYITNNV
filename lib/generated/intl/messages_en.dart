@@ -22,7 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "acceuil": MessageLookupByLibrary.simpleMessage("Home"),
         "activation": MessageLookupByLibrary.simpleMessage("Activation"),
+        "airplane_ticket":
+            MessageLookupByLibrary.simpleMessage("Airplane\nTicket"),
+        "bill_payment": MessageLookupByLibrary.simpleMessage("Bill\nPayment"),
         "change_email":
             MessageLookupByLibrary.simpleMessage("Change Email Address"),
         "change_language":
@@ -32,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cin": MessageLookupByLibrary.simpleMessage("CIN"),
         "cin_already_exist":
             MessageLookupByLibrary.simpleMessage("Cin Already Exist"),
+        "dh": MessageLookupByLibrary.simpleMessage("MAD"),
         "enter_your_phone_number":
             MessageLookupByLibrary.simpleMessage("Phone Number"),
         "enter_your_phone_number_and_your_cin":
@@ -41,6 +46,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log in"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "merchant_payment":
+            MessageLookupByLibrary.simpleMessage("Merchant\nPayment"),
+        "mobile_refill": MessageLookupByLibrary.simpleMessage("Mobile\nRefill"),
+        "more": MessageLookupByLibrary.simpleMessage("More\n"),
         "my_account": MessageLookupByLibrary.simpleMessage("My Account"),
         "my_history": MessageLookupByLibrary.simpleMessage("My History"),
         "my_qr_code": MessageLookupByLibrary.simpleMessage("My QR Code"),
@@ -48,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_member": MessageLookupByLibrary.simpleMessage("Not a member ? "),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "phone_number_already_exist":
             MessageLookupByLibrary.simpleMessage("phone Number Already Exist"),
         "receive_money": MessageLookupByLibrary.simpleMessage("Receive money"),
@@ -56,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "scan_qr_code": MessageLookupByLibrary.simpleMessage("Scan Qr Code"),
         "send_money": MessageLookupByLibrary.simpleMessage("Send money"),
+        "services": MessageLookupByLibrary.simpleMessage("Services\n"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "step_1":
             MessageLookupByLibrary.simpleMessage("STEP 1 : Identification"),
@@ -68,6 +79,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "the_phone_number_must_not_be_empty":
             MessageLookupByLibrary.simpleMessage(
                 "the phone number must not be empty"),
-        "title": MessageLookupByLibrary.simpleMessage("Settings")
+        "title": MessageLookupByLibrary.simpleMessage("Settings"),
+        "top_up": MessageLookupByLibrary.simpleMessage("Top up"),
+        "top_up_acceuil": MessageLookupByLibrary.simpleMessage("Top up\n"),
+        "transfer": MessageLookupByLibrary.simpleMessage("Transfer\n"),
+        "transfer_to": MessageLookupByLibrary.simpleMessage("Transfer to")
       };
 }

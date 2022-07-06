@@ -13,7 +13,7 @@ import '../../cubit/app_cubit.dart';
 class TransferScreen extends StatefulWidget {
   TransferScreen({key});
 
-  static String id = "Virement";
+
 
   @override
   State<TransferScreen> createState() => _TransferScreenState();

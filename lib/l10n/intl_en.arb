@@ -35,8 +35,19 @@
 
    "send_money" : "Send money",
   "receive_money" : "Receive money",
-  "scan_qr_code" : "Scan Qr Code"
+  "scan_qr_code" : "Scan Qr Code",
 
-
-
+  "acceuil" : "Home",
+  "dh" : "MAD",
+  "transfer_to"  : "Transfer to",
+  "services" : "Services\n",
+  "transfer" : "Transfer\n",
+  "top_up" : "Top up",
+  "mobile_refill": "Mobile\nRefill",
+  "bill_payment" : "Bill\nPayment",
+  "merchant_payment" : "Merchant\nPayment",
+  "airplane_ticket" : "Airplane\nTicket",
+  "more" : "More\n",
+  "payment" : "Payment",
+  "top_up_acceuil" : "Top up\n"
 }

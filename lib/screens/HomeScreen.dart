@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/screens/LoginScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -46,20 +47,20 @@ class HomeScreen extends StatelessWidget {
               ? Padding(
                   padding: const EdgeInsets.only(left: 78.0),
                   child: Text(
-                    "Acceuil",
+                    S.of(context).acceuil,
                   ),
                 )
               : index == 1
                   ? Padding(
                       padding: const EdgeInsets.only(left: 78.0),
                       child: Text(
-                        "Virement",
+                        S.of(context).payment,
                       ),
                     )
                   : Padding(
                       padding: const EdgeInsets.only(left: 78.0),
                       child: Text(
-                        "Alimentation",
+                        S.of(context).top_up,
                       ),
                     ),
           backgroundColor: Color(0xff4c91bc)),

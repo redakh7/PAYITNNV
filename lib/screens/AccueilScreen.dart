@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/FormulaireTransfert.dart';
@@ -188,7 +189,7 @@ class AccueilScreen extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "${userModel?.data.solde} DH ",
+                          "${userModel?.data.solde} "+S.of(context).dh,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -238,9 +239,9 @@ class AccueilScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Transférer à",
-                    style: TextStyle(
+                   Text(
+                    S.of(context).transfer_to,
+                    style: const TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'avenir'),
@@ -283,15 +284,15 @@ class AccueilScreen extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children:  [
                   Text(
-                    'Services',
-                    style: TextStyle(
+                   S.of(context).services,
+                    style: const TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'avenir'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                     width: 60,
                     child: Icon(Icons.dialpad),
@@ -305,14 +306,14 @@ class AccueilScreen extends StatelessWidget {
                 children: [
                   serviceWidget(
                     "transfert-de-donnees1",
-                    "Transfert\n",context
+                    S.of(context).transfer,context
                   ),
-                  serviceWidget("top-up", "Alimentation\n",context),
-                  serviceWidget("phone", "Recharge\nMobile",context),
-                  serviceWidget("invoice", "Paiement\nfactures",context),
-                  serviceWidget("store", "Paiement\nMarchands",context),
-                  serviceWidget("flight", "Ticket\nAvion",context),
-                  serviceWidget("more", "Plus\n",context),
+                  serviceWidget("top-up", S.of(context).top_up_acceuil,context),
+                  serviceWidget("phone", S.of(context).mobile_refill,context),
+                  serviceWidget("invoice", S.of(context).bill_payment,context),
+                  serviceWidget("store", S.of(context).merchant_payment,context),
+                  serviceWidget("flight", S.of(context).airplane_ticket,context),
+                  serviceWidget("more", S.of(context).more,context),
                 ],
               )
             ],

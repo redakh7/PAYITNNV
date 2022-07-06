@@ -45,7 +45,7 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
               children: [
                 PrettyQr(
                   elementColor: Color(0xff4c91bc),
-                  image: AssetImage('images/Payit.png'),
+
                   size: 250,
                   data: "${AppCubit.get(context).userModel?.data.phoneNumber}",
                   errorCorrectLevel: QrErrorCorrectLevel.M,

@@ -2,14 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/main.dart';
+
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/AlimentationScreen.dart';
-import 'package:multi_language_json/multi_language_json.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import '../generated/l10n.dart';
+
 import '../screens/AccueilScreen.dart';
 import '../screens/Transfer/TransferScreen.dart';
 import 'package:restart_app/restart_app.dart';
@@ -18,6 +16,7 @@ class AppCubit extends Cubit<AppStates> {
   bool? verifiedcin;
   bool? verifiedphone;
   bool? verifiedEmail;
+  String? qrString;
 
   AppCubit() : super(AppInitialStates());
 
@@ -271,7 +270,15 @@ void verifyphone(phone) {
   }
   
   void transferp2p(String pointofinitiationmethode,paidEntityRef,trans_curr,tran_amount,tran_purpose,oper_type){
-    emit(AppTransferinitialStates());
+    emit(AppGeneratedQrCodeInitialStates());
+    print(pointofinitiationmethode);
+    print(paidEntityRef);
+    print(trans_curr);
+    print(tran_amount);
+    print(tran_purpose);
+    print(oper_type);
+    print("-----------------------");
+
     DioHelper.postData(url: 'transferp2p', data: {
       "transaction_type" : "transfer p2p",
 
@@ -285,10 +292,11 @@ void verifyphone(phone) {
       "operation_type": oper_type
     }).then((value) {
     print(value.data);
-    emit(AppTransferSuccessStates());
+    qrString = value.data;
+    emit(AppGeneratedQrCodeSuccessStates(value.data));
     }).catchError((error){
       print(error.toString());
-      emit(AppTransferErrorStates());
+      emit(AppGeneratedQrCodeErrorStates());
 
     });
   }

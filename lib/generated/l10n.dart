@@ -369,6 +369,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get acceuil {
+    return Intl.message(
+      'Home',
+      name: 'acceuil',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MAD`
+  String get dh {
+    return Intl.message(
+      'MAD',
+      name: 'dh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer to`
+  String get transfer_to {
+    return Intl.message(
+      'Transfer to',
+      name: 'transfer_to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services\n`
+  String get services {
+    return Intl.message(
+      'Services\n',
+      name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer\n`
+  String get transfer {
+    return Intl.message(
+      'Transfer\n',
+      name: 'transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top up`
+  String get top_up {
+    return Intl.message(
+      'Top up',
+      name: 'top_up',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile\nRefill`
+  String get mobile_refill {
+    return Intl.message(
+      'Mobile\nRefill',
+      name: 'mobile_refill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill\nPayment`
+  String get bill_payment {
+    return Intl.message(
+      'Bill\nPayment',
+      name: 'bill_payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant\nPayment`
+  String get merchant_payment {
+    return Intl.message(
+      'Merchant\nPayment',
+      name: 'merchant_payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Airplane\nTicket`
+  String get airplane_ticket {
+    return Intl.message(
+      'Airplane\nTicket',
+      name: 'airplane_ticket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More\n`
+  String get more {
+    return Intl.message(
+      'More\n',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get payment {
+    return Intl.message(
+      'Payment',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top up\n`
+  String get top_up_acceuil {
+    return Intl.message(
+      'Top up\n',
+      name: 'top_up_acceuil',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

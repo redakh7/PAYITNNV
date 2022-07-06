@@ -27,5 +27,24 @@
   "cin_already_exist" : "رقم البطاقة الوطنية موجود سابقا ",
   "cin" : "رقم البطاقة الوطنية",
   "terms_of_use" : "بالمتابعة ، فإنك توافق على شروط وأحكام الاستخدام ",
-  "next" : "متابعة"
+  "next" : "متابعة",
+
+
+  "send_money" : "ارسال الأموال",
+  "receive_money" : "استقبال الأموال",
+  "scan_qr_code" : "Scan Qr Code",
+
+  "acceuil" : "الرئيسية",
+  "dh" : "درهم",
+  "transfer_to"  : "ارسل الى",
+  "services" : "خدمات\n",
+  "transfer" : "ارسال\n",
+  "top_up" : "شحن الرصيد",
+  "mobile_refill": "تعبئة الهاتف",
+  "bill_payment" : "دفع فاتورة",
+  "merchant_payment" : "دفع التاجر\n",
+  "airplane_ticket" : "تذكرة الطائرة",
+  "more" : "المزيد\n",
+  "payment" : "الدفع",
+  "top_up_acceuil" : "شحن الرصيد\n"
 }

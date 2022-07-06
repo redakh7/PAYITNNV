@@ -22,7 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "acceuil": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "activation": MessageLookupByLibrary.simpleMessage("تفعيل"),
+        "airplane_ticket":
+            MessageLookupByLibrary.simpleMessage("تذكرة الطائرة"),
+        "bill_payment": MessageLookupByLibrary.simpleMessage("دفع فاتورة"),
         "change_email":
             MessageLookupByLibrary.simpleMessage("تغيير البريد الالكتروني"),
         "change_language": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
@@ -31,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cin": MessageLookupByLibrary.simpleMessage("رقم البطاقة الوطنية"),
         "cin_already_exist": MessageLookupByLibrary.simpleMessage(
             "رقم البطاقة الوطنية موجود سابقا "),
+        "dh": MessageLookupByLibrary.simpleMessage("درهم"),
         "enter_your_phone_number":
             MessageLookupByLibrary.simpleMessage("أدخل البريد الالكتروني"),
         "enter_your_phone_number_and_your_cin":
@@ -40,6 +45,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "log_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "merchant_payment":
+            MessageLookupByLibrary.simpleMessage("دفع التاجر\n"),
+        "mobile_refill": MessageLookupByLibrary.simpleMessage("تعبئة الهاتف"),
+        "more": MessageLookupByLibrary.simpleMessage("المزيد\n"),
         "my_account": MessageLookupByLibrary.simpleMessage("حسابي"),
         "my_history": MessageLookupByLibrary.simpleMessage("معاملاتي"),
         "my_qr_code": MessageLookupByLibrary.simpleMessage("My QR Code"),
@@ -47,11 +56,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_member": MessageLookupByLibrary.simpleMessage("لست عضوا؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("اشعارات"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة السر"),
+        "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "phone_number_already_exist": MessageLookupByLibrary.simpleMessage(
             "الرقم الذي ادخلتم موجود سابقا"),
+        "receive_money":
+            MessageLookupByLibrary.simpleMessage("استقبال الأموال"),
         "register": MessageLookupByLibrary.simpleMessage("سجل الأن"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة السر"),
+        "scan_qr_code": MessageLookupByLibrary.simpleMessage("Scan Qr Code"),
+        "send_money": MessageLookupByLibrary.simpleMessage("ارسال الأموال"),
+        "services": MessageLookupByLibrary.simpleMessage("خدمات\n"),
         "settings": MessageLookupByLibrary.simpleMessage("اعدادات"),
         "step_1":
             MessageLookupByLibrary.simpleMessage("الخطوة الأولى : التعريف "),
@@ -61,6 +76,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم البطاقة الوطنية اجباري"),
         "the_phone_number_must_not_be_empty":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف اجباري"),
-        "title": MessageLookupByLibrary.simpleMessage("اعدادات")
+        "title": MessageLookupByLibrary.simpleMessage("اعدادات"),
+        "top_up": MessageLookupByLibrary.simpleMessage("شحن الرصيد"),
+        "top_up_acceuil": MessageLookupByLibrary.simpleMessage("شحن الرصيد\n"),
+        "transfer": MessageLookupByLibrary.simpleMessage("ارسال\n"),
+        "transfer_to": MessageLookupByLibrary.simpleMessage("ارسل الى")
       };
 }
