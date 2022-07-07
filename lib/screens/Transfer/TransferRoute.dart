@@ -32,9 +32,9 @@ class TransferRoute extends StatelessWidget {
             },
           ),
           title: Padding(
-            padding: const EdgeInsets.only(left: 78.0),
+            padding: const EdgeInsets.only(left: 48.0),
             child: const Text(
-              'Transfer Route',
+              'Transfert d\'argent',
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -63,7 +63,7 @@ class TransferRoute extends StatelessWidget {
                     iconStyle: IconStyle(
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: S.of(context).receive_money,
+                    title: 'Transfert d \' argent par QR Code',
                     subtitle: S.of(context).scan_qr_code
                          ),
                   SettingsItem(
@@ -79,7 +79,7 @@ class TransferRoute extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: S.of(context).send_money,
+                    title: 'Transfert d \' argent par Numero de telephone',
                   ),
                 ],
               ),

@@ -70,7 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset_password":
             MessageLookupByLibrary.simpleMessage("modifier Mot De Passe"),
         "scan_qr_code": MessageLookupByLibrary.simpleMessage("Scanner Qr Code"),
-        "send_money": MessageLookupByLibrary.simpleMessage("Envoi d\'argant"),
+        "send_money":
+            MessageLookupByLibrary.simpleMessage("Envoi de l\'argent"),
         "services": MessageLookupByLibrary.simpleMessage("Services\n"),
         "settings": MessageLookupByLibrary.simpleMessage("Parameters"),
         "step_1":

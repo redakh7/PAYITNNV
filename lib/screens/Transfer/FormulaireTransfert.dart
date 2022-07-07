@@ -12,10 +12,8 @@ import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
 import 'package:m_wallet_hps/shared/SideMenu.dart';
 import 'package:text_form_field_wrapper/text_form_field_wrapper.dart';
 
-import '../shared/PopUp.dart';
-import 'HomeScreen.dart';
-import 'Routes/CustomPageRouteRight.dart';
-import 'Routes/custom_page_route.dart';
+import '../../shared/PopUp.dart';
+import '../Routes/CustomPageRouteRight.dart';
 
 class FormulaireTransfert extends StatefulWidget {
   FormulaireTransfert({Key? key}) : super(key: key);
@@ -150,13 +148,17 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                           }
                         },
                         keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(),
-                          prefix:Text("+212"),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
+                          decoration: InputDecoration(
+                            prefix:Text("+212"),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Color(0xff4c91bc), width: 2.0),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                          )
                       ),
                       SizedBox(
                         height: 8,
@@ -185,14 +187,17 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                                 }
                               },
                               keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(),
 
-                                border: OutlineInputBorder(
-
-                                    borderRadius: BorderRadius.circular(10.0)
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: Color(0xff4c91bc), width: 2.0),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0)),
                                 ),
-                              ),
                             ),
                           ),
                           Container(
@@ -239,12 +244,17 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                             return " the Purpose Of Transaction must not be empty";
                           }
                         },
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0)
-                          ),
-                        ),
+
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Color(0xff4c91bc), width: 2.0),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                          )
                       ),
                       SizedBox(height: 28,),
                       Text('Operation type', style: TextStyle(

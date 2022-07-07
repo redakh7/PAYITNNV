@@ -39,7 +39,7 @@ class TransferQrCodeResult extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-
+          
             children: [
             SizedBox(height: 30,),
 
