@@ -34,9 +34,9 @@ class PaymentRoute extends StatelessWidget {
             },
           ),
           title: Padding(
-            padding: const EdgeInsets.only(left: 78.0),
+            padding: const EdgeInsets.only(left: 45.0),
             child: const Text(
-              'Payment Route',
+              'Payer un commerçant ',
               style: TextStyle(color: Colors.white),
             ),
           ),

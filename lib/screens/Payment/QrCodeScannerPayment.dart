@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:m_wallet_hps/screens/Payment/PaymentRoute.dart';
 import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
@@ -45,13 +46,16 @@ class _QrCodeScannerPaymentState extends State<QrCodeScannerPayment> with Widget
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).push(
-              CustomPageRouteRight(child: TransferRoute()),
+              CustomPageRouteRight(child: PaymentRoute()),
             );
           },
         ),
-        title: const Text(
-          'Paiment d\'argent par QR Code',
-          style: TextStyle(color: Colors.white),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 50.0),
+          child: const Text(
+            'Payer un commerçant',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         backgroundColor: Color(0xff4c91bc),
 

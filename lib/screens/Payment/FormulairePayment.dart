@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:m_wallet_hps/screens/Payment/PaymentRoute.dart';
@@ -33,7 +34,7 @@ class _FormulairePaymentState extends State<FormulairePayment> {
   String valueofoperationtype = 'Transfer P2P';
 
   // List of items in our dropdown menu
-  var Operation_type = [
+  var Operation_type= [
     'Transfer P2P',
     'Paiement commercant a face 2 face',
     'Paiement commercant a distance',
@@ -76,9 +77,12 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                 .push(CustomPageRouteRight(child: PaymentRoute()));
           },
         ),
-        title: const Text(
-          'Paiement d\'argent par QR Code',
-          style: TextStyle(color: Colors.white),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 50.0),
+          child: const Text(
+            'mode commerçant',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         backgroundColor: Color(0xff4c91bc),
         elevation: 0,
@@ -150,7 +154,6 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                           return " Phone Number must not be empty";
                         }
                       },
-                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(),
                         focusedBorder: OutlineInputBorder(
@@ -192,7 +195,7 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                             controller: transactionAmount,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return " the Transaction  Amount must not be empty";
+                                return "Transaction  Amount must not be empty";
                               }
                             },
                             keyboardType: TextInputType.phone,
@@ -278,6 +281,10 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                       height: 8,
                     ),
                     TextFormField(
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(3),
+                      ],
+                      keyboardType: TextInputType.phone,
                       controller: financialinstitutioncode,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -285,7 +292,7 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                         }
                       },
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 6),
                         focusedBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
                               color: Color(0xff4c91bc), width: 2.0),
@@ -369,6 +376,10 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                         Container(
                           width: 150,
                           child: TextFormField(
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(3),
+                            ],
+                            keyboardType: TextInputType.phone,
                             controller: merchantcategory,
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -376,7 +387,7 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                               }
                             },
                             decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 6),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                     color: Color(0xff4c91bc), width: 2.0),
@@ -426,7 +437,7 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                       controller: merchantname,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return " the merchant name must not be empty";
+                          return " merchant name must not be empty";
                         }
                       },
                       decoration: InputDecoration(
@@ -455,7 +466,7 @@ class _FormulairePaymentState extends State<FormulairePayment> {
                       controller: merchantcity,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return " the merchant city must not be empty";
+                          return " merchant city must not be empty";
                         }
                       },
                       decoration: InputDecoration(

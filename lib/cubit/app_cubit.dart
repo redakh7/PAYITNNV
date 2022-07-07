@@ -40,7 +40,7 @@ class AppCubit extends Cubit<AppStates> {
     AlimentationScreen(),
   ];
 
-  static Locale currentLocale= const Locale("en");
+  static Locale currentLocale= const Locale("fr");
 
 
 
@@ -267,7 +267,6 @@ void verifyphone(phone) {
       print(error.toString());
       emit(AppVerifyEmailErrorStates());
     });
-
   }
   
   void transferp2p(String pointofinitiationmethode,paidEntityRef,trans_curr,tran_amount,tran_purpose,oper_type){
@@ -279,7 +278,6 @@ void verifyphone(phone) {
     print(tran_purpose);
     print(oper_type);
     print("-----------------------");
-
     DioHelper.postData(url: 'transferp2p', data: {
       "transaction_type" : "transfer p2p",
 

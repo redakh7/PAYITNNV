@@ -18,7 +18,6 @@ class TransferRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserModel? userModel = AppCubit.get(context).userModel;
     return Material(
       child: Scaffold(
         backgroundColor: Colors.white.withOpacity(.94),
@@ -59,7 +58,7 @@ class TransferRoute extends StatelessWidget {
                           CustomPageRouteLeft(child: QrCodeScannerTransfer()),
                           (route) => false);
                     },
-                    icons: CupertinoIcons.person ,
+                    icons: CupertinoIcons.down_arrow ,
                     iconStyle: IconStyle(
                       backgroundColor: Color(0xff4c91bc),
                     ),
@@ -73,13 +72,13 @@ class TransferRoute extends StatelessWidget {
                           CustomPageRouteLeft(child: FormulaireTransfert()),
                           (route) => false);
                     },
-                    icons: Icons.admin_panel_settings,
+                    icons: CupertinoIcons.up_arrow,
                     iconStyle: IconStyle(
                       iconsColor: Colors.white,
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: S.of(context).send_money,
+                    title:S.of(context).send_money
                   ),
                 ],
               ),

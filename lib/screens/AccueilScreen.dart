@@ -308,7 +308,7 @@ class AccueilScreen extends StatelessWidget {
                   serviceWidget("top-up", "Alimenter \nmon PAYIT", context,
                       AlimentationScreen()),
                   serviceWidget(
-                      "store", "Payer\ncommerçant", context, PaymentRoute()),
+                      "store", "Payer un\ncommerçant", context, PaymentRoute()),
                   serviceWidget(
                       "phone", "Recharge\nMobile", context, SettingsScreen()),
                   serviceWidget("invoice", "Paiement\nfactures", context,
