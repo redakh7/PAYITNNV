@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,13 +5,15 @@ import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+
 
 import 'HomeScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
 
 class AccountScreen extends StatelessWidget {
   static String id = "ACCOUNT";
+
+  const  AccountScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +24,18 @@ class AccountScreen extends StatelessWidget {
         builder: (context, state) => Scaffold(
               appBar: AppBar(
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () {
                     Navigator.of(context).push(
-                      CustomPageRouteRight(child: HomeScreen()),
+                      CustomPageRouteRight(child:const HomeScreen()),
                     );
                   },
                 ),
-                backgroundColor: Color(0xff4c91bc),
+                backgroundColor:const Color(0xff4c91bc),
                 elevation: 2,
-                actions: [],
-                title: Padding(
-                  padding: const EdgeInsets.only(left: 78.0),
+                actions: const [],
+                title:const Padding(
+                  padding: EdgeInsets.only(left: 78.0),
                   child: Text(
                     'Mon Compte',
                   ),
@@ -44,22 +43,22 @@ class AccountScreen extends StatelessWidget {
               ),
               body: Column(
                 children: [
-                  SizedBox(height: 25,),
+                  const  SizedBox(height: 25,),
                   Container(
-                    color: Color(0xff4c91bc),
+                    color:const Color(0xff4c91bc),
                     child: Expanded(
                       flex: 1,
                       child: Padding(
-                        padding: EdgeInsets.all(20),
+                        padding:const EdgeInsets.all(20),
                         child: Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.white)),
                           child: Column(
                             children: [
-                              Icon(Icons.person_outline,color: Colors.white60,size: 120,),
+                              const Icon(Icons.person_outline,color: Colors.white60,size: 120,),
                               Text(
                                 "${userModel?.data.solde} DH",
-                                style: TextStyle(
+                                style:const TextStyle(
                                     color: Colors.white,
                                     fontSize: 21,
                                     fontWeight: FontWeight.w800,
@@ -75,52 +74,52 @@ class AccountScreen extends StatelessWidget {
                     flex: 4,
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
-                        RowBuilder(
+                        rowBuilder(
                             att: "Nom",
                             text: "${userModel?.data.firstName.toUpperCase()}"),
-                        SizedBox(
+                        const SizedBox(
                           height: 25,
                         ),
-                        RowBuilder(
+                        rowBuilder(
                             att: "Prenom",
                             text: "${userModel?.data.lastName.toUpperCase()}"),
-                        SizedBox(
+                        const  SizedBox(
                           height: 25,
                         ),
-                        RowBuilder(
+                        rowBuilder(
                             att: "E-mail",
                             text: "${userModel?.data.email.toUpperCase()}"),
-                        SizedBox(
+                        const  SizedBox(
                           height: 25,
                         ),
-                        RowBuilder(
+                        rowBuilder(
                             att: "Numéro de téléphone",
                             text: "${userModel?.data.phoneNumber}"),
-                        SizedBox(
+                        const  SizedBox(
                           height: 25,
                         ),
-                        RowBuilder(att: "Banque", text: swift.toUpperCase()),
-                        SizedBox(
+                        rowBuilder(att: "Banque", text: swift.toUpperCase()),
+                        const  SizedBox(
                           height: 40,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(
+                            const    Text(
                               'Dernières opérations ',
                               style: TextStyle(fontSize: 17),
                             ),
                             InkWell(
                               onTap: (){},
                               child: Ink(
-                                child: Container(
+                                child:  SizedBox(
                                   height: 50,
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
-                                    children: [
+                                    children: const [
                                       Text('HISTORIQUE', style: TextStyle(
                                         color: Color(0xff4c91bc),
                                       ),), // <-- Text
@@ -148,12 +147,12 @@ class AccountScreen extends StatelessWidget {
   }
 }
 
-Widget RowBuilder({
+Widget rowBuilder({
   required String text,
   required String att,
 }) {
   return Padding(
-    padding: EdgeInsets.only(left: 15, right: 15),
+    padding:const EdgeInsets.only(left: 15, right: 15),
     child: Container(
       height: 35,
       decoration: BoxDecoration(
@@ -168,18 +167,18 @@ Widget RowBuilder({
         children: [
           Text(
             att,
-            style: TextStyle(
+            style:const TextStyle(
                 color: Colors.black54,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'avenir'),
           ),
-          Spacer(),
+          const  Spacer(),
           Text(
             text,
             style: GoogleFonts.pragatiNarrow(
               letterSpacing: 0.5,
-              textStyle: TextStyle(
+              textStyle:const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.normal),

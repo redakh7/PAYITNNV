@@ -5,7 +5,6 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/screens/HomeScreen.dart';
 import 'package:m_wallet_hps/shared/component.dart';
 
-import 'Routes/CustomPageRouteRight.dart';
 
 class AlimentationScreen extends StatelessWidget {
   const AlimentationScreen({Key? key}) : super(key: key);
@@ -65,7 +64,7 @@ class AlimentationScreen extends StatelessWidget {
                       //create lable
                       labelText: '  Motif',
                       //lable style
-                      labelStyle: TextStyle(
+                      labelStyle:const  TextStyle(
                         fontSize: 16,
                         fontFamily: "verdana_regular",
                         fontWeight: FontWeight.w400,
@@ -78,7 +77,7 @@ class AlimentationScreen extends StatelessWidget {
                 flex: 1,
                 child: Material(
                   borderRadius: BorderRadius.circular(30),
-                  color: Color(0xff4c91bc),
+                  color: const Color(0xff4c91bc),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
@@ -122,7 +121,7 @@ class AlimentationScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: montantController,
                         keyboardType: TextInputType.number,
-                        style: TextStyle(
+                        style:const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 35),
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(

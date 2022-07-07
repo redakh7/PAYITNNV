@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(listener: ((context, state) {
       if (state is LoadLoggedInUserErrorStates) {
-        navigateAndFinish(context, LoginScreen());
+        navigateAndFinish(context,const LoginScreen());
         showToast(message: "error");
       }
     }), builder: ((context, state) {
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                         S.of(context).top_up,
                       ),
                     ),
-          backgroundColor: Color(0xff4c91bc)),
+          backgroundColor:const  Color(0xff4c91bc)),
       backgroundColor: Colors.white,
       body: AppCubit.get(context)
           .bottomScreens[AppCubit.get(context).currentIndex],
@@ -76,23 +76,23 @@ class HomeScreen extends StatelessWidget {
           },
           items: [
             SalomonBottomBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Accueil"),
-              selectedColor: Color(0xff4c91bc),
+              icon:const Icon(Icons.home),
+              title:const Text("Accueil"),
+              selectedColor: const Color(0xff4c91bc),
             ),
 
             /// transfert
             SalomonBottomBarItem(
-              icon: Icon(Icons.currency_exchange_sharp),
-              title: Text("Transfert"),
-              selectedColor: Color(0xff4c91bc),
+              icon:const Icon(Icons.currency_exchange_sharp),
+              title:const Text("Transfert"),
+              selectedColor:const Color(0xff4c91bc),
             ),
 
             /// Profile
             SalomonBottomBarItem(
-              icon: Icon(Icons.wallet_giftcard),
-              title: Text("Alimentation"),
-              selectedColor: Color(0xff4c91bc),
+              icon:const Icon(Icons.wallet_giftcard),
+              title:const Text("Alimentation"),
+              selectedColor: const Color(0xff4c91bc),
             ),
           ],
         ),
