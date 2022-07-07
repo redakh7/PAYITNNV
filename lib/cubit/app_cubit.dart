@@ -8,6 +8,7 @@ import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/AlimentationScreen.dart';
 
+import '../models/TransactionInfos.dart';
 import '../screens/AccueilScreen.dart';
 import '../screens/Transfer/TransferScreen.dart';
 import 'package:restart_app/restart_app.dart';
@@ -300,6 +301,16 @@ void verifyphone(phone) {
 
     });
   }
+
+  TransactionInfos? transactionInfos; 
+
+
+
+/**
+ * void getTransactionBody(String qrText){
+    DioHelper.getData(url: "url");
+    }
+ */
   
 }
 

@@ -63,7 +63,7 @@ class TransferRoute extends StatelessWidget {
                     iconStyle: IconStyle(
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Transfert d \' argent par QR Code',
+                    title: S.of(context).receive_money,
                     subtitle: S.of(context).scan_qr_code
                          ),
                   SettingsItem(
@@ -79,7 +79,7 @@ class TransferRoute extends StatelessWidget {
                       withBackground: true,
                       backgroundColor: Color(0xff4c91bc),
                     ),
-                    title: 'Transfert d \' argent par Numero de telephone',
+                    title: S.of(context).send_money,
                   ),
                 ],
               ),

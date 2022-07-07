@@ -1,18 +1,12 @@
-import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:group_radio_button/group_radio_button.dart';
-import 'package:m_wallet_hps/screens/AccueilScreen.dart';
+
 import 'package:m_wallet_hps/screens/Payment/PaymentRoute.dart';
-import 'package:m_wallet_hps/screens/SettingsScreen.dart';
-import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
-import 'package:m_wallet_hps/shared/SideMenu.dart';
-import 'package:text_form_field_wrapper/text_form_field_wrapper.dart';
 
 import '../Routes/CustomPageRouteRight.dart';
-import '../test.dart';
+
+
 
 class FormulairePayment extends StatefulWidget {
 // List of items in our dropdown menu
