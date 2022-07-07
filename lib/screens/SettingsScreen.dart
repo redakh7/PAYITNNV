@@ -14,7 +14,7 @@ import 'LoginScreen.dart';
 import 'QrCodeScreen.dart';
 import 'Routes/CustomPageRouteRight.dart';
 import 'Routes/custom_page_route.dart';
-import 'FormulaireTransfert.dart';
+import 'Transfer/FormulaireTransfert.dart';
 
 class SettingsScreen extends StatelessWidget {
 

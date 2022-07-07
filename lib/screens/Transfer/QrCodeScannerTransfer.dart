@@ -4,7 +4,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
-import '../FormulaireTransfert.dart';
+import 'FormulaireTransfert.dart';
 import '../Routes/CustomPageRouteRight.dart';
 import '../Routes/custom_page_route.dart';
 

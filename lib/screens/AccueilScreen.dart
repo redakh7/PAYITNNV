@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
-import 'package:m_wallet_hps/generated/l10n.dart';
 import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
-import 'package:m_wallet_hps/screens/FormulaireTransfert.dart';
+import 'package:m_wallet_hps/screens/Payment/PaymentRoute.dart';
+import 'package:m_wallet_hps/screens/Transfer/FormulaireTransfert.dart';
 import 'package:m_wallet_hps/screens/Routes/custom_page_route.dart';
 import 'package:m_wallet_hps/screens/SettingsScreen.dart';
 import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
@@ -59,15 +59,14 @@ class AccueilScreen extends StatelessWidget {
                 widgetBuilder(context: context, userModel: userModel)));
   }
 
-  Column serviceWidget(String img, String name,context) {
+  Column serviceWidget(String img, String name, context, widget) {
     return Column(
       children: [
         Expanded(
           child: InkWell(
             borderRadius: BorderRadius.circular(20),
-            onTap: ()  {
-              Navigator.of(context)
-                  .push(CustomPageRouteLeft(child: TransferRoute()));
+            onTap: () {
+              Navigator.of(context).push(CustomPageRouteLeft(child: widget));
             },
             child: Container(
               margin: EdgeInsets.all(4),
@@ -77,7 +76,7 @@ class AccueilScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Container(
-                  margin: EdgeInsets.all(25),
+                  margin: EdgeInsets.all(23),
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('images/$img.png'),
@@ -189,7 +188,7 @@ class AccueilScreen extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "${userModel?.data.solde} "+S.of(context).dh,
+                          "${userModel?.data.solde} DH ",
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -239,9 +238,9 @@ class AccueilScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
-                    S.of(context).transfer_to,
-                    style: const TextStyle(
+                  const Text(
+                    "Transférer à",
+                    style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'avenir'),
@@ -284,15 +283,15 @@ class AccueilScreen extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:  [
+                children: const [
                   Text(
-                   S.of(context).services,
-                    style: const TextStyle(
+                    'Services',
+                    style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
                         fontFamily: 'avenir'),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 60,
                     width: 60,
                     child: Icon(Icons.dialpad),
@@ -304,16 +303,19 @@ class AccueilScreen extends StatelessWidget {
                 crossAxisCount: 4,
                 childAspectRatio: 0.7,
                 children: [
+                  serviceWidget("transfert-de-donnees1", "Transfert\nd'argent",
+                      context, TransferRoute()),
+                  serviceWidget("top-up", "Alimenter \nmon PAYIT", context,
+                      AlimentationScreen()),
                   serviceWidget(
-                    "transfert-de-donnees1",
-                    S.of(context).transfer,context
-                  ),
-                  serviceWidget("top-up", S.of(context).top_up_acceuil,context),
-                  serviceWidget("phone", S.of(context).mobile_refill,context),
-                  serviceWidget("invoice", S.of(context).bill_payment,context),
-                  serviceWidget("store", S.of(context).merchant_payment,context),
-                  serviceWidget("flight", S.of(context).airplane_ticket,context),
-                  serviceWidget("more", S.of(context).more,context),
+                      "store", "Payer\ncommerçant", context, PaymentRoute()),
+                  serviceWidget(
+                      "phone", "Recharge\nMobile", context, SettingsScreen()),
+                  serviceWidget("invoice", "Paiement\nfactures", context,
+                      SettingsScreen()),
+                  serviceWidget(
+                      "flight", "Ticket\nAvion", context, SettingsScreen()),
+                  serviceWidget("more", "Plus\n", context, SettingsScreen()),
                 ],
               )
             ],
