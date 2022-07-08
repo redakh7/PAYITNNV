@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
@@ -82,9 +83,12 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                   .push(CustomPageRouteRight(child: TransferRoute()));
             },
           ),
-          title: const Text(
-            'Transfert d\'argent par QR Code',
-            style: TextStyle(color: Colors.white),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 50.0),
+            child: const Text(
+              'Envoi de l\'argent',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           backgroundColor: Color(0xff4c91bc),
           elevation: 0,
@@ -131,7 +135,7 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                           });
                         },
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: 8,),
                       Text(
                         'Phone number',
                         style: TextStyle(fontSize: 18, color: Colors.blueGrey,),
@@ -140,8 +144,10 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                         height: 8,
                       ),
                       TextFormField(
-
-                        controller: phoneNumber,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(9),
+                          ],
+                          controller: phoneNumber,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return " Phone Number must not be empty";
@@ -149,7 +155,7 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                         },
                         keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            prefix:Text("+212"),
+                            prefix:Text("+212 | "),
                             contentPadding: const EdgeInsets.symmetric(horizontal: 6),
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -230,7 +236,7 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 8,
                       ),
                       Text('Purpose Of Transaction', style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey,)),
@@ -238,6 +244,9 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                         height: 8,
                       ),
                       TextFormField(
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'^\d+(?:\.\d+)?$')),
+                          ],
                         controller: purposeOfTransaction,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -256,8 +265,8 @@ class _FormulaireTransfertState extends State<FormulaireTransfert> {
                                 borderRadius: BorderRadius.circular(10.0)),
                           )
                       ),
-                      SizedBox(height: 28,),
-                      Text('Operation type', style: TextStyle(
+                      SizedBox(height: 8,),
+                      Text(('Operation type'), style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey,)),
                       SizedBox(height: 8,),
                       Container(

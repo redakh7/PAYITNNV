@@ -64,14 +64,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number_already_exist": MessageLookupByLibrary.simpleMessage(
             "Le numéro de téléphone existe déjà"),
         "receive_money":
-            MessageLookupByLibrary.simpleMessage("Recevoir de l\'argent\n"),
+            MessageLookupByLibrary.simpleMessage("Recevoir de L\'argent\n"),
         "register":
             MessageLookupByLibrary.simpleMessage("S\'inscrire maintenant"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("modifier Mot De Passe"),
         "scan_qr_code": MessageLookupByLibrary.simpleMessage("Scanner Qr Code"),
         "send_money":
-            MessageLookupByLibrary.simpleMessage("Envoi de l\'argent"),
+            MessageLookupByLibrary.simpleMessage("Envoi de L\'argent"),
         "services": MessageLookupByLibrary.simpleMessage("Services\n"),
         "settings": MessageLookupByLibrary.simpleMessage("Parameters"),
         "step_1":

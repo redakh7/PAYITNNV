@@ -56,9 +56,12 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
             );
           },
         ),
-        title: const Text(
-          'Paiement d\'argent par QR Code',
-          style: TextStyle(color: Colors.white),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 50.0),
+          child: const Text(
+            'Recevoir de l\'argent',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         backgroundColor: blueGreyColor,
 
@@ -87,7 +90,7 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('scannez le code qr pour recevoir de l\'argent',style: TextStyle(
+          Text('scannez Code QR pour recevoir de l\'argent',style: TextStyle(
                 color: Colors.white,
             fontSize: 15,
               fontWeight: FontWeight.bold
@@ -158,7 +161,7 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children:[
-          Text('Le QR code doit respecter la norme EMV CO'),
+          Text('Le Code QR doit respecter la norme EMV CO'),
         ],
       ),
 
