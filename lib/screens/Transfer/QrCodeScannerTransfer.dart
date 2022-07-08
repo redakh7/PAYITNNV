@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/screens/Transfer/TransferRoute.dart';
+import 'package:m_wallet_hps/shared/Colors.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import 'FormulaireTransfert.dart';
@@ -33,6 +35,12 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
 
     setState(() {
       _scanBarcode = barcodeScanRes;
+      if(!_scanBarcode.isEmpty || _scanBarcode.startsWith("000201"))
+        {
+          AppCubit().getTransactionInfo(_scanBarcode);
+
+        }
+
     });
   }
   String _scanBarcode = 'Unknown';
@@ -41,10 +49,10 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).push(
-              CustomPageRouteRight(child: TransferRoute()),
+              CustomPageRouteRight(child: const TransferRoute()),
             );
           },
         ),
@@ -52,7 +60,7 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
           'Paiement d\'argent par QR Code',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color(0xff4c91bc),
+        backgroundColor: blueGreyColor,
 
       ),
       body: SafeArea(
@@ -88,7 +96,7 @@ class _QrCodeScannerTransferState extends State<QrCodeScannerTransfer> with Widg
 
         ],
       ),
-      color: Color(0xff4c91bc),
+      color: blueGreyColor,
 
 
     ),

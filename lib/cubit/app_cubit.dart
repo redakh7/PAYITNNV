@@ -306,11 +306,22 @@ void verifyphone(phone) {
 
 
 
-/**
- * void getTransactionBody(String qrText){
-    DioHelper.getData(url: "url");
+ void getTransactionInfo(String qrText){
+
+   emit(AppTransactionInitialStates());
+    DioHelper.postData(url: "/getqrdata",data: {
+      "qrText" : qrText,
+    }).then((value) {
+      transactionInfos = TransactionInfos.fromJson(value.data);
+      print(value.data);
+      print(transactionInfos?.transactionCurrency);
+      emit(AppTransactionSuccessStates());
+    }).catchError((error){
+      emit(AppTransactionErrorStates());
+      print(error.toString());
+    });
     }
- */
+
   
 }
 

@@ -140,3 +140,10 @@ class AppGeneratedQrCodeErrorStates extends AppStates {}
 
 
 
+class AppTransactionSuccessStates extends AppStates {}
+class AppTransactionErrorStates extends AppStates {}
+class AppTransactionInitialStates extends AppStates {}
+
+
+
+

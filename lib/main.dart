@@ -30,20 +30,16 @@ Future<void> main() async {
 
   String? token;
 
-
-
   try {
     token = CacheHelper.getData(key: 'token');
   } catch (e) {
     print(e);
   }
-  print('token is ');
-  print(token);
 
   if (token == null) {
     AppCubit.widget = const LoginScreen();
   } else if (jwtVerification(token) == true) {
-    print(jwtVerification(token));
+
     AppCubit.widget = const HomeScreen();
   } else {
     AppCubit.widget = const LoginScreen();
@@ -69,28 +65,26 @@ class _MyAppState extends State<MyApp> {
 
   @override
   initState() {
-
     super.initState();
-    this.initLang();
-    this.initDynamicLinks();
-
+    initLang();
+    initDynamicLinks();
   }
 
   Future<void> initDynamicLinks() async {
     dynamicLinks.onLink.listen((dynamicLinkData) {
       showToast(message: "Email Verified");
-      Get.to(() => LoginScreen());
+      Get.to(() => const LoginScreen());
     }).onError((error) {
       print('onLink error');
       print(error.message);
     });
-  } Future<void> initLang() async {
- String?  lang = CacheHelper.getData(key: "lang");
- if(lang != null){
-   AppCubit.currentLocale = Locale(lang);
-   print("laaaaaaaaaaaaaaaaaaaaang");
-   print(CacheHelper.getData(key: 'lang'));
- }
+  }
+
+  Future<void> initLang() async {
+    String? lang = CacheHelper.getData(key: "lang");
+    if (lang != null) {
+      AppCubit.currentLocale = Locale(lang);
+    }
   }
 
   @override
@@ -100,29 +94,27 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) => AppCubit()
                 ..loadLoggedInUser(CacheHelper.getData(key: 'email'))),
-
         ],
         child: BlocConsumer<AppCubit, AppStates>(
           listener: (context, state) {
             if (state is LoadLoggedInUserErrorStates) {
-              Get.off(() => LoginScreen());
+              Get.off(() => const LoginScreen());
             }
           },
           builder: (context, state) => GetMaterialApp(
-            locale:  AppCubit.currentLocale,
-            supportedLocales: S.delegate.supportedLocales ,
-            localizationsDelegates:const [
+            locale: AppCubit.currentLocale,
+            supportedLocales: S.delegate.supportedLocales,
+            localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             home: AnimatedSplashScreen(
               splashIconSize: 500,
-                // nextScreen: ,
+              // nextScreen: ,
               nextScreen: AppCubit.widget,
               backgroundColor: Colors.white,
               splashTransition: SplashTransition.fadeTransition,
@@ -147,7 +139,7 @@ class _MyAppState extends State<MyApp> {
                         fontStyle: FontStyle.normal,
                       ),
                       textAlign: TextAlign.center,
-                      speed: Duration(milliseconds: 100),
+                      speed: const Duration(milliseconds: 100),
                     ),
                     const Spacer(),
                     const CircularProgressIndicator(
@@ -158,7 +150,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             routes: {
-              SignupScreen1.id: (context) => SignupScreen1(),
+              SignupScreen1.id: (context) => const SignupScreen1(),
               LoginScreen.id: (context) => const LoginScreen(),
               // HomePage.id: (context) => const HomePage(),
 
